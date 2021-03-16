@@ -1,6 +1,7 @@
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
+<?= $this->session->flashdata('message'); ?>
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
@@ -37,123 +38,35 @@
                   </tr>
                   </thead>
                   <tbody>
+                    <?php foreach ($operator_list as $operator) : ?>
                   <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 4.0
-                    </td>
-                    <td>Win 95+</td>
-                    <td> 4</td>
-                    <td> 4</td>
-                    <td>X</td>
+                    <td><?= $operator['nama']; ?></td>
+                    <td><?= $operator['email'] ?></td>
+                    <td><?= $operator['alamat']; ?></td>
+                    <td><?= $operator['no_tlp']; ?></td>
+                    <td><?= $operator['status']; ?></td>
+                    <td>
+                          <a class="btn btn-info btn-sm" href="<?= base_url('admin/operator/edit_operator/'.$operator['id']) ?>">
+                              <i class="fas fa-pencil-alt">
+                              </i>
+                              Edit
+                          </a>
+                          <a class="btn btn-danger btn-sm hapus" href="<?= base_url('admin/operator/delete_operator/'.$operator['id']) ?>">
+                              <i class="fas fa-trash">
+                              </i>
+                              Delete
+                          </a></td>
                   </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 5.0
-                    </td>
-                    <td>Win 95+</td>
-                    <td>Win 95+</td>
-                    <td>5</td>
-                    <td>C</td>
-                  </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 5.5
-                    </td>
-                    <td>Win 95+</td>
-                    <td>5.5</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 6
-                    </td>
-                    <td>Win 98+</td>
-                    <td>6</td>
-                    <td>6</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet Explorer 7</td>
-                    <td>Win XP SP2+</td>
-                    <td>7</td>
-                    <td>A</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>AOL browser (AOL desktop)</td>
-                    <td>Win XP</td>
-                    <td>Win XP</td>
-                    <td>6</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Gecko</td>
-                    <td>Firefox 1.0</td>
-                    <td>Firefox 1.0</td>
-                    <td>Win 98+ / OSX.2+</td>
-                    <td>1.7</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Gecko</td>
-                    <td>Firefox 1.5</td>
-                    <td>Win 98+ / OSX.2+</td>
-                    <td>1.8</td>
-                    <td>A</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Gecko</td>
-                    <td>Firefox 2.0</td>
-                    <td>Win 98+ / OSX.2+</td>
-                    <td>1.8</td>
-                    <td>1.8</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Gecko</td>
-                    <td>Firefox 3.0</td>
-                    <td>Win 2k+ / OSX.3+</td>
-                    <td>Win 2k+ / OSX.3+</td>
-                    <td>1.9</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Gecko</td>
-                    <td>Camino 1.0</td>
-                    <td>OSX.2+</td>
-                    <td>1.8</td>
-                    <td>1.8</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Gecko</td>
-                    <td>Camino 1.5</td>
-                    <td>OSX.3+</td>
-                    <td>1.8</td>
-                    <td>1.8</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Gecko</td>
-                    <td>Netscape 7.2</td>
-                    <td>Win 95+ / Mac OS 8.6-9.2</td>
-                    <td>1.7</td>
-                    <td>A</td>
-                    <td>A</td>
-                  </tr>
+                  <?php endforeach; ?>
+                  
                   </tbody>
                   
                 </table>
               </div>
               <!-- /.card-body -->
+              <div class="card-footer clearfix">
+                <a href="<?= base_url('admin/operator/add_operator') ?>" class="btn btn-success float-right"> <i class="fas fa-plus"></i> Add Product</a>
+              </div>
             </div>
             <!-- /.card -->
           </div>
@@ -166,3 +79,40 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+ 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<script>
+  $(".hapus").on("click",function(e){
+e.preventDefault();
+const href = $(this).attr('href');
+// alert(href);
+// console.log()
+Swal.fire({
+  title: 'Are you sure?',
+  text: "You won't be able to revert this!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, delete it!'
+}).then((result) => {
+  if (result.value) {
+    document.location.href= href;
+    // alert(href);
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Your file has been delete',
+      showConfirmButton: false,
+      timer: 1500
+    }
+    )
+  }
+});
+  });
+// $('#ahref').on("click",function(e){
+//   e.preventDefault();
+
+// });
+</script>

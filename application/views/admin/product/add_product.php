@@ -30,42 +30,36 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form>
+              <form action="<?= base_url('admin/product/save_product') ?>" method="post" enctype="multipart/form-data">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                               <label for="exampleInputEmail1">Name Product</label>
-                              <input type="email" class="form-control col-md-9" id="exampleInputEmail1" placeholder="Name Product">
+                              <input type="text" name="nama_product" class="form-control col-md-9" id="exampleInputEmail1" placeholder="Name Product">
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-group ">
-                              <label for="exampleInputPassword1">Category</label>
-                        <select class="select2" multiple="multiple" data-placeholder="Category" style="width: 100%;">
-                            <option>Alabama</option>
-                            <option>Alaska</option>
-                            <option>California</option>
-                            <option>Delaware</option>
-                            <option>Tennessee</option>
-                            <option>Texas</option>
-                            <option>Washington</option>
+                        <div class="form-group">
+                  <label>Minimal</label>
+                  <select class="form-control select" name="category" style="width: 100%;">
+                  <?php foreach ($category as $category) :?>
+                            <option value="<?= $category['id'] ?>"><?= $category['nama_category'];?></option>
+                            <?php endforeach; ?>
                   </select>
-                  </select>
-                            </div>
-
+                </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6">
                           <label for="exampleInputPassword1">Keterangan</label>
-                          <input type="password" class="form-control col-md-9" id="exampleInputPassword1" placeholder="Keterangan">
+                          <input type="text" name="keterangan" class="form-control col-md-9" id="exampleInputPassword1" placeholder="Keterangan">
                         </div>
                         <div class="form-group col-md-6">
                     <label for="exampleInputFile">Image 1</label>
                     <div class="input-group">
                       <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="exampleInputFile">
+                        <input type="file" name="gambar[]" class="custom-file-input" id="exampleInputFile" multiple="multiple">
                         <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                       </div>
                     </div>
@@ -77,7 +71,7 @@
 
         <div class="form-group">
             <label for="exampleInputPassword1">Quantity</label>
-            <input type="password" class="form-control col-md-9" id="exampleInputPassword1" placeholder="Quantity Product">
+            <input type="text" name="quantity" class="form-control col-md-9" id="exampleInputPassword1" placeholder="Quantity Product">
         </div>
     </div>
     <div class="col-md-6">
@@ -85,7 +79,7 @@
                     <label for="exampleInputFile">Image 2</label>
                     <div class="input-group">
                       <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="exampleInputFile">
+                        <input type="file" name="gambar[]" class="custom-file-input" id="exampleInputFile" multiple="multiple">
                         <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                       </div>
                     </div>
@@ -97,7 +91,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Price</label>
-                                    <input type="password" class="form-control col-md-9" id="exampleInputPassword1" placeholder="Price">
+                                    <input type="text" name="price" class="form-control col-md-9" id="exampleInputPassword1" placeholder="Price">
                                   </div>
                             </div>
                             <div class="col-md-6">
@@ -105,7 +99,7 @@
                     <label for="exampleInputFile">Image 3</label>
                     <div class="input-group">
                       <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="exampleInputFile">
+                        <input type="file" name="gambar[]" class="custom-file-input" id="exampleInputFile" multiple="multiple">
                         <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                       </div>
                     </div>
@@ -118,7 +112,7 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                    <button type="cancel" class="btn btn-danger float-right ">Cancel</button>
+                  <a href="<?= base_url('admin/product/index') ?>" class="btn btn-danger float-right">Cancel</a> 
                   <button type="submit" class="btn btn-primary float-right mr-2">Submit</button>
                 </div>
               </form>

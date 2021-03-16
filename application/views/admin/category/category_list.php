@@ -1,6 +1,7 @@
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
+<?= $this->session->flashdata('message'); ?>
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
@@ -28,22 +29,19 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>ID</th>
-                    <th>Name</th>
+                    <th>No.</th>
+                    <th colspan="2">Name</th>
                     <th>Setting </th>
                   </tr>
                   </thead>
                   <tbody>
+                    <?php 
+                    $no = 1;
+                    foreach ($category as $category): ?>
                   <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 4.0
-                    </td>
-                    <td>  <a class="btn btn-primary btn-sm" href="#">
-                              <i class="fas fa-folder">
-                              </i>
-                              View
-                          </a>
+                    <td><?= $no++;?></td>
+                    <td colspan="2"><?= $category['nama_category'] ?></td>
+                    <td> 
                           <a class="btn btn-info btn-sm" href="#">
                               <i class="fas fa-pencil-alt">
                               </i>
@@ -56,251 +54,7 @@
                           </a></td>
                     
                   </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 5.0
-                    </td>
-                    <td>  <a class="btn btn-primary btn-sm" href="#">
-                              <i class="fas fa-folder">
-                              </i>
-                              View
-                          </a>
-                          <a class="btn btn-info btn-sm" href="#">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                              Edit
-                          </a>
-                          <a class="btn btn-danger btn-sm" href="#">
-                              <i class="fas fa-trash">
-                              </i>
-                              Delete
-                          </a></td>
-                    
-                  </tr>
-                  <tr>
-                    <td>Internet
-                      Explorer 5.5
-                    </td>
-                    <td>Win 95+</td>
-                    <td> <a class="btn btn-primary btn-sm" href="#">
-                              <i class="fas fa-folder">
-                              </i>
-                              View
-                          </a>
-                          <a class="btn btn-info btn-sm" href="#">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                              Edit
-                          </a>
-                          <a class="btn btn-danger btn-sm" href="#">
-                              <i class="fas fa-trash">
-                              </i>
-                              Delete
-                          </a></td>
-                    
-                  </tr>
-                  <tr>
-                    
-                    <td>Win 98+</td>
-                    <td>6</td>
-                    <td> <a class="btn btn-primary btn-sm" href="#">
-                              <i class="fas fa-folder">
-                              </i>
-                              View
-                          </a>
-                          <a class="btn btn-info btn-sm" href="#">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                              Edit
-                          </a>
-                          <a class="btn btn-danger btn-sm" href="#">
-                              <i class="fas fa-trash">
-                              </i>
-                              Delete
-                          </a></td>
-                    
-                  </tr>
-                  <tr>
-                      <td>Win XP SP2+</td>
-                    <td>7</td>
-                    <td> <a class="btn btn-primary btn-sm" href="#">
-                              <i class="fas fa-folder">
-                              </i>
-                              View
-                          </a>
-                          <a class="btn btn-info btn-sm" href="#">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                              Edit
-                          </a>
-                          <a class="btn btn-danger btn-sm" href="#">
-                              <i class="fas fa-trash">
-                              </i>
-                              Delete
-                          </a></td>
-                    
-                  </tr>
-                  <tr>
-                    <td>Win XP</td>
-                    <td>Win XP</td>
-                    <td> <a class="btn btn-primary btn-sm" href="#">
-                              <i class="fas fa-folder">
-                              </i>
-                              View
-                          </a>
-                          <a class="btn btn-info btn-sm" href="#">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                              Edit
-                          </a>
-                          <a class="btn btn-danger btn-sm" href="#">
-                              <i class="fas fa-trash">
-                              </i>
-                              Delete
-                          </a></td>
-                    
-                  </tr>
-                  <tr>
-                    <td>Firefox 1.0</td>
-                    <td>Win 98+ / OSX.2+</td>
-                    <td> <a class="btn btn-primary btn-sm" href="#">
-                              <i class="fas fa-folder">
-                              </i>
-                              View
-                          </a>
-                          <a class="btn btn-info btn-sm" href="#">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                              Edit
-                          </a>
-                          <a class="btn btn-danger btn-sm" href="#">
-                              <i class="fas fa-trash">
-                              </i>
-                              Delete
-                          </a></td>
-                    
-                  </tr>
-                  <tr>
-                    <td>Win 98+ / OSX.2+</td>
-                    <td>1.8</td>
-                    <td> <a class="btn btn-primary btn-sm" href="#">
-                              <i class="fas fa-folder">
-                              </i>
-                              View
-                          </a>
-                          <a class="btn btn-info btn-sm" href="#">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                              Edit
-                          </a>
-                          <a class="btn btn-danger btn-sm" href="#">
-                              <i class="fas fa-trash">
-                              </i>
-                              Delete
-                          </a></td>
-                    
-                  </tr>
-                  <tr>
-                    <td>Win 98+ / OSX.2+</td>
-                    <td>1.8</td>
-                    <td> <a class="btn btn-primary btn-sm" href="#">
-                              <i class="fas fa-folder">
-                              </i>
-                              View
-                          </a>
-                          <a class="btn btn-info btn-sm" href="#">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                              Edit
-                          </a>
-                          <a class="btn btn-danger btn-sm" href="#">
-                              <i class="fas fa-trash">
-                              </i>
-                              Delete
-                          </a></td>
-                    
-                  </tr>
-                  <tr>
-                    <td>Win 2k+ / OSX.3+</td>
-                    <td>Win 2k+ / OSX.3+</td>
-                    <td> <a class="btn btn-primary btn-sm" href="#">
-                              <i class="fas fa-folder">
-                              </i>
-                              View
-                          </a>
-                          <a class="btn btn-info btn-sm" href="#">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                              Edit
-                          </a>
-                          <a class="btn btn-danger btn-sm" href="#">
-                              <i class="fas fa-trash">
-                              </i>
-                              Delete
-                          </a></td>
-                    
-                  </tr>
-                  <tr>
-                    <td>OSX.2+</td>
-                    <td>1.8</td>
-                    <td> <a class="btn btn-primary btn-sm" href="#">
-                              <i class="fas fa-folder">
-                              </i>
-                              View
-                          </a>
-                          <a class="btn btn-info btn-sm" href="#">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                              Edit
-                          </a>
-                          <a class="btn btn-danger btn-sm" href="#">
-                              <i class="fas fa-trash">
-                              </i>
-                              Delete
-                          </a></td>
-                    
-                  </tr>
-                  <tr>
-                    <td>OSX.3+</td>
-                    <td>1.8</td>
-                    <td> <a class="btn btn-primary btn-sm" href="#">
-                              <i class="fas fa-folder">
-                              </i>
-                              View
-                          </a>
-                          <a class="btn btn-info btn-sm" href="#">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                              Edit
-                          </a>
-                          <a class="btn btn-danger btn-sm" href="#">
-                              <i class="fas fa-trash">
-                              </i>
-                              Delete
-                          </a></td>
-                    
-                  </tr>
-                  <tr>
-                    <td>Win 95+ / Mc OS 8.6-9.2</td>
-                    <td>1.7</td>
-                    <td> <a class="btn btn-primary btn-sm" href="#">
-                              <i class="fas fa-folder">
-                              </i>
-                              View
-                          </a>
-                          <a class="btn btn-info btn-sm" href="#">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                              Edit
-                          </a>
-                          <a class="btn btn-danger btn-sm" href="#">
-                              <i class="fas fa-trash">
-                              </i>
-                              Delete
-                          </a></td>
-                    
-                  </tr>
+                  <?php endforeach; ?>
                   </tbody>
                   
                 </table>
@@ -332,19 +86,19 @@
               </button>
             </div>
             <div class="modal-body">
-                <form action="" class="form-horizontal">
+                <form action="<?= base_url('admin/category/save_category') ?>" class="form-horizontal" method="post">
                     <div class="card-body">
                                     <div class="form-group row">
                                       <label for="exampleInputEmail1" class="col-sm-2 col-form-label">Category</label>
-                                      <input type="email" class="form-control col-md-9" id="exampleInputEmail1" placeholder="Enter email">
+                                      <input type="text" name="category" class="form-control col-md-9" id="exampleInputEmail1" placeholder="Enter Category" required>
                                     </div>
-                </form>
-</div>
-            </div>
-            <div class="modal-footer justify-content-between">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
+                                  </div>
+                                </div>
+                                <div class="modal-footer justify-content-between">
+                                  <a href="" class="btn btn-default" data-dismiss="modal">Close</a>
+                                  <button type="submit" class="btn btn-primary">Save changes</button>
+                                </div>
+                              </form>
           </div>
           <!-- /.modal-content -->
         </div>

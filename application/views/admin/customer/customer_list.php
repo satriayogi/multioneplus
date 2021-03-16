@@ -45,7 +45,9 @@
                     <td>Win 95+</td>
                     <td> 4</td>
                     <td> 4</td>
-                    <td>X</td>
+                    <td> 
+                <input type="checkbox" name="my-checkbox" checked data-bootstrap-switch data-off-color="danger" data-on-color="success">
+              </td>
                   </tr>
                   <tr>
                     <td>Trident</td>
@@ -55,7 +57,7 @@
                     <td>Win 95+</td>
                     <td>Win 95+</td>
                     <td>5</td>
-                    <td>C</td>
+                    <td><input type="checkbox" name="my-checkbox" checked data-bootstrap-switch data-off-color="danger" data-on-color="success"></td>
                   </tr>
                   <tr>
                     <td>Trident</td>
@@ -65,7 +67,7 @@
                     </td>
                     <td>Win 95+</td>
                     <td>5.5</td>
-                    <td>A</td>
+                    <td><input type="checkbox" name="my-checkbox" checked data-bootstrap-switch data-off-color="danger" data-on-color="success"></td>
                   </tr>
                   <tr>
                     <td>Trident</td>
@@ -75,7 +77,7 @@
                     <td>Win 98+</td>
                     <td>6</td>
                     <td>6</td>
-                    <td>A</td>
+                    <td><input type="checkbox" name="my-checkbox" checked data-bootstrap-switch data-off-color="danger" data-on-color="success"></td>
                   </tr>
                   <tr>
                     <td>Trident</td>
@@ -83,7 +85,7 @@
                     <td>Win XP SP2+</td>
                     <td>7</td>
                     <td>A</td>
-                    <td>A</td>
+                    <td><input type="checkbox" name="my-checkbox" checked data-bootstrap-switch data-off-color="danger" data-on-color="success"></td>
                   </tr>
                   <tr>
                     <td>Trident</td>
@@ -91,7 +93,7 @@
                     <td>Win XP</td>
                     <td>Win XP</td>
                     <td>6</td>
-                    <td>A</td>
+                    <td><input type="checkbox" name="my-checkbox" checked data-bootstrap-switch data-off-color="danger" data-on-color="success"></td>
                   </tr>
                   <tr>
                     <td>Gecko</td>
@@ -99,7 +101,7 @@
                     <td>Firefox 1.0</td>
                     <td>Win 98+ / OSX.2+</td>
                     <td>1.7</td>
-                    <td>A</td>
+                    <td><input type="checkbox" name="my-checkbox" checked data-bootstrap-switch data-off-color="danger" data-on-color="success"></td>
                   </tr>
                   <tr>
                     <td>Gecko</td>
@@ -107,7 +109,7 @@
                     <td>Win 98+ / OSX.2+</td>
                     <td>1.8</td>
                     <td>A</td>
-                    <td>A</td>
+                    <td><input type="checkbox" name="my-checkbox" checked data-bootstrap-switch data-off-color="danger" data-on-color="success"></td>
                   </tr>
                   <tr>
                     <td>Gecko</td>
@@ -115,7 +117,7 @@
                     <td>Win 98+ / OSX.2+</td>
                     <td>1.8</td>
                     <td>1.8</td>
-                    <td>A</td>
+                    <td><input type="checkbox" name="my-checkbox" checked data-bootstrap-switch data-off-color="danger" data-on-color="success"></td>
                   </tr>
                   <tr>
                     <td>Gecko</td>
@@ -123,7 +125,7 @@
                     <td>Win 2k+ / OSX.3+</td>
                     <td>Win 2k+ / OSX.3+</td>
                     <td>1.9</td>
-                    <td>A</td>
+                    <td><input type="checkbox" name="my-checkbox" checked data-bootstrap-switch data-off-color="danger" data-on-color="success"></td>
                   </tr>
                   <tr>
                     <td>Gecko</td>
@@ -131,7 +133,7 @@
                     <td>OSX.2+</td>
                     <td>1.8</td>
                     <td>1.8</td>
-                    <td>A</td>
+                    <td><input type="checkbox" name="my-checkbox" checked data-bootstrap-switch data-off-color="danger" data-on-color="success"></td>
                   </tr>
                   <tr>
                     <td>Gecko</td>
@@ -139,7 +141,7 @@
                     <td>OSX.3+</td>
                     <td>1.8</td>
                     <td>1.8</td>
-                    <td>A</td>
+                    <td><input type="checkbox" name="my-checkbox" checked data-bootstrap-switch data-off-color="danger" data-on-color="success"></td>
                   </tr>
                   <tr>
                     <td>Gecko</td>
@@ -147,7 +149,7 @@
                     <td>Win 95+ / Mac OS 8.6-9.2</td>
                     <td>1.7</td>
                     <td>A</td>
-                    <td>A</td>
+                    <td><input type="checkbox" name="my-checkbox" checked data-bootstrap-switch data-off-color="danger" data-on-color="success"></td>
                   </tr>
                   </tbody>
                   

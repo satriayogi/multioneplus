@@ -34,6 +34,12 @@
   <!-- Select2 -->
   <link rel="stylesheet" href="<?= base_url() ?>assets/admin/plugins/select2/css/select2.min.css">
   <link rel="stylesheet" href="<?= base_url() ?>assets/admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+
+  <!-- sweetalert -->
+<script src="<?= base_url(); ?>/assets/admin/dist/js/sweetalert2.all.min.js"></script>
+<script src="<?= base_url(); ?>/assets/admin/dist/js/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="<?= base_url(); ?>/assets/admin/dist/js/sweetalert2.min.css">
+<!-- end sweet aler -->
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -136,15 +142,15 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-          <!-- <i class="fas fa-th-large"></i> -->
+        <a class="nav-link"  href="<?= base_url('admin/login/index') ?>" role="button">
+        <i class="fas fa-sign-out-alt"></i>
         </a>
       </li>
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-          <i class="fas fa-th-large"></i>
+          <i class="fas fa-th-large"></i> 
         </a>
-      </li>
+      </li> -->
     </ul>
   </nav>
   <!-- /.navbar -->
@@ -215,7 +221,7 @@
             </ul> -->
           <!-- </li> -->
           <li class="nav-item">
-            <a href="<?= base_url('admin/home/index') ?>" class="nav-link">
+            <a href="<?= base_url('admin/home/index/'.$admin['id']) ?>" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -235,19 +241,19 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?= base_url('admin/operator/add_operator') ?>" class="nav-link">
+                <a href="<?= base_url('admin/operator/add_operator/'.$admin['id']) ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Operator</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?= base_url('admin/operator/index') ?>" class="nav-link">
+                <a href="<?= base_url('admin/operator/index/'.$admin['id']) ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>List Operator</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?= base_url('admin/operator/log_operator') ?>" class="nav-link">
+                <a href="<?= base_url('admin/operator/log_operator/'.$admin['id']) ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Log Operator</p>
                 </a>
@@ -256,7 +262,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="<?= base_url('admin/category/index') ?>" class="nav-link">
+            <a href="<?= base_url('admin/category/index/'.$admin['id']) ?>" class="nav-link">
               <i class="nav-icon fas fa-list"></i>
               <p>
                 Category
@@ -275,19 +281,19 @@
             <ul class="nav nav-treeview">
               
               <li class="nav-item">
-                <a href="<?= base_url('admin/product/add_product') ?>" class="nav-link">
+                <a href="<?= base_url('admin/product/add_product/'.$admin['id']) ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Product</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?= base_url('admin/product/index') ?>" class="nav-link">
+                <a href="<?= base_url('admin/product/index/'.$admin['id']) ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>List Product</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?= base_url('admin/discount/index') ?>" class="nav-link">
+                <a href="<?= base_url('admin/discount/index/'.$admin['id']) ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>List Discount</p>
                 </a>
@@ -296,7 +302,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="<?= base_url('admin/customer/index') ?>" class="nav-link">
+            <a href="<?= base_url('admin/customer/index/'.$admin['id']) ?>" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
               <p>
                 List Customer
@@ -452,3 +458,4 @@
     </div>
     <!-- /.sidebar -->
   </aside>
+

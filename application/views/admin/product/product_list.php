@@ -345,7 +345,7 @@
               </div>
               <!-- /.card-body -->
               <div class="card-footer clearfix">
-                <button type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#modal-lg"><i class="fas fa-plus"></i> Add Product</button>
+                <a href="<?= base_url('admin/product/add_product/'.$admin['id']) ?>" class="btn btn-success float-right"><i class="fas fa-plus"></i> Add Product</a>
               </div>
             </div>
             </div>
