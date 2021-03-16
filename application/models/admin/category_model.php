@@ -20,6 +20,12 @@ class Category_model extends CI_Model{
     public function read_category(){
        return $this->db->get('category')->result_array();
     }
+    public function delete_category(){
+        $uri = $this->uri->segment(4);
+        $this->db->delete('category',['id'=>$uri]);
+        redirect('admin/category/index');
+    }
+    
 }
 
 ?>

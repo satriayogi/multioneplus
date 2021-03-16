@@ -18,5 +18,8 @@ class Category extends CI_Controller{
     public function save_category(){
         $this->category->save_category();
     }
+    public function delete_category(){
+        $this->category->delete_category();
+    }
 }
 

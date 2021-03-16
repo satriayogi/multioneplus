@@ -42,12 +42,7 @@
                     <td><?= $no++;?></td>
                     <td colspan="2"><?= $category['nama_category'] ?></td>
                     <td> 
-                          <a class="btn btn-info btn-sm" href="#">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                              Edit
-                          </a>
-                          <a class="btn btn-danger btn-sm" href="#">
+                          <a class="btn btn-danger btn-sm hapus" href="<?= base_url('admin/category/delete_category/'.$category['id']) ?>">
                               <i class="fas fa-trash">
                               </i>
                               Delete
@@ -89,7 +84,7 @@
                 <form action="<?= base_url('admin/category/save_category') ?>" class="form-horizontal" method="post">
                     <div class="card-body">
                                     <div class="form-group row">
-                                      <label for="exampleInputEmail1" class="col-sm-2 col-form-label">Category</label>
+                                      <label for="exampleInputEmail1" id="exampleInputEmail1" class="col-sm-2 col-form-label">Category</label>
                                       <input type="text" name="category" class="form-control col-md-9" id="exampleInputEmail1" placeholder="Enter Category" required>
                                     </div>
                                   </div>
@@ -104,4 +99,70 @@
         </div>
         <!-- /.modal-dialog -->
       </div>
-      <!-- /.modal -->
+      <!-- /.modal Edit-->
+<!-- 
+      <div class="modal fade" id="modal-lu">
+        <div class="modal-dialog modal-lu">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Edit Category</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <form action="<= base_url('admin/category/save_category') " class="form-horizontal" method="post">
+                    <div class="card-body">
+                                    <div class="form-group row">
+                                      <label for="exampleInputEmail1" id="exampleInputEmail1" class="col-sm-2 col-form-label">Category</label>
+                                      <input type="text" name="category" class="form-control col-md-9" id="exampleInputEmail1" placeholder="Enter Category" required>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="modal-footer justify-content-between">
+                                  <a href="" class="btn btn-default" data-dismiss="modal">Close</a>
+                                  <button type="submit" class="btn btn-primary">Save changes</button>
+                                </div>
+                              </form>
+          </div>
+           /.modal-content -->
+        <!-- </div> -->
+        <!-- /.modal-dialog -->
+      <!-- </div> -->
+       <!-- -->
+         
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+  $(".hapus").on("click",function(e){
+e.preventDefault();
+const href = $(this).attr('href');
+// alert(href);
+// console.log()
+Swal.fire({
+  title: 'Are you sure?',
+  text: "You won't be able to revert this!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, delete it!'
+}).then((result) => {
+  if (result.value) {
+    document.location.href= href;
+    // alert(href);
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Your file has been delete',
+      showConfirmButton: false,
+      timer: 1500
+    }
+    )
+  }
+});
+  });
+// $('#ahref').on("click",function(e){
+//   e.preventDefault();
+
+// });
+</script>

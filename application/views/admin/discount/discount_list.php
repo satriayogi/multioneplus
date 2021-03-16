@@ -332,17 +332,46 @@
               </button>
             </div>
             <div class="modal-body">
-                <form action="" class="form-horizontal">
+                <form action="" class="form-horizontal" name="randform">
                     <div class="card-body">
                                     <div class="form-group row">
-                                      <label for="exampleInputEmail1" class="col-sm-2 col-form-label">Category</label>
-                                      <input type="email" class="form-control col-md-9" id="exampleInputEmail1" placeholder="Enter email">
+                                      <label for="exampleInputEmail1" class="col-sm-2 col-form-label">Product</label>
+                                      <select class="form-control select2" style="width: 75%;">
+                    <option selected="selected">Alabama</option>
+                    <option>Alaska</option>
+                    <option>California</option>
+                    <option>Delaware</option>
+                    <option>Tennessee</option>
+                    <option>Texas</option>
+                    <option>Washington</option>
+                  </select>
                                     </div>
+                                    <div class="form-group row">
+                                      <label for="exampleInputEmail1" class="col-sm-2 col-form-label">Potongan</label>
+                                      <input type="text" class="form-control col-md-9" id="exampleInputEmail1" placeholder="Masukkan Jumlah potongan tanpa menggunakan persen"> <h3>%</h3>
+                                    </div>
+                                    <div class="form-group row">
+                                      <label for="exampleInputEmail1" class="col-sm-2 col-form-label">Potongan</label>
+                                      <input type="text" readonly name="randomfield" value="" class="form-control col-md-7 mr-2" id="exampleInputEmail1" > <button class="btn btn-warning" type="button" onClick="randomString();">Random</button>
+                                    </div>
+                                    <script language="javascript" type="text/javascript">
+                                    function randomString() {
+                                      var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
+                                      var string_length = 8;
+                                      var randomstring = '';
+                                      for (var i=0; i<string_length; i++) {
+                                        var rnum = Math.floor(Math.random() * chars.length);
+                                        randomstring += chars.substring(rnum,rnum+1);
+                                      }
+                                      document.randform.randomfield.value = randomstring;
+                                    }
+                                    </script>
+                                   
                 </form>
 </div>
             </div>
             <div class="modal-footer justify-content-between">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <a href="" class="btn btn-default" data-dismiss="modal">Close</a> 
               <button type="button" class="btn btn-primary">Save changes</button>
             </div>
           </div>
