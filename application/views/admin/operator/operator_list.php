@@ -46,12 +46,12 @@
                     <td><?= $operator['no_tlp']; ?></td>
                     <td><?= $operator['status']; ?></td>
                     <td>
-                          <a class="btn btn-info btn-sm" href="<?= base_url('admin/operator/edit_operator/'.$operator['id']) ?>">
+                          <a class="btn btn-info btn-sm" href="<?= base_url('operator/edit_operator/'.$operator['id']) ?>">
                               <i class="fas fa-pencil-alt">
                               </i>
                               Edit
                           </a>
-                          <a class="btn btn-danger btn-sm hapus" href="<?= base_url('admin/operator/delete_operator/'.$operator['id']) ?>">
+                          <a class="btn btn-danger btn-sm hapus" href="<?= base_url('operator/delete_operator/'.$operator['id']) ?>">
                               <i class="fas fa-trash">
                               </i>
                               Delete
@@ -65,7 +65,7 @@
               </div>
               <!-- /.card-body -->
               <div class="card-footer clearfix">
-                <a href="<?= base_url('admin/operator/add_operator') ?>" class="btn btn-success float-right"> <i class="fas fa-plus"></i> Add Product</a>
+                <a href="<?= base_url('operator/add_operator') ?>" class="btn btn-success float-right"> <i class="fas fa-plus"></i> Add Product</a>
               </div>
             </div>
             <!-- /.card -->

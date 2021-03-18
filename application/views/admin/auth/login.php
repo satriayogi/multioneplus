@@ -36,7 +36,7 @@
         <div class="card-body">
             <p class="login-box-msg">Sign in to start your session</p>
             
-      <form action="<?= base_url('admin/login/validlogin') ?>" method="post">
+      <form action="<?= base_url('login/validlogin') ?>" method="post">
       <div class="input-group mb-3">
           <input type="text" name="username" class="form-control" placeholder="Username">
           <div class="input-group-append">

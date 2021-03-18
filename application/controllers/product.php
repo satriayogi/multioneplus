@@ -6,7 +6,7 @@ class Product extends CI_Controller{
         $this->load->model('admin/operator_model','operator');
         $this->load->model('admin/product_model','product');
         if (!$this->session->userdata('username')) {
-            redirect('admin/login');
+            redirect('login/index');
         }
 }
     public function index(){
@@ -37,12 +37,12 @@ class Product extends CI_Controller{
             showConfirmButton: false,
             timer: 2000
         })</script>');
-        redirect('admin/product/index');
+        redirect('product/index');
     }
     public function delete_product(){
         $uri = $this->uri->segment(4);
         $this->product->delete_product($uri);
-        redirect('admin/product/index');
+        redirect('product/index');
     }
     public function edit_product(){
         $data['admin'] = $this->operator->viewadmin()->row_array();

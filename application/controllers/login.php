@@ -9,7 +9,7 @@ class Login extends CI_Controller{
         if ($this->form_validation->run() != false) {
             $this->_login();
         }else{
-            $this->load->view('admin/login');
+            $this->load->view('login/index');
         }
     }
     public function _login(){
@@ -26,15 +26,15 @@ class Login extends CI_Controller{
             ];
             // $this->OperatorModel->update_login($operator['id']);
             $this->session->set_userdata($data);
-            redirect('admin/home');
+            redirect('admin/index');
         }else {
             $this->session->set_flashdata('message',' <script>Swal.fire({icon: "error",title: "Oops...",text: " username you entered is wrong"})</script>');
-            redirect('admin/login/index');
+            redirect('login/index');
         }
     }else{
         
         $this->session->set_flashdata('message','<script>Swal.fire({icon: "error",title: "Oops...",text: " username you entered is wrong"})</script>');
-        redirect('admin/login/index');
+        redirect('login/index');
     }
     }
 }

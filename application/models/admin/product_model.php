@@ -2,13 +2,21 @@
  
  class Product_model extends CI_Model{
      public function readcategory(){
-         return $this->db->get('category')->result_array();
+         $this->db->select('*');
+         $this->db->from('category');
+         $this->db->order_by('id','DESC');
+         $query = $this->db->get();
+         return $query->result_array();
      }
      public function read_product(){
-         return $this->db->get('product')->result_array();
+         $this->db->select('*');
+         $this->db->from('product');
+         $this->db->order_by('id','DESC');
+         $query = $this->db->get();
+         return $query->result_array();
      }
      public function save_product(){
-        $uri = $this->uri->segment(4);
+        $uri = $this->uri->segment(3);
         $nama_product = $this->input->post('nama_product');
         $category = $this->input->post('category');
         $keterangan = $this->input->post('keterangan');
@@ -100,10 +108,11 @@
 
      }
      public function read_productrow(){
-         $uri = $this->uri->segment(4);
+         $uri = $this->uri->segment(3);
          $this->db->select("*");
          $this->db->from("product");
          $this->db->join("gambar","product.id=gambar.id_product");
+         $this->db->order_by('product.id','DESC');
          $this->db->where("product.id='$uri'");
          $query = $this->db->get();
          return $query->row_array();
@@ -154,7 +163,7 @@
             showConfirmButton: false,
             timer: 2000
         })</script>');
-        redirect('admin/product/index');
+        redirect('product/index');
      }
  }
 

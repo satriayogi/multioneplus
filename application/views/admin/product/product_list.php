@@ -1,6 +1,7 @@
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
+<?= $this->session->flashdata('message'); ?>
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
@@ -50,12 +51,12 @@
                     }
                     ?></td>
                     <td>
-                          <a class="btn btn-info btn-sm" href="<?= base_url('admin/product/edit_product/'.$product['id']) ?>">
+                          <a class="btn btn-info btn-sm" href="<?= base_url('product/edit_product/'.$product['id']) ?>">
                               <i class="fas fa-pencil-alt">
                               </i>
                               Edit
                           </a>
-                          <a class="btn btn-danger btn-sm hapus" href="<?= base_url('admin/product/delete_product/'.$product['id']) ?>">
+                          <a class="btn btn-danger btn-sm hapus" href="<?= base_url('product/delete_product/'.$product['id']) ?>">
                               <i class="fas fa-trash">
                               </i>
                               Delete
@@ -68,7 +69,7 @@
               </div>
               <!-- /.card-body -->
               <div class="card-footer clearfix">
-                <a href="<?= base_url('admin/product/add_product/'.$admin['id']) ?>" class="btn btn-success float-right"><i class="fas fa-plus"></i> Add Product</a>
+                <a href="<?= base_url('product/add_product/'.$admin['id']) ?>" class="btn btn-success float-right"><i class="fas fa-plus"></i> Add Product</a>
               </div>
             </div>
             </div>

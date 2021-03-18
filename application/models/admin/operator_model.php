@@ -30,13 +30,17 @@ class operator_model extends CI_Model{
             showConfirmButton: false,
             timer: 2000
         })</script>');
-        redirect('admin/operator/index');
+        redirect('operator/index');
     }
     public function read_operator(){
-        return $this->db->get('sys_user')->result_array();
+        $this->db->select('*');
+        $this->db->from('sys_user');
+        $this->db->order_by('id','DESC');
+        $query = $this->db->get();
+        return $query->result_array();
     }
     public function edit_operator(){
-        $uri = $this->uri->segment(4);
+        $uri = $this->uri->segment(3);
         $this->db->select('*');
         $this->db->from('sys_user');
         $this->db->join('role_sys_user','sys_user.id=role_sys_user.id_sys_user');
@@ -46,10 +50,10 @@ class operator_model extends CI_Model{
         // var_dump($query);die;
     }
     public function delete_operator(){
-        $uri = $this->uri->segment(4);
+        $uri = $this->uri->segment(3);
     $this->db->delete('sys_user',['id'=>$uri]);
     $this->db->delete('role_sys_user',['id_sys_user'=>$uri]);
-    redirect('admin/operator/index');
+    redirect('operator/index');
     }
     public function update_operator(){
         $uri = $this->input->post('id');
@@ -85,7 +89,7 @@ class operator_model extends CI_Model{
             showConfirmButton: false,
             timer: 2000
           })</script>');
-        redirect('admin/operator/index');
+        redirect('operator/index');
     }
 }
 

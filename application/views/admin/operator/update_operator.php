@@ -30,7 +30,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form action="<?= base_url('admin/operator/update_operator') ?>" method="post">
+              <form action="<?= base_url('operator/update_operator') ?>" method="post">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-6">
@@ -131,7 +131,7 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                    <a href="<?= base_url('admin/operator/index') ?>" class="btn btn-danger float-right">Cancel</a>
+                    <a href="<?= base_url('operator/index') ?>" class="btn btn-danger float-right">Cancel</a>
                   <button type="submit" class="btn btn-primary float-right mr-2">Submit</button>
                 </div>
               </form>

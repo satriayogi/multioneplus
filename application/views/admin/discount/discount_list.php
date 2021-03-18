@@ -28,6 +28,7 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
+                    <th>Nomor</th>
                     <th>Name Product</th>
                     <th>Discount</th>
                     <th>Code Discount</th>
@@ -35,280 +36,28 @@
                   </tr>
                   </thead>
                   <tbody>
+                  <?php 
+                  $no = 1;
+                  foreach ($discount_list as $discount) :?>
                   <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 4.0
-                    </td>
-                    <td>Win 95+</td>
-                    <td><a class="btn btn-primary btn-sm" href="#">
-                              <i class="fas fa-folder">
-                              </i>
-                              View
-                          </a>
-                          <a class="btn btn-info btn-sm" href="#">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                              Edit
-                          </a>
-                          <a class="btn btn-danger btn-sm" href="#">
+                    <td><?= $no++; ?></td>
+                    <td><?= $discount['nama_product'] ?></td>
+                    <td><?= $discount['potongan'] ?></td>
+                    <td><?= $discount['kode_discount'] ?></td>
+                    <td>  <a class="btn btn-danger btn-sm hapus" href="<?= base_url('discount/delete_discount/'.$discount['id_product']) ?>">
                               <i class="fas fa-trash">
                               </i>
                               Delete
                           </a></td>
                   </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 5.0
-                    </td>
-                    <td>Win 95+</td>
-                    <td><a class="btn btn-primary btn-sm" href="#">
-                              <i class="fas fa-folder">
-                              </i>
-                              View
-                          </a>
-                          <a class="btn btn-info btn-sm" href="#">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                              Edit
-                          </a>
-                          <a class="btn btn-danger btn-sm" href="#">
-                              <i class="fas fa-trash">
-                              </i>
-                              Delete
-                          </a></td>
-                  </tr>
-                  <tr>
-                    <td>Internet
-                      Explorer 5.5
-                    </td>
-                    <td>Win 95+</td>
-                    <td>5.5</td>
-                    <td><a class="btn btn-primary btn-sm" href="#">
-                              <i class="fas fa-folder">
-                              </i>
-                              View
-                          </a>
-                          <a class="btn btn-info btn-sm" href="#">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                              Edit
-                          </a>
-                          <a class="btn btn-danger btn-sm" href="#">
-                              <i class="fas fa-trash">
-                              </i>
-                              Delete
-                          </a></td>
-                  </tr>
-                  <tr>
-                    
-                    <td>Win 98+</td>
-                    <td>6</td>
-                    <td>6</td>
-                    <td><a class="btn btn-primary btn-sm" href="#">
-                              <i class="fas fa-folder">
-                              </i>
-                              View
-                          </a>
-                          <a class="btn btn-info btn-sm" href="#">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                              Edit
-                          </a>
-                          <a class="btn btn-danger btn-sm" href="#">
-                              <i class="fas fa-trash">
-                              </i>
-                              Delete
-                          </a></td>
-                  </tr>
-                  <tr>
-                      <td>Win XP SP2+</td>
-                    <td>7</td>
-                    <td>A</td>
-                    <td><a class="btn btn-primary btn-sm" href="#">
-                              <i class="fas fa-folder">
-                              </i>
-                              View
-                          </a>
-                          <a class="btn btn-info btn-sm" href="#">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                              Edit
-                          </a>
-                          <a class="btn btn-danger btn-sm" href="#">
-                              <i class="fas fa-trash">
-                              </i>
-                              Delete
-                          </a></td>
-                  </tr>
-                  <tr>
-                    <td>Win XP</td>
-                    <td>Win XP</td>
-                    <td>6</td>
-                    <td><a class="btn btn-primary btn-sm" href="#">
-                              <i class="fas fa-folder">
-                              </i>
-                              View
-                          </a>
-                          <a class="btn btn-info btn-sm" href="#">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                              Edit
-                          </a>
-                          <a class="btn btn-danger btn-sm" href="#">
-                              <i class="fas fa-trash">
-                              </i>
-                              Delete
-                          </a></td>
-                  </tr>
-                  <tr>
-                    <td>Firefox 1.0</td>
-                    <td>Win 98+ / OSX.2+</td>
-                    <td>1.7</td>
-                    <td><a class="btn btn-primary btn-sm" href="#">
-                              <i class="fas fa-folder">
-                              </i>
-                              View
-                          </a>
-                          <a class="btn btn-info btn-sm" href="#">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                              Edit
-                          </a>
-                          <a class="btn btn-danger btn-sm" href="#">
-                              <i class="fas fa-trash">
-                              </i>
-                              Delete
-                          </a></td>
-                  </tr>
-                  <tr>
-                    <td>Win 98+ / OSX.2+</td>
-                    <td>1.8</td>
-                    <td>A</td>
-                    <td><a class="btn btn-primary btn-sm" href="#">
-                              <i class="fas fa-folder">
-                              </i>
-                              View
-                          </a>
-                          <a class="btn btn-info btn-sm" href="#">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                              Edit
-                          </a>
-                          <a class="btn btn-danger btn-sm" href="#">
-                              <i class="fas fa-trash">
-                              </i>
-                              Delete
-                          </a></td>
-                  </tr>
-                  <tr>
-                    <td>Win 98+ / OSX.2+</td>
-                    <td>1.8</td>
-                    <td>1.8</td>
-                    <td><a class="btn btn-primary btn-sm" href="#">
-                              <i class="fas fa-folder">
-                              </i>
-                              View
-                          </a>
-                          <a class="btn btn-info btn-sm" href="#">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                              Edit
-                          </a>
-                          <a class="btn btn-danger btn-sm" href="#">
-                              <i class="fas fa-trash">
-                              </i>
-                              Delete
-                          </a></td>
-                  </tr>
-                  <tr>
-                    <td>Win 2k+ / OSX.3+</td>
-                    <td>Win 2k+ / OSX.3+</td>
-                    <td>1.9</td>
-                    <td><a class="btn btn-primary btn-sm" href="#">
-                              <i class="fas fa-folder">
-                              </i>
-                              View
-                          </a>
-                          <a class="btn btn-info btn-sm" href="#">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                              Edit
-                          </a>
-                          <a class="btn btn-danger btn-sm" href="#">
-                              <i class="fas fa-trash">
-                              </i>
-                              Delete
-                          </a></td>
-                  </tr>
-                  <tr>
-                    <td>OSX.2+</td>
-                    <td>1.8</td>
-                    <td>1.8</td>
-                    <td><a class="btn btn-primary btn-sm" href="#">
-                              <i class="fas fa-folder">
-                              </i>
-                              View
-                          </a>
-                          <a class="btn btn-info btn-sm" href="#">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                              Edit
-                          </a>
-                          <a class="btn btn-danger btn-sm" href="#">
-                              <i class="fas fa-trash">
-                              </i>
-                              Delete
-                          </a></td>
-                  </tr>
-                  <tr>
-                    <td>OSX.3+</td>
-                    <td>1.8</td>
-                    <td>1.8</td>
-                    <td><a class="btn btn-primary btn-sm" href="#">
-                              <i class="fas fa-folder">
-                              </i>
-                              View
-                          </a>
-                          <a class="btn btn-info btn-sm" href="#">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                              Edit
-                          </a>
-                          <a class="btn btn-danger btn-sm" href="#">
-                              <i class="fas fa-trash">
-                              </i>
-                              Delete
-                          </a></td>
-                  </tr>
-                  <tr>
-                    <td>Win 95+ / Mc OS 8.6-9.2</td>
-                    <td>1.7</td>
-                    <td>B</td>
-                    <td><a class="btn btn-primary btn-sm" href="#">
-                              <i class="fas fa-folder">
-                              </i>
-                              View
-                          </a>
-                          <a class="btn btn-info btn-sm" href="#">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                              Edit
-                          </a>
-                          <a class="btn btn-danger btn-sm" href="#">
-                              <i class="fas fa-trash">
-                              </i>
-                              Delete
-                          </a></td>
-                  </tr>
+                  <?php endforeach; ?>
                   </tbody>
                   
                 </table>
               </div>
               <!-- /.card-body -->
               <div class="card-footer clearfix">
-                <button type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#modal-lg"><i class="fas fa-plus"></i> Add Product</button>
+                <button type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#modal-lg"><i class="fas fa-plus"></i> Add Discount</button>
               </div>
             </div>
             </div>
@@ -326,38 +75,35 @@
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title">Add Category</h4>
+              <h4 class="modal-title">Add Discount</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-                <form action="" class="form-horizontal" name="randform">
+                <form action="<?= base_url('discount/save_discount') ?>" class="form-horizontal" name="randform" method="post">
                     <div class="card-body">
                                     <div class="form-group row">
                                       <label for="exampleInputEmail1" class="col-sm-2 col-form-label">Product</label>
-                                      <select class="form-control select2" style="width: 75%;">
-                    <option selected="selected">Alabama</option>
-                    <option>Alaska</option>
-                    <option>California</option>
-                    <option>Delaware</option>
-                    <option>Tennessee</option>
-                    <option>Texas</option>
-                    <option>Washington</option>
+                                      <select class="form-control select2" style="width: 75%;" name="product">
+                    <?php foreach ($product as $product) :?>
+                    
+                    <option value="<?= $product['id'] ?>"><?= $product['nama_product']; ?></option>
+                    <?php endforeach; ?>
                   </select>
                                     </div>
                                     <div class="form-group row">
                                       <label for="exampleInputEmail1" class="col-sm-2 col-form-label">Potongan</label>
-                                      <input type="text" class="form-control col-md-9" id="exampleInputEmail1" placeholder="Masukkan Jumlah potongan tanpa menggunakan persen"> <h3>%</h3>
+                                      <input type="text" class="form-control col-md-9" id="exampleInputEmail1" name="potongan" placeholder="Masukkan Jumlah potongan tanpa menggunakan persen"> <h3>%</h3>
                                     </div>
                                     <div class="form-group row">
-                                      <label for="exampleInputEmail1" class="col-sm-2 col-form-label">Potongan</label>
+                                      <label for="exampleInputEmail1" class="col-sm-2 col-form-label">Discount</label>
                                       <input type="text" readonly name="randomfield" value="" class="form-control col-md-7 mr-2" id="exampleInputEmail1" > <button class="btn btn-warning" type="button" onClick="randomString();">Random</button>
                                     </div>
                                     <script language="javascript" type="text/javascript">
                                     function randomString() {
                                       var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
-                                      var string_length = 8;
+                                      var string_length = 15;
                                       var randomstring = '';
                                       for (var i=0; i<string_length; i++) {
                                         var rnum = Math.floor(Math.random() * chars.length);
@@ -367,12 +113,12 @@
                                     }
                                     </script>
                                    
-                </form>
 </div>
             </div>
             <div class="modal-footer justify-content-between">
               <a href="" class="btn btn-default" data-dismiss="modal">Close</a> 
-              <button type="button" class="btn btn-primary">Save changes</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
+                </form>
             </div>
           </div>
           <!-- /.modal-content -->
@@ -380,3 +126,39 @@
         <!-- /.modal-dialog -->
       </div>
       <!-- /.modal -->
+       
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+  $(".hapus").on("click",function(e){
+e.preventDefault();
+const href = $(this).attr('href');
+// alert(href);
+// console.log()
+Swal.fire({
+  title: 'Are you sure?',
+  text: "You won't be able to revert this!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, delete it!'
+}).then((result) => {
+  if (result.value) {
+    document.location.href= href;
+    // alert(href);
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Your file has been delete',
+      showConfirmButton: false,
+      timer: 1500
+    }
+    )
+  }
+});
+  });
+// $('#ahref').on("click",function(e){
+//   e.preventDefault();
+
+// });
+</script>

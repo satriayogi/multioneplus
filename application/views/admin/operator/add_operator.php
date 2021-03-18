@@ -30,7 +30,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form action="<?= base_url('admin/operator/save_operator') ?>" method="post">
+              <form action="<?= base_url('operator/save_operator') ?>" method="post">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-6">

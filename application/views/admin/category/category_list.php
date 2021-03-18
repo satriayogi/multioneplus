@@ -18,31 +18,26 @@
         </div>
       </div><!-- /.container-fluid -->
     </section>
-
-   
-
-            <div class="card col-md-10 mx-auto">
-              
+            <div class="card col-md-11 mx-auto">
               <!-- /.card-header -->
-              
               <div class="card-body">
-                <table id="example1" class="table table-bordered table-striped">
+              <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>No.</th>
-                    <th colspan="2">Name</th>
+                  <th>No.</th>
+                    <th>Name</th>
                     <th>Setting </th>
                   </tr>
                   </thead>
                   <tbody>
-                    <?php 
+                  <?php 
                     $no = 1;
                     foreach ($category as $category): ?>
                   <tr>
                     <td><?= $no++;?></td>
-                    <td colspan="2"><?= $category['nama_category'] ?></td>
+                    <td><?= $category['nama_category'] ?></td>
                     <td> 
-                          <a class="btn btn-danger btn-sm hapus" href="<?= base_url('admin/category/delete_category/'.$category['id']) ?>">
+                          <a class="btn btn-danger btn-sm hapus" href="<?= base_url('category/delete_category/'.$category['id']) ?>">
                               <i class="fas fa-trash">
                               </i>
                               Delete
@@ -50,6 +45,7 @@
                     
                   </tr>
                   <?php endforeach; ?>
+                  
                   </tbody>
                   
                 </table>
@@ -81,7 +77,7 @@
               </button>
             </div>
             <div class="modal-body">
-                <form action="<?= base_url('admin/category/save_category') ?>" class="form-horizontal" method="post">
+                <form action="<?= base_url('category/save_category') ?>" class="form-horizontal" method="post">
                     <div class="card-body">
                                     <div class="form-group row">
                                       <label for="exampleInputEmail1" id="exampleInputEmail1" class="col-sm-2 col-form-label">Category</label>

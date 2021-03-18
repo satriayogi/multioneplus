@@ -5,7 +5,7 @@ class Category extends CI_Controller{
         $this->load->model('admin/operator_model','operator');
         $this->load->model('admin/category_model','category');
         if (!$this->session->userdata('username')) {
-            redirect('admin/login');
+            redirect('login/index');
         }
 }
     public function index(){
@@ -14,6 +14,10 @@ class Category extends CI_Controller{
         $this->load->view('admin/header',$data);
         $this->load->view('admin/category/category_list',$data);
         $this->load->view('admin/footer');
+    }
+    public function jsoncategory(){
+        $data = $this->category->read_category();
+        echo json_encode($data);
     }
     public function save_category(){
         $this->category->save_category();

@@ -142,7 +142,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link"  href="<?= base_url('admin/login/index') ?>" role="button">
+        <a class="nav-link"  href="<?= base_url('login/index') ?>" role="button">
         <i class="fas fa-sign-out-alt"></i>
         </a>
       </li>
@@ -221,7 +221,7 @@
             </ul> -->
           <!-- </li> -->
           <li class="nav-item">
-            <a href="<?= base_url('admin/home/index/'.$admin['id']) ?>" class="nav-link">
+            <a href="<?= base_url('admin/index/'.$admin['id']) ?>" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -241,19 +241,19 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?= base_url('admin/operator/add_operator/'.$admin['id']) ?>" class="nav-link">
+                <a href="<?= base_url('operator/add_operator/'.$admin['id']) ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Operator</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?= base_url('admin/operator/index/'.$admin['id']) ?>" class="nav-link">
+                <a href="<?= base_url('operator/index/'.$admin['id']) ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>List Operator</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?= base_url('admin/operator/log_operator/'.$admin['id']) ?>" class="nav-link">
+                <a href="<?= base_url('operator/log_operator/'.$admin['id']) ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Log Operator</p>
                 </a>
@@ -262,7 +262,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="<?= base_url('admin/category/index/'.$admin['id']) ?>" class="nav-link">
+            <a href="<?= base_url('category/index/'.$admin['id']) ?>" class="nav-link">
               <i class="nav-icon fas fa-list"></i>
               <p>
                 Category
@@ -281,19 +281,19 @@
             <ul class="nav nav-treeview">
               
               <li class="nav-item">
-                <a href="<?= base_url('admin/product/add_product/'.$admin['id']) ?>" class="nav-link">
+                <a href="<?= base_url('product/add_product/'.$admin['id']) ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Product</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?= base_url('admin/product/index/'.$admin['id']) ?>" class="nav-link">
+                <a href="<?= base_url('product/index/'.$admin['id']) ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>List Product</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?= base_url('admin/discount/index/'.$admin['id']) ?>" class="nav-link">
+                <a href="<?= base_url('discount/index/'.$admin['id']) ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>List Discount</p>
                 </a>
@@ -302,7 +302,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="<?= base_url('admin/customer/index/'.$admin['id']) ?>" class="nav-link">
+            <a href="<?= base_url('customer/index/'.$admin['id']) ?>" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
               <p>
                 List Customer
@@ -313,7 +313,7 @@
           </li>
           <li class="nav-header">Transaction</li>
           <li class="nav-item">
-            <a href="<?= base_url('admin/customer/transaksi_customer_list') ?>" class="nav-link">
+            <a href="<?= base_url('customer/transaksi_customer_list') ?>" class="nav-link">
               <i class="nav-icon fas fa-cart-plus"></i>
               <p>
                 Transaction Customer
