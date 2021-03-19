@@ -271,6 +271,15 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="<?= base_url('slideshow/index/'.$admin['id']) ?>" class="nav-link">
+              <i class="nav-icon fas fa-images"></i>
+              <p>
+                SlideShow
+                <!-- <span class="right badge badge-danger">New</span> -->
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>
@@ -300,6 +309,15 @@
               </li>
               
             </ul>
+          </li>
+          <li class="nav-item">
+            <a href="<?= base_url('customer/index/'.$admin['id']) ?>" class="nav-link">
+              <i class="nav-icon fas fa-image"></i>
+              <p>
+                Banner
+                <!-- <span class="right badge badge-danger">New</span> -->
+              </p>
+            </a>
           </li>
           <li class="nav-item">
             <a href="<?= base_url('customer/index/'.$admin['id']) ?>" class="nav-link">

@@ -56,61 +56,130 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-6 " >
                           <label for="exampleInputPassword1">Keterangan</label>
                           <input type="text" name="keterangan" value="<?= $edit['keterangan'] ?>" class="form-control col-md-9" id="exampleInputPassword1" placeholder="Keterangan">
                         </div>
-                        <div class="form-group col-md-6">
-                    <label for="exampleInputFile">Image 1</label>
-                    <div class="input-group">
-                      <div class="custom-file">
-                        <input type="file" name="gambar1" value="<?= $edit['gambar'] ?>" class="custom-file-input" id="exampleInputFile" multiple="multiple">
-                        <label class="custom-file-label" for="exampleInputFile"><?= $edit['gambar'] ?></label>
-                      </div>
-                    </div>
+                        <div class="col-md-6">
+
+<div class="form-group">
+    <label for="exampleInputPassword1">Quantity</label>
+    <input type="text" name="quantity" value="<?= $edit['stok'] ?>" class="form-control col-md-9" id="exampleInputPassword1" placeholder="Quantity Product">
+</div>
+</div>
                   </div>
-
-                    </div>
+                        
                     <div class="row">
-    <div class="col-md-6">
-
-        <div class="form-group">
-            <label for="exampleInputPassword1">Quantity</label>
-            <input type="text" name="quantity" value="<?= $edit['stok'] ?>" class="form-control col-md-9" id="exampleInputPassword1" placeholder="Quantity Product">
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="form-group ">
-                    <label for="exampleInputFile">Image 2</label>
-                    <div class="input-group">
-                      <div class="custom-file">
-                        <input type="file" name="gambar2" value="<?= $edit['gambar2'] ?>" class="custom-file-input" id="exampleInputFile" multiple="multiple">
-                        <label class="custom-file-label" for="exampleInputFile"><?= $edit['gambar2'] ?></label>
-                      </div>
-                    </div>
-                            </div>
-                        </div>
-                    </div>
-                        <div class="row">
-                            <div class="col-md-6">
+                    <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Price</label>
                                     <input type="text" name="price" value="<?= $edit['harga'] ?>" class="form-control col-md-9" id="exampleInputPassword1" placeholder="Price">
                                   </div>
                             </div>
-                            <div class="col-md-6">
+                    
+    <div class="col-md-6">
         <div class="form-group ">
-                    <label for="exampleInputFile">Image 3</label>
-                    <div class="input-group">
-                      <div class="custom-file">
-                        <input type="file" name="gambar3" <?= $edit['gambar3'] ?> class="custom-file-input" id="exampleInputFile" multiple="multiple">
-                        <label class="custom-file-label" for="exampleInputFile"><?= $edit['gambar3'] ?></label>
+                    <label for="exampleInputFile">Image </label>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <img src="<?= base_url() ?>assets/admin/img/product/<?= $edit['gambar'] ?>" alt="Image 1" id="img1"  class="rounded d-block" style="width:50%;">
+                        <div class="input-group">
+                          <div class="custom-file col-md-8">
+                            <input type="file" name="gambar1" onchange="preview()" id="img11"  style="margin-bottom: 92%;
+    opacity: 0;
+    z-index: 99;
+    height: 344%;
+    margin-left: -8%;">
+                          </div>
+                          <input type="hidden" name="gambar11" value="<?= $edit['gambar'] ?>" id="">
+                          <input type="hidden" name="gambar12" value="<?= $edit['gambar2'] ?>" id="">
+                          <input type="hidden" name="gambar13" value="<?= $edit['gambar3'] ?>" id="">
+                        <!-- look image use javascript -->
+                        <!-- end javascript -->
+
+                        <label for="" id="ada" style="margin-left: 8%;
+    color: black;
+    margin-top: 1%;
+    position: absolute;
+    height: 55%;"> <?= $edit['gambar'] ?></label>
+                        </div>
+                        <script>
+                       function preview() {
+    img1.src=URL.createObjectURL(event.target.files[0]);
+    const asa = document.getElementById("ada");
+    asa.innerHTML=img11.value;
+}
+                        </script>
+
                       </div>
+                      <div class="col-md-4">
+                        <img src="<?= base_url('assets/admin/img/product/'.$edit['gambar2']) ?>" alt="Image 2" id="img2" class="rounded d-block " style="width:50%;">
+                        <div class="input-group">
+                          <div class="custom-file col-md-8">
+                            <input type="file" name="gambar2"  value="<?= $edit['gambar2'] ?>" id="img12" onchange="preview2()" style="margin-bottom: 92%;
+    opacity: 0;
+    z-index: 99;
+    height: 344%;
+    margin-left: -8%;">
+                          </div>
+                          <!-- look image use javascript -->
+                        <!-- end javascript -->
+                          <label for="" id="aja" style="margin-left: 8%;
+    color: black;
+    margin-top: 1%;
+    position: absolute;
+    height: 55%;"> <?= $edit['gambar2'] ?></label>
+                        </div>
+                        <script>
+                       function preview2() {
+    img2.src=URL.createObjectURL(event.target.files[0]);
+    const asa = document.getElementById("aja");
+    asa.innerHTML=img12.value;
+}
+                        </script>
+
+                      </div>
+                      <div class="col-md-4">
+                        <img src="<?= base_url('assets/admin/img/product/'.$edit['gambar3']) ?>" alt="Image 3" id="img3" class="rounded d-block" style="width:50%;">
+                        <div class="input-group">
+                          <div class="custom-file col-md-8">
+                            <input type="file" name="gambar3" value="<?= $edit['gambar3'] ?>" id="img13" onchange="preview3()" style="margin-bottom: 92%;
+    opacity: 0;
+    z-index: 99;
+    height: 344%;
+    margin-left: -8%;">
+                          </div>
+                          <!-- look image use javascript -->
+                        <!-- end javascript -->
+                        <label for="" id="asa" style="margin-left: 8%;
+    color: black;
+    margin-top: 1%;
+    position: absolute;
+    height: 55%;"> <?= $edit['gambar3'] ?></label>
+                        <script>
+                       function preview3() {
+    img3.src=URL.createObjectURL(event.target.files[0]);
+    const asa = document.getElementById("asa");
+    asa.innerHTML=img13.value;
+}
+                        </script>
+                        </div>
+
+                      </div>
+                      
                     </div>
-                            
+                    <div class="row">
+                    <div class="col-md-9">
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Discount</label>
+                                    <input type="text" name="discount" value="<?= $edit['discount'] ?>" class="form-control col-md-12" id="exampleInputPassword1" placeholder="Discount">
+                                  </div>
+                            </div>
+      </div>
                             </div>
                         </div>
-                        </div>
+                    </div>
+                       
                         
                 </div>
                 <!-- /.card-body -->

@@ -29,6 +29,7 @@
                     <th>Image</th>
                     <th>Quantity</th>
                     <th>Price</th>
+                    <th>Discount</th>
                     <th>Status</th>
                     <th>Setting</th>
                   </tr>
@@ -40,9 +41,14 @@
                   <tr>
                     <td><?= $product['nama_product'] ?></td>
                     <td><?= $product['keterangan'] ?></td>
-                    <td>Win 95+</td>
+                    <td>
+                    <div class="col-md-15">
+
+                      <img src="<?= base_url('assets/admin/img/product/'.$product['gambar']) ?>" class="rounded mx-auto d-block" height="130px" width="200px" alt=""></td>
+                    </div>  
                     <td> <?= $product['stok'] ?></td>
                     <td> <?= $product['harga'] ?></td>
+                    <td> <?= $product['discount'] ?></td>
                     <td> <?php
                     if ($product['status'] == 99) {
                       echo 'Stok Tersedia';
@@ -51,12 +57,12 @@
                     }
                     ?></td>
                     <td>
-                          <a class="btn btn-info btn-sm" href="<?= base_url('product/edit_product/'.$product['id']) ?>">
+                          <a class="btn btn-info btn-sm" href="<?= base_url('product/edit_product/'.$admin['id'].'/'.$product['id_product']) ?>">
                               <i class="fas fa-pencil-alt">
                               </i>
                               Edit
                           </a>
-                          <a class="btn btn-danger btn-sm hapus" href="<?= base_url('product/delete_product/'.$product['id']) ?>">
+                          <a class="btn btn-danger btn-sm hapus" href="<?= base_url('product/delete_product/'.$admin['id'].'/'.$product['id_product']) ?>">
                               <i class="fas fa-trash">
                               </i>
                               Delete

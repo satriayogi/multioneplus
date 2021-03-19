@@ -11,7 +11,7 @@
      public function read_product(){
          $this->db->select('*');
          $this->db->from('product');
-         $this->db->order_by('id','DESC');
+         $this->db->join('gambar','product.id=gambar.id_product');
          $query = $this->db->get();
          return $query->result_array();
      }
@@ -33,9 +33,9 @@
         // $this->upload->do_upload('mainpage');
         // $res = $this->upload->data();
         // file upload image
-        $config['upload_path'] = './assets/admin/img/'; //path folder
+        $config['upload_path'] = './assets/admin/img/product/'; //path folder
 	    $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
-	    $config['encrypt_name'] = TRUE; //nama yang terupload nantinya
+	    $config['encrypt_name'] = false; //nama yang terupload nantinya
 
 	    $this->load->library('upload',$config);
 	    for ($i=0; $i <=3 ; $i++) { 
@@ -102,13 +102,15 @@
     // }
 
      }
-     public function delete_product($uri){
+     public function delete_product(){
+         $uri = $this->uri->segment(4);
+        //  var_dump($uri);die;
          $this->db->delete('gambar',['id_product'=>$uri]);
          $this->db->delete('product',['id'=>$uri]);
 
      }
      public function read_productrow(){
-         $uri = $this->uri->segment(3);
+         $uri = $this->uri->segment(4);
          $this->db->select("*");
          $this->db->from("product");
          $this->db->join("gambar","product.id=gambar.id_product");
@@ -125,13 +127,17 @@
          $quantity = $this->input->post('quantity');
          $price = $this->input->post('price');
          $gambar1 =$_FILES['gambar1']['name'];
-         $gambar2 = $_FILES['gambar1']['name'];
-         $gambar3 = $_FILES['gambar1']['name'];
+         $gambar2 = $_FILES['gambar2']['name'];
+         $gambar3 = $_FILES['gambar3']['name'];
          $id = $this->input->post('id');
-
-         $config['upload_path'] = './assets/admin/img/'; //path folder
+         $gambar1value = $this->input->post('gambar11');
+         $gambar2value = $this->input->post('gambar12');
+         $gambar3value = $this->input->post('gambar13');
+         $diskon = $this->input->post('discount');
+         
+         $config['upload_path'] = './assets/admin/img/product/'; //path folder
          $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
-         $config['encrypt_name'] = TRUE; //nama yang terupload nantinya
+         $config['encrypt_name'] = false; //nama yang terupload nantinya
  
          $this->load->library('upload',$config);
          for ($i=0; $i <=3 ; $i++) { 
@@ -148,15 +154,71 @@
          id_category = '$category',
          keterangan = '$keterangan',
          harga = '$price',
+         discount = '$diskon',
          stok = '$quantity'
          WHERE id='$id'
          ");
-         $this->db->query("UPDATE gambar SET
-         gambar = '$gambar1',
-         gambar2 = '$gambar2',
-         gambar3 = '$gambar3'
-         WHERE id_product= '$id'
-         ");
+        //  $this->db->query("UPDATE gambar SET
+        //  gambar = '$gambar1',
+        //  gambar2 = '$gambar2',
+        //  gambar3 = '$gambar3'
+        //  WHERE id_product= '$id'
+        //  ");
+        if ($gambar1 == null && $gambar2==null && $gambar3==null){
+            $this->db->query("UPDATE gambar SET
+            gambar = '$gambar1value',
+            gambar2 = '$gambar2value',
+            gambar3 = '$gambar3value'
+            WHERE id_product= '$id'
+            ");
+            // var_dump($gambar3value);die;
+         }
+        if ($gambar1 == null ) {
+            $this->db->query("UPDATE gambar SET
+            gambar = '$gambar1value',
+            gambar2 = '$gambar2',
+            gambar3 = '$gambar3'
+            WHERE id_product= '$id'
+            ");
+         }
+         if ($gambar2 == null) {
+            $this->db->query("UPDATE gambar SET
+            gambar = '$gambar1',
+            gambar2 = '$gambar2value',
+            gambar3 = '$gambar3'
+            WHERE id_product= '$id'
+            ");
+         }if ($gambar3 == null) {
+            $this->db->query("UPDATE gambar SET
+            gambar = '$gambar1',
+            gambar2 = '$gambar2',
+            gambar3 = '$gambar3value'
+            WHERE id_product= '$id'
+            ");
+         }if ($gambar1 == null && $gambar2 == null) {
+            $this->db->query("UPDATE gambar SET
+            gambar = '$gambar1value',
+            gambar2 = '$gambar2value',
+            gambar3 = '$gambar3'
+            WHERE id_product= '$id'
+            ");
+         }if ($gambar1 == null && $gambar3 == null) {
+            $this->db->query("UPDATE gambar SET
+            gambar = '$gambar1value',
+            gambar2 = '$gambar2',
+            gambar3 = '$gambar3value'
+            WHERE id_product= '$id'
+            ");
+            // var_dump("masuk");die;
+         }if ($gambar2 == null && $gambar3 == null) {
+            $this->db->query("UPDATE gambar SET
+            gambar = '$gambar1value',
+            gambar2 = '$gambar2value',
+            gambar3 = '$gambar3value'
+            WHERE id_product= '$id'
+            ");
+            // var_dump($gambar3value);die;
+         }
           $this->session->set_flashdata('message','<script>Swal.fire({ position: "center",
             icon: "success",
             title: "Your product has been Updated",

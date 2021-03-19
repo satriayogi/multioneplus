@@ -40,8 +40,7 @@ class Product extends CI_Controller{
         redirect('product/index');
     }
     public function delete_product(){
-        $uri = $this->uri->segment(4);
-        $this->product->delete_product($uri);
+        $this->product->delete_product();
         redirect('product/index');
     }
     public function edit_product(){
