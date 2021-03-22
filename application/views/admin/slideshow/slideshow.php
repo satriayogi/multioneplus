@@ -37,30 +37,91 @@
               <div class="card-body">
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                   <ol class="carousel-indicators">
-                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                  <?php 
+                  $no=1;
+                  foreach ($slide as $key=>$slide1) :
+                  ?>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="<?= $no++; ?>" <?php if ($key == 0) {
+                      echo 'class="active"';
+                    } ?>></li>
+                    <?php endforeach; ?>
                   </ol>
                   <div class="carousel-inner">
-                    <div class="carousel-item active">
-                      <img class="d-block w-100" src="https://placehold.it/900x500/39CCCC/ffffff&text=I+Love+Bootstrap" alt="First slide">
+                  <?php foreach ($slide as $key=>$slide2) :?>
+                    <div class="carousel-item <?php if ($key == 0) {
+                      echo 'active';
+                    } ?>">
+                    <style>
+                        .slide-banner{
+                          width:78%;
+                          height: auto;
+                          position: absolute;
+                          margin-top: -40%;
+                          margin-left: 13%;
+                        }
+                        .slide-banner2{
+                          
+                           width:60%;
+                        }
+                        .slide-title{
+                          font-size:37px;
+                        }
+                        .slide-content{
+                          font-size:23px;
+                        }
+                        @media only screen and (max-width: 767px){
+                          .slide-banner{
+                          width:78%;
+                          height: auto;
+                          position: absolute;
+                          margin-top: -42%;
+                          margin-left: 13%;
+                        }
+                        .slide-banner2{
+                          
+                           width:60%;
+                        }
+                        .slide-title{
+                          font-size:15px;
+                        }
+                        .slide-content{
+                          font-size:12px;
+                          margin-top:-14px;
+                        }
+                        .logo{
+                          width:30px;
+                          margin-top:-1%;
+                          height:20px;
+                        }
+                        .button-link{
+                          margin-top:-15%;
+                          font-size:12px;
+                        }
+      
+    }
+                    </style>
+                      <img class="d-block w-100" src="<?= base_url('assets/admin/img/slideshow/'.$slide2['gambar']) ?>" alt="<?= $slide2['alt'] ?>">
+                      <div class="slide-banner" >
+    <div class="slide-banner2" style="float:<?= $slide2['position'] ?>;" >
+
+      <img src="<?= base_url('assets/admin/img/logo ig mop.png') ?>" class="logo" alt="">
+      <p class="slide-title" ><?= $slide2['title'] ?><p>
+      <p class="slide-content"><?= $slide2['isi'] ?></p>
+      <button class="btn btn-success button-link"><?= $slide2['name_button'] ?></button>
+    </div>
+                      </div>
                     </div>
-                    <div class="carousel-item">
-                      <img class="d-block w-100" src="https://placehold.it/900x500/3c8dbc/ffffff&text=I+Love+Bootstrap" alt="Second slide">
-                    </div>
-                    <div class="carousel-item">
-                      <img class="d-block w-100" src="https://placehold.it/900x500/f39c12/ffffff&text=I+Love+Bootstrap" alt="Third slide">
-                    </div>
+                  <?php endforeach; ?>
                   </div>
                   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                     <span class="carousel-control-custom-icon" aria-hidden="true">
-                      <i class="fas fa-chevron-left"></i>
+                      <i class="fas fa-chevron-left text-success"></i>
                     </span>
                     <span class="sr-only">Previous</span>
                   </a>
                   <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
                     <span class="carousel-control-custom-icon" aria-hidden="true">
-                      <i class="fas fa-chevron-right"></i>
+                      <i class="fas fa-chevron-right text-success"></i>
                     </span>
                     <span class="sr-only">Next</span>
                   </a>
@@ -82,44 +143,34 @@
                     <th>title</th>
                     <th>Alternative Tag</th>
                     <th>URL</th>
+                    <th>Name Button</th>
                     <th>Position</th>
                     <th>Setting</th>
                   </tr>
                   </thead>
                   <tbody>
+                  <?php $no=1;
+                  foreach ($slide as $slideshow) :?>
                   <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 4.0
-                    </td>
-                    <td>Win 95+</td>
-                    <td> 4</td>
-                    <td> 4</td>
-                    <td> 4</td>
-                    <td>X</td>
+                    <td><?= $no++; ?></td>
+                    <td> <?= $slideshow['gambar'] ?> </td>
+                    <td><?= $slideshow['title'] ?></td>
+                    <td> <?= $slideshow['alt'] ?></td>
+                    <td> <?= $slideshow['url'] ?></td>
+                    <td> <?= $slideshow['name_button'] ?></td>
+                    <td> <?= $slideshow['position'] ?></td>
+                    <td> <a class="btn btn-info btn-sm" href="javascript:;" data-id="<?= $slideshow['id'] ?>" id="update" data-toggle="modal" data-target="#modal-edit<?= $slideshow['id'] ?>">
+                              <i class="fas fa-pencil-alt">
+                              </i>
+                              Edit
+                          </a>
+                          <a class="btn btn-danger btn-sm hapus" href=" <?= base_url('slideshow/hapus_slide/'.$admin['id'].'/'.$slideshow['id']) ?>">
+                              <i class="fas fa-trash">
+                              </i>
+                              Delete
+                          </a></td>
                   </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 5.0
-                    </td>
-                    <td>Win 95+</td>
-                    <td>5</td>
-                    <td>5</td>
-                    <td>5</td>
-                    <td>C</td>
-                  </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 5.5
-                    </td>
-                    <td>Win 95+</td>
-                    <td>5.5</td>
-                    <td>5.5</td>
-                    <td>A</td>
-                    <td>A</td>
-                  </tr>
+                  <?php endforeach; ?>
                   </tfoot>
                 </table>
               </div>
@@ -147,17 +198,58 @@
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title">Add Category</h4>
+              <h4 class="modal-title">Add Slideshow</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-                <form action="<?= base_url('category/save_category') ?>" class="form-horizontal" method="post">
+                <form action="<?= base_url('slideshow/save_slideshow') ?>" class="form-horizontal" method="post" enctype="multipart/form-data">
                     <div class="card-body">
                                     <div class="form-group row">
-                                      <label for="exampleInputEmail1" id="exampleInputEmail1" class="col-sm-2 col-form-label">Category</label>
-                                      <input type="text" name="category" class="form-control col-md-9" id="exampleInputEmail1" placeholder="Enter Category" required>
+                                      <label for="exampleInputEmail1" id="exampleInputEmail1" class="col-sm-2 col-form-label">Title</label>
+                                      <input type="text" name="title" class="form-control col-md-9" id="exampleInputEmail1" placeholder="Enter Title slide" required>
+                                    </div>
+                                    <div class="form-group row">
+                                      <label for="exampleInputEmail1" id="exampleInputEmail1" class="col-sm-2 col-form-label">Contents</label>
+                                      <input type="text" name="content" class="form-control col-md-9" id="exampleInputEmail1" placeholder="Enter Content Slide" required>
+                                    </div>
+                                    <div class="form-group row">
+                                      <label for="exampleInputEmail1" id="exampleInputEmail1" class="col-sm-2 col-form-label">Image</label>
+                                      <img src="<?= base_url('assets/admin/img/image.png') ?>" class="rounded" alt="" id="img2" style="width:200px;height:150px;">
+                                      <input type="file" name="gambar" class="" id="img12" onchange="preview2()" style="margin-left: -26%;
+    z-index: 99;
+    opacity: 0;
+    width: 26%;">
+    <label for="" style="    margin-left: -18%;
+    margin-top: 16%;">Click Me!</label>
+                                      <script>
+                       function preview2() {
+    img2.src=URL.createObjectURL(event.target.files[0]);
+    const asa = document.getElementById("img12");
+    asa.innerHTML=img12.value;
+}
+                        </script>
+                                    </div>
+                                    <div class="form-group row">
+                                      <label for="exampleInputEmail1" id="exampleInputEmail1" class="col-sm-2 col-form-label">Name Image</label>
+                                      <input type="text" name="alt" class="form-control col-md-9" id="exampleInputEmail1" placeholder="Enter Name image" required>
+                                    </div>
+                                    <div class="form-group row">
+                                      <label for="exampleInputEmail1" id="exampleInputEmail1" class="col-sm-2 col-form-label">Url</label>
+                                      <input type="text" name="url" class="form-control col-md-9" id="exampleInputEmail1" placeholder="Enter Url for link" required>
+                                    </div>
+                                    <div class="form-group row">
+                                      <label for="exampleInputEmail1" id="exampleInputEmail1" class="col-sm-2 col-form-label">Name Button</label>
+                                      <input type="text" name="namebutton" class="form-control col-md-9" id="exampleInputEmail1" placeholder="Enter Url for link" required>
+                                    </div>
+                                    <div class="form-group row">
+                                      <label for="exampleInputEmail1" id="exampleInputEmail1" class="col-sm-2 col-form-label">Position</label>
+                                      <select name="position" id="" class="form-control col-md-9">
+                                      <option value="left">Left</option>
+                                      <option value="center">Center</option>
+                                      <option value="right">Right</option>
+                                      </select>
                                     </div>
                                   </div>
                                 </div>
@@ -171,5 +263,118 @@
         </div>
         <!-- /.modal-dialog -->
       </div>
+      
+    
+
       <!-- /.modal Edit-->
-  
+      <?php foreach ($slide as $key => $slide3):?>
+  <div class="modal fade" id="modal-edit<?= $slide3['id'] ?>">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Edit Slideshow</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <form action="<?= base_url('slideshow/update_slideshow') ?>" class="form-horizontal" method="post" enctype="multipart/form-data">
+                    <div class="card-body">
+                                    <div class="form-group row">
+                                      <label for="exampleInputEmail1" id="exampleInputEmail1" class="col-sm-2 col-form-label">Title</label>
+                                      <input type="text" name="title" value="<?= $slide3['title'] ?>" class="form-control col-md-9" id="exampleInputEmail1" placeholder="Enter Title slide" required>
+                                      <input type="hidden" name="id" value="<?= $slide3['id'] ?>" class="form-control col-md-9" id="exampleInputEmail1" placeholder="Enter Title slide" required>
+                                    </div>
+                                    <div class="form-group row">
+                                      <label for="exampleInputEmail1" id="exampleInputEmail1" class="col-sm-2 col-form-label">Contents</label>
+                                      <input type="text" name="content" value="<?= $slide3['isi'] ?>" class="form-control col-md-9" id="exampleInputEmail1" placeholder="Enter Content Slide" required>
+                                    </div>
+                                    <div class="form-group row">
+                                      <label for="exampleInputEmail1" id="exampleInputEmail1" class="col-sm-2 col-form-label">Image</label>
+                                      <img src="<?= base_url('assets/admin/img/slideshow/'.$slide3['gambar']) ?>" class="rounded"  id="img<?= $slide3['id'] ?>" style="width:200px;height:150px;">
+                                      <input type="hidden" name="gambar1" value="<?= $slide3['gambar'] ?>">
+                                      <input type="file" name="gambar" class="" id="img12" onchange="preview<?= $slide3['id'] ?>()" style="margin-left: -26%;
+    z-index: 99;
+    opacity: 0;
+    width: 26%;">
+    <label for="" style="    margin-left: -18%;
+    margin-top: 16%;">Click Me!</label>
+                                      <script>
+                       function preview<?= $slide3['id'] ?>() {
+    img<?= $slide3['id'] ?>.src=URL.createObjectURL(event.target.files[0]);
+    const asa = document.getElementById("img12"); 
+    asa.innerHTML=img12.value;
+}
+                        </script>
+                                    </div>
+                                    <div class="form-group row">
+                                      <label for="exampleInputEmail1" id="exampleInputEmail1" class="col-sm-2 col-form-label">Name Image</label>
+                                      <input type="text" name="alt" value="<?= $slide3['alt'] ?>" class="form-control col-md-9" id="exampleInputEmail1" placeholder="Enter Name image" required>
+                                    </div>
+                                    <div class="form-group row">
+                                      <label for="exampleInputEmail1" id="exampleInputEmail1" class="col-sm-2 col-form-label">Url</label>
+                                      <input type="text" name="url" value="<?= $slide3['url'] ?>" class="form-control col-md-9" id="exampleInputEmail1" placeholder="Enter Url for link" required>
+                                    </div>
+                                    <div class="form-group row">
+                                      <label for="exampleInputEmail1" id="exampleInputEmail1" class="col-sm-2 col-form-label">Name Button</label>
+                                      <input type="text" name="namebutton" value="<?= $slide3['name_button'] ?>" class="form-control col-md-9" id="exampleInputEmail1" placeholder="Enter Url for link" required>
+                                    </div>
+                                    <div class="form-group row">
+                                      <label for="exampleInputEmail1" id="exampleInputEmail1" class="col-sm-2 col-form-label">Position</label>
+                                      <select name="position" id="" class="form-control col-md-9">
+                                      <option value="left">Left</option>
+                                      <option value="center">Center</option>
+                                      <option value="right">Right</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="modal-footer justify-content-between">
+                                  <a href="" class="btn btn-default" data-dismiss="modal">Close</a>
+                                  <button type="submit" class="btn btn-primary">Save changes</button>
+                                </div>
+                              </form>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal Edit -->
+  <?php endforeach; ?>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<script>
+  $(".hapus").on("click",function(e){
+e.preventDefault();
+const href = $(this).attr('href');
+// alert(href);
+// console.log()
+Swal.fire({
+  title: 'Are you sure?',
+  text: "You won't be able to revert this!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, delete it!'
+}).then((result) => {
+  if (result.value) {
+    document.location.href= href;
+    // alert(href);
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Your file has been delete',
+      showConfirmButton: false,
+      timer: 1500
+    }
+    )
+  }
+});
+  });
+// $('#ahref').on("click",function(e){
+//   e.preventDefault();
+
+// });
+</script>

@@ -30,18 +30,21 @@
                   <tr>
                     <th>Nomor</th>
                     <th>Name Product</th>
+                    <th>Customer</th>
                     <th>Discount</th>
                     <th>Code Discount</th>
                     <th>Setting</th>
                   </tr>
                   </thead>
                   <tbody>
+                    
                   <?php 
                   $no = 1;
-                  foreach ($discount_list as $discount) :?>
+                  foreach ($discount_list as $key => $discount):?>
                   <tr>
                     <td><?= $no++; ?></td>
                     <td><?= $discount['nama_product'] ?></td>
+                    <td><?= $discount['id_customer'] ?></td>
                     <td><?= $discount['potongan'] ?></td>
                     <td><?= $discount['kode_discount'] ?></td>
                     <td>  <a class="btn btn-danger btn-sm hapus" href="<?= base_url('discount/delete_discount/'.$discount['id_product']) ?>">
@@ -88,7 +91,7 @@
                                       <select class="form-control select2" style="width: 75%;" name="product">
                     <?php foreach ($product as $product) :?>
                     
-                    <option value="<?= $product['id'] ?>"><?= $product['nama_product']; ?></option>
+                    <option value="<?= $product['id_product'] ?>"><?= $product['nama_product']; ?></option>
                     <?php endforeach; ?>
                   </select>
                                     </div>
@@ -98,9 +101,10 @@
                                     </div>
                                     <div class="form-group row">
                                       <label for="exampleInputEmail1" class="col-sm-2 col-form-label">Discount</label>
-                                      <input type="text" readonly name="randomfield" value="" class="form-control col-md-7 mr-2" id="exampleInputEmail1" > <button class="btn btn-warning" type="button" onClick="randomString();">Random</button>
+                                      <input type="text" name="randomfield"  class="form-control col-md-7 mr-2" id="exampleInputEmail1" > 
+                                      <!-- <button class="btn btn-warning" type="button" onClick="randomString();">Random</button> -->
                                     </div>
-                                    <script language="javascript" type="text/javascript">
+                                    <!-- <script language="javascript" type="text/javascript">
                                     function randomString() {
                                       var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
                                       var string_length = 15;
@@ -111,7 +115,7 @@
                                       }
                                       document.randform.randomfield.value = randomstring;
                                     }
-                                    </script>
+                                    </script> -->
                                    
 </div>
             </div>

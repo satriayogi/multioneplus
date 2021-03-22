@@ -20,9 +20,9 @@ class Discount_model extends CI_Model{
           redirect('discount/index');
     }
     public function discount_list(){
-        $this->db->select("*");
-        $this->db->from("discount");
-        $this->db->join("product","product.id=discount.id_product");
+        $this->db->select('*');
+        $this->db->from('discount');
+        $this->db->join('product','discount.id_product=product.id');
         $this->db->order_by('discount.id','DESC');
         $query = $this->db->get();
         return $query->result_array();

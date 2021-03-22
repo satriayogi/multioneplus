@@ -159,7 +159,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4" >
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
-      <img src="<?= base_url() ?>assets/admin/img/logo-mutil-plus-one2.png" alt="AdminLTE Logo" class="brand-image rounded  elevation-3" style="opacity: .8;background-color:white;">
+      <img src="<?= base_url() ?>assets/admin/img/logo ig mop.png" alt="AdminLTE Logo" class="brand-image rounded  elevation-3" style="opacity: .8;background-color:white;">
       <span class="brand-text font-weight-light">Multi One Plus</span>
     </a>
     <!-- Sidebar -->
@@ -311,7 +311,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="<?= base_url('customer/index/'.$admin['id']) ?>" class="nav-link">
+            <a href="<?= base_url('banner/index/'.$admin['id']) ?>" class="nav-link">
               <i class="nav-icon fas fa-image"></i>
               <p>
                 Banner
