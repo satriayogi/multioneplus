@@ -1,6 +1,5 @@
 <?php 
- 
- class Product_model extends CI_Model{
+  class Product_model extends CI_Model{
      public function readcategory(){
          $this->db->select('*');
          $this->db->from('category');
@@ -12,6 +11,8 @@
          $this->db->select('*');
          $this->db->from('product');
          $this->db->join('gambar','product.id=gambar.id_product');
+         $this->db->join('warna','product.id=warna.id_product');
+         $this->db->join('category','product.id_category=category.id');
          $query = $this->db->get();
          return $query->result_array();
      }
@@ -21,7 +22,6 @@
         $category = $this->input->post('category');
         $keterangan = $this->input->post('keterangan');
         $quantity = $this->input->post('quantity');
-       //  $gambar = $this->input->post('gambar');
         $price = $this->input->post('price');
         $gambar1 =  $_FILES['gambar1']['name'];
         $gambar2 =  $_FILES['gambar2']['name'];
@@ -64,6 +64,20 @@
             'gambar3' =>$gambar3,
         ];
         $this->db->insert('gambar',$data);
+        $birumuda = $this->input->post('birumuda');
+        $coklat = $this->input->post('coklat');
+        $birulangit = $this->input->post('birulangit');
+        $abu = $this->input->post('abuabu');
+        $putih = $this->input->post('putih');
+        $data3=[
+            'id_product'=>$id,
+            'birumuda'=>$birumuda,
+            'birulangit' => $birulangit,
+            'coklat'=>$coklat,
+            'abu-abu'=>$abu,
+            'putih'=>$putih,
+        ];
+        $this->db->insert('warna',$data3);
         
             // $jumlahgambar = count($_FILES['gambar']['name']);
             // for ($i=0; $i <= $jumlahgambar ; $i++) { 
@@ -114,6 +128,7 @@
          $this->db->select("*");
          $this->db->from("product");
          $this->db->join("gambar","product.id=gambar.id_product");
+         $this->db->join("warna","product.id=warna.id_product");
          $this->db->order_by('product.id','DESC');
          $this->db->where("product.id='$uri'");
          $query = $this->db->get();

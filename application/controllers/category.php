@@ -10,7 +10,8 @@ class Category extends CI_Controller{
 }
     public function index(){
         $data['admin']=$this->operator->viewadmin()->row_array();
-        $data['category'] = $this->category->read_category();
+        $data['category']=$this->category->read_category();
+        $data['category1']=$this->category->read_category();
         $this->load->view('admin/header',$data);
         $this->load->view('admin/category/category_list',$data);
         $this->load->view('admin/footer');
@@ -24,6 +25,24 @@ class Category extends CI_Controller{
     }
     public function delete_category(){
         $this->category->delete_category();
+    }
+    public function sub_category(){
+        $data['admin'] = $this->operator->viewadmin()->row_array();
+        $data['category'] = $this->category->read_category();
+        $data['subcategory'] = $this->category->read_subcategory();
+        $data['subcategory1'] = $this->category->read_subcategory();
+        $this->load->view('admin/header',$data);
+        $this->load->view('admin/category/subcategory',$data);
+        $this->load->view('admin/footer');
+    }
+    public function save_subcategory(){
+        $this->category->save_subcategory();
+    }
+    public function update_category(){
+        $this->category->update_category();
+    }
+    public function update_subcategory(){
+        $this->category->update_subcategory();
     }
 }
 
