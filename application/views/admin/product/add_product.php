@@ -82,31 +82,13 @@
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for=""> Pilih Warna</label> <br>
+                        <?php foreach ($color_list as $key => $value) :?>
                         <div class="form-check form-check-inline">
-                          <input type="hidden" name="birumuda" value="99">
-                          <input class="form-check-input birumuda" name="birumuda" value="1" type="checkbox" id="inlineCheckbox1" onchange="changecolor1()" value="option1" style="color:'83e4db';width:25px;height:25px;">
-                          <label class="form-check-label" id="labelbirumuda" for="inlineCheckbox1" style="color:'83e4db';">Light Green</label>
+                          <!-- <input type="hidden" name="warna[]" value="99"> -->
+                          <input class="form-check-input birumuda" name="warna[]" value="<?= $value['id'] ?>" type="checkbox" id="inlineCheckbox1" onchange="changecolor1()"  style="color:'83e4db';width:25px;height:25px;">
+                          <label class="form-check-label" id="labelbirumuda" for="inlineCheckbox1" style="color:'83e4db';"><?= $value['nama_warna'] ?></label>
                         </div>
-                        <div class="form-check form-check-inline">
-                        <input type="hidden" name="coklat" value="99">
-                        <input class="form-check-input" value="1" name="coklat" type="checkbox" id="inlineCheckbox2" value="option2" style="width:25px;height:25px;">
-                        <label class="form-check-label" for="inlineCheckbox2" style="color:'603913';">Brown</label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                          <input type="hidden" name="putih" value="99">
-                          <input class="form-check-input" value="1" name="putih" type="checkbox" id="inlineCheckbox1" value="option1" style="width:25px;height:25px;">
-                          <label class="form-check-label" for="inlineCheckbox1" style="color:'bfe5fa';">Blue Sky</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                        <input type="hidden" name="abuabu" value="99">
-                        <input class="form-check-input" value="1" name="abuabu" type="checkbox" id="inlineCheckbox2" value="option2" style="width:25px;height:25px;">
-                        <label class="form-check-label" for="inlineCheckbox2" style="color:'84888a';">Grey</label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <input type="hidden" name="birulangit" value="99">
-                        <input class="form-check-input" value="1" name="birulangit" type="checkbox" id="inlineCheckbox2" value="option2" style="width:25px;height:25px;">
-                        <label class="form-check-label" for="inlineCheckbox2">White</label>
-                      </div>
+                        <?php endforeach; ?>
                       </div>
                     </div>
                     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -174,6 +156,7 @@
                                           </script>
                   
                                         </div>
+                                        
                                         <div class="col-md-4">
                                           <img src="<?= base_url() ?>assets/admin/img/image.png" alt="Image 1" id="img3" class="rounded d-block" style="width:50%;">
                                           <div class="input-group">
@@ -199,6 +182,33 @@
                   }
                                           </script>
                                           </div>
+                                          <div class="col-md-4">
+                                          <img src="<?= base_url() ?>assets/admin/img/image.png" alt="Image 1" id="img4" class="rounded d-block " style="width:50%;">
+                                          <div class="input-group">
+                                            <div class="custom-file col-md-8">
+                                              <input type="file" name="gambar4" class="" id="img14" onchange="preview4()" style="margin-bottom: 92%;
+                      opacity: 0;
+                      z-index: 99;
+                      height: 344%;
+                      margin-left: -8%;">
+                                            </div>
+                                            <!-- look image use javascript -->
+                                          <!-- end javascript -->
+                                            <label for="" id="aba" style="margin-left: 8%;
+                      color: black;
+                      margin-top: 1%;
+                      position: absolute;
+                      height: 55%;"> Click Me!</label>
+                                          </div>
+                                          <script>
+                                         function preview4() {
+                      img4.src=URL.createObjectURL(event.target.files[0]);
+                      const asa = document.getElementById("aba");
+                      asa.innerHTML=img14.value;
+                  }
+                                          </script>
+                  
+                                        </div>
 </div>
                   </div>
                 </div>

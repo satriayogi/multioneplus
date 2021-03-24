@@ -37,6 +37,44 @@ class Login extends CI_Controller{
         redirect('login/index');
     }
     }
+    public function customer(){
+        $this->form_validation->set_rules('username','Username or Email','required');
+        $this->form_validation->set_rules('password','Password','required');
+        if ($this->form_validation->run() == false) {
+            $this->load->view('customer/auth/login');
+        }else{
+            $username = $this->input->post('username');
+            $password = $this->input->post('password');
+            $this->db->select("*");
+            $this->db->from("customer");
+            $this->db->where('username',$username);
+            $this->db->or_where('email',$username);
+            $customer= $this->db->get()->row_array();
+            if ($customer) {
+                if ($customer['status'] == 1) {
+                    if (password_verify($password,$customer['password'])) {
+                        $data = [
+                            'username'=>$customer['username'],
+                            'email'=>$customer['email']
+                        ];
+                        $this->session->set_flashdata($data);
+                        redirect('customer/home');
+                    }else{
+                        $this->session->set_flashdata('message','<script>Swal.fire({icon: "error",title: "Oops...",text: "sorry the password you entered is wrong"})</script>');
+                    redirect('login/customer');
+                }
+            }else{
+                    $this->session->set_flashdata('message','<script>Swal.fire({icon: "error",title: "Oops...",text: "sorry username or email is  not registered"})</script>');
+                redirect('login/customer');
+                
+            }
+        }else{
+                $this->session->set_flashdata('message','<script>Swal.fire({icon: "error",title: "Oops...",text: "the password you entered is wrong "})</script>');
+            redirect('login/customer');
+
+            }
+        }
+    }
 }
 
 

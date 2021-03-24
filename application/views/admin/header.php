@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Dashboard</title>
-
+  <link rel="shortcut icon" href="<?= base_url('assets/admin/img/logo ig mop.png') ?>" />
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -305,6 +305,12 @@
                 <a href="<?= base_url('discount/index/'.$admin['id']) ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>List Discount</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?= base_url('product/color_list/'.$admin['id']) ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Color Product</p>
                 </a>
               </li>
               

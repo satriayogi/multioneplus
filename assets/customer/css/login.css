@@ -1,0 +1,14 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: 0;
+}
+.container{
+ width: 100%;
+ height:auto;
+}
+.container .form{
+    width:20%;
+    height:30px;
+    border:1px solid black;
+}

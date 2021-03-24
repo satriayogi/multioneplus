@@ -25,6 +25,7 @@ class Product extends CI_Controller{
     public function add_product(){
         $data['admin'] = $this->operator->viewadmin()->row_array();
         $data['category'] = $this->product->readcategory();
+        $data['color_list'] = $this->product->color_list();
         $this->load->view('admin/header',$data);
         $this->load->view('admin/product/add_product',$data);
         $this->load->view('admin/footer');
@@ -54,5 +55,20 @@ class Product extends CI_Controller{
     public function update_product(){
         $this->product->update_product();
     }
+    public function color_list(){
+        $data['admin']= $this->operator->viewadmin()->row_array();
+        $data['color_list'] = $this->product->color_list();
+        $this->load->view('admin/header',$data);
+        $this->load->view('admin/product/color_list',$data);
+        $this->load->view('admin/footer');
+    }
+    public function save_color(){
+        $this->product->save_color();
+    }
+    public function update_color(){
+        $this->product->update_color();
+
+    }
+    
 }
 

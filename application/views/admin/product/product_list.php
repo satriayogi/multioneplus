@@ -54,22 +54,21 @@
                     <td> <?= $product['discount'] ?></td>
                     <td>
                       <div class="row">
-                        <?php 
-                          if ($product['birumuda'] == 1) {
-                            echo '<div class="birumuda" style="width:20px;height:20px; background-color:#83e4db; margin-right:3px;"></div>';
-                          }
-                          if ($product['coklat'] == 1) {
-                            echo '<div class="coklat" style="width:20px;height:20px; background-color:#603913; margin-right:3px;"></div> ';
-                          }
-                          if ($product['birulangit']==1) {
-                            echo '<div class="bitulangit" style="width:20px;height:20px; background-color:#bfe5fa; margin-right:3px;"></div> ';
-                          }
-                          if ($product['abu-abu']== 1) {
-                            echo '<div class="abuabu" style="width:20px;height:20px; background-color:#84888a; margin-right:3px;"></div>';
-                          }
-                          if ($product['putih'] == 1) {
-                            echo '<div class="putih" style="width:20px;height:20px; background-color:#fff; border:1px solid black; margin-right:3px;"></div>';
-                          }
+                        <?php
+                        $id = $product['id_product'];
+                        $warna = $this->db->query("SELECT * FROM product,warna,style_warna WHERE product.id='$id' AND warna.id_product=product.id AND warna.id_stylecolor=style_warna.id")->result_array();
+                        // echo $warna['id'];
+                        foreach ($warna as $key => $warna) {
+                          // echo $warna['warna'];
+                            echo '<div class="birumuda" style="width:20px;height:20px; background-color:'.$warna['warna'].'; margin-right:3px;"></div>';
+                          // $warnaview = $this->db->query("SELECT * FROM warna,style_warna WHERE warna.id='$idwarna'  AND warna.id_stylecolor=style_warna.id")->result_array();
+                        // foreach ($warnaview as $key => $valueview) {
+                        // }
+                        }
+                          // if ($product['id_stylecolor'] == ) {
+                          //   echo '<div class="birumuda" style="width:20px;height:20px; background-color:#83e4db; margin-right:3px;"></div>';
+                          // }
+                         
                         ?> 
                       </div>
                   </td>

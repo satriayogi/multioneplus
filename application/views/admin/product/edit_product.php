@@ -87,41 +87,28 @@
                       <div class="form-group">
                         <label for=""> Pilih Warna</label> <br>
                         <div class="form-check form-check-inline">
-                          <input type="hidden" name="birumuda" value="99">
-                          <input class="form-check-input birumuda" name="birumuda" value="1" <?php if ($edit['birulangit']==1) {
-                            echo 'checked';
-                          }  ?> type="checkbox" id="inlineCheckbox1" value="option1" style="color:'83e4db';width:25px;height:25px;">
-                          <label class="form-check-label" id="labelbirumuda" for="inlineCheckbox1" style="color:'83e4db';">Light Green</label>
+                        <?php 
+                        $id_product = $edit['id_product'];
+                        // echo $id;
+                        $style = $this->db->query("SELECT * FROM style_warna")->result_array();
+                        foreach ($style as $key => $style) :                        // $warna = $this->db->query("SELECT * FROM style_warna,warna,product WHERE product.id='$id' AND warna.id_product=product.id AND style_warna.id=warna.id_stylecolor")->result_array();
+                        // foreach ($warna as $key => $warna) {
+                        //   echo $warna['warna'];
+                        // }
+                        ?>
+                        <input class="form-check-input birumuda" name="warna[]" type="checkbox" id="inlineCheckbox1" value="<?= $style['id'] ?>" <?php
+                        $id = $style['id'];
+                        $warna = $this->db->query("SELECT * FROM warna,style_warna WHERE warna.id_product='$id_product' AND style_warna.id='$id' AND warna.id_stylecolor=style_warna.id")->row_array();
+                        if ($warna['id_product']==$id_product) {
+                          echo 'checked ';
+                        }else{
+                          
+                        }
+                        ?>style=";width:25px;height:25px;">
+                          <label class="form-check-label" id="labelbirumuda" for="inlineCheckbox1" style="margin-right:3px;"><?= $style['nama_warna']?>
+                          </label>
+                          <?php endforeach ?>
                         </div>
-                        <div class="form-check form-check-inline">
-                        <input type="hidden" name="coklat" value="99">
-                        <input class="form-check-input" value="1" name="coklat" type="checkbox" id="inlineCheckbox2" value="option2" style="width:25px;height:25px;"<?php if ($edit['coklat']==1) {
-                            echo 'checked';
-                          }  ?>>
-                        <label class="form-check-label" for="inlineCheckbox2" style="color:'603913';">Brown</label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                          <input type="hidden" name="putih" value="99">
-                          <input class="form-check-input" value="1" name="putih" type="checkbox" id="inlineCheckbox1" value="option1" style="width:25px;height:25px;"<?php if ($edit['putih']==1) {
-                            echo 'checked';
-                          }  ?>>
-                          <label class="form-check-label" for="inlineCheckbox1" style="color:'bfe5fa';">White</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                        <input type="hidden" name="abuabu" value="99">
-                        <input class="form-check-input" value="1" name="abuabu" type="checkbox" id="inlineCheckbox2" value="option2" style="width:25px;height:25px;"<?php if ($edit['abu-abu']==1) {
-                            echo 'checked';
-                          }  ?>>
-                        <label class="form-check-label" for="inlineCheckbox2" style="color:'84888a';">Grey</label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <input type="hidden" name="birulangit" value="99">
-                        <input class="form-check-input" value="1" name="birulangit" type="checkbox" id="inlineCheckbox2" value="option2" style="width:25px;height:25px;" <?php if ($edit['birulangit']==1) {
-                            echo 'checked';
-                          }  ?>>
-                        <label class="form-check-label" for="inlineCheckbox2">Blue Sky</label>
-                      </div>
-                      </div>
                     </div>
                       <div class="col-md-6">
                           <div class="form-group ">

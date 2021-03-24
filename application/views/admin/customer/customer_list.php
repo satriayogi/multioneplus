@@ -1,6 +1,7 @@
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
+  <?= $this->session->flashdata('message'); ?>
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
@@ -28,129 +29,61 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
+                    <th>No.</th>
                     <th>Name</th>
+                    <th>Username</th>
                     <th>Email</th>
-                    <th>Alamat</th>
-                    <th>Tanggal Lahir</th>
+                    <th>Gender</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>sub-district</th>
+                    <th>No. Home</th>
+                    <th>Code Pos</th>
+                    <th>Date of Birth</th>
                     <th>No. Telephone</th>
                     <th>Status</th>
                   </tr>
                   </thead>
                   <tbody>
+                  <?php $no=1; foreach ($customer_list as $key => $value):?>
                   <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 4.0
-                    </td>
-                    <td>Win 95+</td>
-                    <td> 4</td>
-                    <td> 4</td>
+                    <td><?= $no++; ?></td>
+                    <td><?= $value['nama'] ?></td>
+                    <td><?= $value['username'] ?></td>
+                    <td> <?= $value['email'] ?></td>
+                    <td> <?= $value['jenis_kelamin'] ?></td>
+                    <td> <?= $value['alamat'] ?></td>
+                    <td> <?= $value['kota'] ?></td>
+                    <td> <?= $value['kec'] ?></td>
+                    <td> <?= $value['no_rmh'] ?></td>
+                    <td> <?= $value['kodepos'] ?></td>
+                    <td> <?= $value['tanggal_lahir'] ?></td>
+                    <td> <?= $value['no_tlp'] ?></td>
                     <td> 
-                <input type="checkbox" name="my-checkbox" checked data-bootstrap-switch data-off-color="danger" data-on-color="success">
+                      <form action="<?= base_url('customer/update_status') ?>" method="post" id="cek" >
+                      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+                        <!-- <input type="checkbox" name="my-checkbox" <php if ($value['status'] == 1) {echo 'checked ';} ?> data-bootstrap-switch data-off-color="danger" data-on-color="success" onchange=''> -->
+                      
+                      <?php 
+                      if ($value['status']==1) {
+                        echo '<input type="hidden" name="status" value="99">
+                        <input type="hidden" name="id" value="'.$value['id'].'">
+                        <input type="hidden" name="admin" value="'.$admin['id'].'">
+                        <button type="submit" class="btn btn-success w-100">Active</button>
+                        ';
+                      }else{
+                        echo ' <input type="hidden" name="status" value="1">
+                        <input type="hidden" name="id" value="'.$value['id'].'">
+                        <input type="hidden" name="admin" value="'.$admin['id'].'">
+                        <button type="submit" class="btn btn-danger w-100">Non Active</button>';
+                      }
+                      ?>
+                      
+                     
+                      </form>
               </td>
                   </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 5.0
-                    </td>
-                    <td>Win 95+</td>
-                    <td>Win 95+</td>
-                    <td>5</td>
-                    <td><input type="checkbox" name="my-checkbox" checked data-bootstrap-switch data-off-color="danger" data-on-color="success"></td>
-                  </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 5.5
-                    </td>
-                    <td>Win 95+</td>
-                    <td>5.5</td>
-                    <td><input type="checkbox" name="my-checkbox" checked data-bootstrap-switch data-off-color="danger" data-on-color="success"></td>
-                  </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 6
-                    </td>
-                    <td>Win 98+</td>
-                    <td>6</td>
-                    <td>6</td>
-                    <td><input type="checkbox" name="my-checkbox" checked data-bootstrap-switch data-off-color="danger" data-on-color="success"></td>
-                  </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet Explorer 7</td>
-                    <td>Win XP SP2+</td>
-                    <td>7</td>
-                    <td>A</td>
-                    <td><input type="checkbox" name="my-checkbox" checked data-bootstrap-switch data-off-color="danger" data-on-color="success"></td>
-                  </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>AOL browser (AOL desktop)</td>
-                    <td>Win XP</td>
-                    <td>Win XP</td>
-                    <td>6</td>
-                    <td><input type="checkbox" name="my-checkbox" checked data-bootstrap-switch data-off-color="danger" data-on-color="success"></td>
-                  </tr>
-                  <tr>
-                    <td>Gecko</td>
-                    <td>Firefox 1.0</td>
-                    <td>Firefox 1.0</td>
-                    <td>Win 98+ / OSX.2+</td>
-                    <td>1.7</td>
-                    <td><input type="checkbox" name="my-checkbox" checked data-bootstrap-switch data-off-color="danger" data-on-color="success"></td>
-                  </tr>
-                  <tr>
-                    <td>Gecko</td>
-                    <td>Firefox 1.5</td>
-                    <td>Win 98+ / OSX.2+</td>
-                    <td>1.8</td>
-                    <td>A</td>
-                    <td><input type="checkbox" name="my-checkbox" checked data-bootstrap-switch data-off-color="danger" data-on-color="success"></td>
-                  </tr>
-                  <tr>
-                    <td>Gecko</td>
-                    <td>Firefox 2.0</td>
-                    <td>Win 98+ / OSX.2+</td>
-                    <td>1.8</td>
-                    <td>1.8</td>
-                    <td><input type="checkbox" name="my-checkbox" checked data-bootstrap-switch data-off-color="danger" data-on-color="success"></td>
-                  </tr>
-                  <tr>
-                    <td>Gecko</td>
-                    <td>Firefox 3.0</td>
-                    <td>Win 2k+ / OSX.3+</td>
-                    <td>Win 2k+ / OSX.3+</td>
-                    <td>1.9</td>
-                    <td><input type="checkbox" name="my-checkbox" checked data-bootstrap-switch data-off-color="danger" data-on-color="success"></td>
-                  </tr>
-                  <tr>
-                    <td>Gecko</td>
-                    <td>Camino 1.0</td>
-                    <td>OSX.2+</td>
-                    <td>1.8</td>
-                    <td>1.8</td>
-                    <td><input type="checkbox" name="my-checkbox" checked data-bootstrap-switch data-off-color="danger" data-on-color="success"></td>
-                  </tr>
-                  <tr>
-                    <td>Gecko</td>
-                    <td>Camino 1.5</td>
-                    <td>OSX.3+</td>
-                    <td>1.8</td>
-                    <td>1.8</td>
-                    <td><input type="checkbox" name="my-checkbox" checked data-bootstrap-switch data-off-color="danger" data-on-color="success"></td>
-                  </tr>
-                  <tr>
-                    <td>Gecko</td>
-                    <td>Netscape 7.2</td>
-                    <td>Win 95+ / Mac OS 8.6-9.2</td>
-                    <td>1.7</td>
-                    <td>A</td>
-                    <td><input type="checkbox" name="my-checkbox" checked data-bootstrap-switch data-off-color="danger" data-on-color="success"></td>
-                  </tr>
+                  <?php endforeach; ?>
                   </tbody>
                   
                 </table>
