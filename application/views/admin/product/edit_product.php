@@ -110,6 +110,8 @@
                           <?php endforeach ?>
                         </div>
                     </div>
+                  
+                                        </div>
                       <div class="col-md-6">
                           <div class="form-group ">
                                       <label for="exampleInputFile">Image </label>
@@ -127,6 +129,7 @@
                                             <input type="hidden" name="gambar11" value="<?= $edit['gambar'] ?>" id="">
                                             <input type="hidden" name="gambar12" value="<?= $edit['gambar2'] ?>" id="">
                                             <input type="hidden" name="gambar13" value="<?= $edit['gambar3'] ?>" id="">
+                                            <input type="hidden" name="gambar14" value="<?= $edit['gambar4'] ?>" id="">
                                           <!-- look image use javascript -->
                                           <!-- end javascript -->
                   
@@ -197,8 +200,33 @@
                   }
                                           </script>
                                           </div>
-                  
-                                        </div>
+                                        
+                    </div>
+                                        <div class="col-md-4">
+                                          <img src="<?= base_url('assets/admin/img/product/'.$edit['gambar4']) ?>" alt="Image 3" id="img4" class="rounded d-block" style="width:50%;">
+                                          <div class="input-group">
+                                            <div class="custom-file col-md-8">
+                                              <input type="file" name="gambar4" value="<?= $edit['gambar4'] ?>" id="img13" onchange="preview4()" style="margin-bottom: 92%;
+                      opacity: 0;
+                      z-index: 99;
+                      height: 344%;
+                      margin-left: -8%;">
+                                            </div>
+                                            <!-- look image use javascript -->
+                                          <!-- end javascript -->
+                                          <label for="" id="ala" style="margin-left: 8%;
+                      color: black;
+                      margin-top: 1%;
+                      position: absolute;
+                      height: 55%;"> <?= $edit['gambar4'] ?></label>
+                                          <script>
+                                         function preview4() {
+                      img4.src=URL.createObjectURL(event.target.files[0]);
+                      const asa = document.getElementById("ala");
+                      asa.innerHTML=img13.value;
+                  }
+                                          </script>
+                                          </div>
                                         
                     </div>
                     </div>

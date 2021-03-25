@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 16 Mar 2021 pada 12.44
+-- Waktu pembuatan: 25 Mar 2021 pada 03.18
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.2.26
 
@@ -52,7 +52,15 @@ CREATE TABLE `category` (
 
 INSERT INTO `category` (`id`, `nama_category`) VALUES
 (1, 'cek'),
-(2, 'wes');
+(2, 'wes'),
+(4, 'erw'),
+(6, 'q'),
+(7, 'hjgf'),
+(8, 'hjgf'),
+(9, 'bnm'),
+(10, 'bnm'),
+(11, 'MOP Mask'),
+(13, 'iu');
 
 -- --------------------------------------------------------
 
@@ -66,14 +74,26 @@ CREATE TABLE `customer` (
   `email` varchar(100) NOT NULL,
   `username` varchar(100) NOT NULL,
   `password` varchar(255) NOT NULL,
+  `gambar` varchar(225) NOT NULL,
   `tanggal_lahir` date NOT NULL,
+  `jenis_kelamin` varchar(50) NOT NULL,
   `no_tlp` varchar(15) NOT NULL,
   `alamat` text NOT NULL,
-  `provinsi` varchar(50) NOT NULL,
   `kota` varchar(70) NOT NULL,
+  `kec` varchar(200) NOT NULL,
+  `no_rmh` varchar(10) NOT NULL,
   `kodepos` int(11) NOT NULL,
   `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `customer`
+--
+
+INSERT INTO `customer` (`id`, `nama`, `email`, `username`, `password`, `gambar`, `tanggal_lahir`, `jenis_kelamin`, `no_tlp`, `alamat`, `kota`, `kec`, `no_rmh`, `kodepos`, `status`) VALUES
+(3, 'qe', 'qwe@gmail.com', 'asd', '$2y$10$6CDr342YKO71oeuBCOFLreY81jRJlxev2rkDH/5hiQp.Il6xCeZKW', '', '0000-00-00', '', '', '', '', '', '', 0, 1),
+(4, 'hr', 'asd@gmail.com', 'ger', '$2y$10$IbZrEOolt/ns49O0LVP2nOXSDEYK1ME2NP5yeaWYU2LrffGRWcaJ.', '', '0000-00-00', '', '', '', '', '', '', 0, 99),
+(5, 'Satria', 'satria@gmail.com', 'Satria', '$2y$10$2HvkDLgofLggz4FzskLD2O/F887eZ6Wcl3IMPLrUDyMOFTX7PUjxm', '', '0000-00-00', '', '', '', '', '', '', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -99,9 +119,28 @@ CREATE TABLE `discount` (
   `id` int(11) NOT NULL,
   `id_product` int(11) NOT NULL,
   `id_customer` int(11) NOT NULL,
-  `kode_discount` varchar(15) NOT NULL,
+  `kode_discount` varchar(20) NOT NULL,
   `potongan` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `discount`
+--
+
+INSERT INTO `discount` (`id`, `id_product`, `id_customer`, `kode_discount`, `potongan`) VALUES
+(1, 64, 0, '2P2r2TBbryTNnbI', 30),
+(3, 63, 0, 'nrTxOGZ98vKL90R', 10),
+(4, 63, 0, '3xBdSLn6QC5UDkM', 7),
+(5, 63, 0, 'K0c0BBXCFnw4yLm', 5),
+(6, 63, 0, '', 8),
+(7, 63, 0, 'TWZ0JdnDTrDJnzQ', 326),
+(8, 63, 0, 'TWZ0JdnDTrDJnzQ', 326),
+(9, 63, 0, 'y1K0WldTQuKVSqb', 4),
+(10, 63, 0, 'MkdUkGUB2qgZ3RX', 6),
+(11, 63, 0, 'sRzecnZ9sBGgda0', 8),
+(12, 63, 0, '2F2vH13UwPW2BNS', 86),
+(13, 63, 0, '2F2vH13UwPW2BNS', 86),
+(14, 45, 0, 'ramadhanberkah', 40);
 
 -- --------------------------------------------------------
 
@@ -122,7 +161,11 @@ CREATE TABLE `gambar` (
 --
 
 INSERT INTO `gambar` (`id`, `id_product`, `gambar`, `gambar2`, `gambar3`) VALUES
-(39, 63, '', '', '');
+(45, 70, 'avanz.jpg', 'camera-on-black-surface-1655817.jpg', 'cek.jpg'),
+(46, 71, 'jj.JPG', 'ff.JPG', 'asdadasdasd.JPG'),
+(48, 75, '12343.JPG', 'bnmbnm.JPG', ''),
+(49, 76, 'aaa.JPG', '12343.JPG', ''),
+(50, 77, 'camera-on-black-surface-1655817.jpg', '12343.JPG', '');
 
 -- --------------------------------------------------------
 
@@ -205,6 +248,7 @@ CREATE TABLE `product` (
   `nama_product` varchar(255) NOT NULL,
   `keterangan` text NOT NULL,
   `harga` int(11) NOT NULL,
+  `discount` int(11) NOT NULL,
   `stok` int(11) NOT NULL,
   `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -213,8 +257,14 @@ CREATE TABLE `product` (
 -- Dumping data untuk tabel `product`
 --
 
-INSERT INTO `product` (`id`, `id_category`, `nama_product`, `keterangan`, `harga`, `stok`, `status`) VALUES
-(63, 1, 'test', 'asdjhk', 20000, 20, 99);
+INSERT INTO `product` (`id`, `id_category`, `nama_product`, `keterangan`, `harga`, `discount`, `stok`, `status`) VALUES
+(70, 11, 'masker', 'kids', 7000, 2000, 20, 99),
+(71, 11, 'sdfsdfhfgh', 'ererhfddfhgf', 20000, 0, 10, 99),
+(73, 13, 'ads', 'qweqwe', 20000, 0, 10, 99),
+(74, 13, 'wer', 'werwer', 20000, 0, 10, 99),
+(75, 13, 'geer', 'fdgdf', 5000, 0, 10, 99),
+(76, 13, 'adsad', 'qweqwe', 5000, 0, 20, 99),
+(77, 13, 'vnbc', 'wqer', 5000, 0, 1, 99);
 
 -- --------------------------------------------------------
 
@@ -255,6 +305,31 @@ INSERT INTO `role_sys_user` (`id`, `id_sys_user`, `operator`, `product`, `catego
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `slideshow`
+--
+
+CREATE TABLE `slideshow` (
+  `id` int(11) NOT NULL,
+  `gambar` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `isi` text NOT NULL,
+  `alt` varchar(255) NOT NULL,
+  `url` varchar(50) NOT NULL,
+  `name_button` varchar(100) NOT NULL,
+  `position` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `slideshow`
+--
+
+INSERT INTO `slideshow` (`id`, `gambar`, `title`, `isi`, `alt`, `url`, `name_button`, `position`) VALUES
+(1, 'banner.png', 'MULTI ONE PLUS MASK', 'Earloop Mask Multi One Plus', 'asd', 'qwe', 'BUY NOW', 'left'),
+(4, 'banner2.png', 'MULTI ONE PLUS MASK', 'The Willow Teamplate is Transformed for a modern branding and web design boutique template', 'sa', 'as', 'BELI SEKARANG', 'right');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `stock`
 --
 
@@ -263,6 +338,52 @@ CREATE TABLE `stock` (
   `id_product` int(11) NOT NULL,
   `stok` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `style_warna`
+--
+
+CREATE TABLE `style_warna` (
+  `id` int(11) NOT NULL,
+  `nama_warna` varchar(100) NOT NULL,
+  `warna` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `style_warna`
+--
+
+INSERT INTO `style_warna` (`id`, `nama_warna`, `warna`) VALUES
+(1, 'biru langit', '#83e4db'),
+(2, 'coklat', '#603913'),
+(3, 'Biru muda', '#bfe5fa'),
+(4, 'Abu-abu', '#84888a'),
+(5, 'putih', '#fff');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `sub_category`
+--
+
+CREATE TABLE `sub_category` (
+  `id` int(11) NOT NULL,
+  `id_category` int(11) NOT NULL,
+  `nama_sub_category` varchar(100) NOT NULL,
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `sub_category`
+--
+
+INSERT INTO `sub_category` (`id`, `id_category`, `nama_sub_category`, `status`) VALUES
+(1, 11, 'dfsdfsdfw', 0),
+(2, 9, 'adsdads', 0),
+(3, 11, 'jtyjtygh', 1),
+(4, 11, 'tergrtg', 1);
 
 -- --------------------------------------------------------
 
@@ -302,10 +423,40 @@ CREATE TABLE `transaksi` (
   `no_resi` varchar(200) NOT NULL,
   `metode_pembayaran` varchar(100) NOT NULL,
   `harga_kurir` int(11) NOT NULL,
+  `catatan` text NOT NULL,
   `discount` int(11) NOT NULL,
   `total` int(11) NOT NULL,
   `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `warna`
+--
+
+CREATE TABLE `warna` (
+  `id` int(11) NOT NULL,
+  `id_product` int(11) NOT NULL,
+  `id_stylecolor` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `warna`
+--
+
+INSERT INTO `warna` (`id`, `id_product`, `id_stylecolor`) VALUES
+(3, 0, 1),
+(4, 0, 2),
+(5, 0, 3),
+(6, 76, 2),
+(7, 76, 3),
+(8, 76, 4),
+(9, 77, 1),
+(10, 77, 2),
+(13, 70, 3),
+(14, 70, 4),
+(15, 70, 5);
 
 --
 -- Indexes for dumped tables
@@ -396,9 +547,27 @@ ALTER TABLE `role_sys_user`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `slideshow`
+--
+ALTER TABLE `slideshow`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeks untuk tabel `stock`
 --
 ALTER TABLE `stock`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `style_warna`
+--
+ALTER TABLE `style_warna`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `sub_category`
+--
+ALTER TABLE `sub_category`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -411,6 +580,12 @@ ALTER TABLE `sys_user`
 -- Indeks untuk tabel `transaksi`
 --
 ALTER TABLE `transaksi`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `warna`
+--
+ALTER TABLE `warna`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -427,13 +602,13 @@ ALTER TABLE `balas_komentar`
 -- AUTO_INCREMENT untuk tabel `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT untuk tabel `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `detail_transaksi`
@@ -445,13 +620,13 @@ ALTER TABLE `detail_transaksi`
 -- AUTO_INCREMENT untuk tabel `discount`
 --
 ALTER TABLE `discount`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT untuk tabel `gambar`
 --
 ALTER TABLE `gambar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT untuk tabel `keranjang`
@@ -487,7 +662,7 @@ ALTER TABLE `pembayaran`
 -- AUTO_INCREMENT untuk tabel `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
 -- AUTO_INCREMENT untuk tabel `ratting`
@@ -502,10 +677,28 @@ ALTER TABLE `role_sys_user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT untuk tabel `slideshow`
+--
+ALTER TABLE `slideshow`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT untuk tabel `stock`
 --
 ALTER TABLE `stock`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `style_warna`
+--
+ALTER TABLE `style_warna`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT untuk tabel `sub_category`
+--
+ALTER TABLE `sub_category`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `sys_user`
@@ -518,6 +711,12 @@ ALTER TABLE `sys_user`
 --
 ALTER TABLE `transaksi`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `warna`
+--
+ALTER TABLE `warna`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

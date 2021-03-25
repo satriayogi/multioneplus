@@ -85,7 +85,7 @@
                         <?php foreach ($color_list as $key => $value) :?>
                         <div class="form-check form-check-inline">
                           <!-- <input type="hidden" name="warna[]" value="99"> -->
-                          <input class="form-check-input birumuda" name="warna[]" value="<?= $value['id'] ?>" type="checkbox" id="inlineCheckbox1" onchange="changecolor1()"  style="color:'83e4db';width:25px;height:25px;">
+                          <input class="birumuda" name="warna[]" value="<?= $value['id'] ?>" type="checkbox" id="inlineCheckbox1" onchange="changecolor1()"  style="width:30px;height:30px;">
                           <label class="form-check-label" id="labelbirumuda" for="inlineCheckbox1" style="color:'83e4db';"><?= $value['nama_warna'] ?></label>
                         </div>
                         <?php endforeach; ?>
@@ -182,6 +182,7 @@
                   }
                                           </script>
                                           </div>
+                                        </div>
                                           <div class="col-md-4">
                                           <img src="<?= base_url() ?>assets/admin/img/image.png" alt="Image 1" id="img4" class="rounded d-block " style="width:50%;">
                                           <div class="input-group">
@@ -207,8 +208,6 @@
                       asa.innerHTML=img14.value;
                   }
                                           </script>
-                  
-                                        </div>
 </div>
                   </div>
                 </div>

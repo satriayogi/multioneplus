@@ -27,6 +27,7 @@ class Category_model extends CI_Model{
     public function delete_category(){
         $uri = $this->uri->segment(3);
         $this->db->delete('category',['id'=>$uri]);
+        $this->db->delete('sub_category',['id_category'=>$uri]);
         redirect('category/index');
     }
     public function save_subcategory(){

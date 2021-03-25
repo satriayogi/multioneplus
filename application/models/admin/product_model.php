@@ -27,6 +27,7 @@
         $gambar1 =  $_FILES['gambar1']['name'];
         $gambar2 =  $_FILES['gambar2']['name'];
         $gambar3 =  $_FILES['gambar3']['name'];
+        $gambar4 =  $_FILES['gambar4']['name'];
         // var_dump($gambar1);die;
         // $config['upload_path'] = ''.base_url().'assets/admin/img';
         // $config['allowed_types'] = 'jpg|png|jpeg';
@@ -35,7 +36,7 @@
         // $res = $this->upload->data();
         // file upload image
         $config['upload_path'] = './assets/admin/img/product/'; //path folder
-	    $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
+	    $config['allowed_types'] = 'jpg|png|jpeg'; //type yang dapat diakses bisa anda sesuaikan
 	    $config['encrypt_name'] = false; //nama yang terupload nantinya
 
 	    $this->load->library('upload',$config);
@@ -71,6 +72,7 @@
             'gambar' =>$gambar1,
             'gambar2' =>$gambar2,
             'gambar3' =>$gambar3,
+            'gambar4' =>$gambar4,
         ];
         $this->db->insert('gambar',$data);
 
@@ -148,15 +150,17 @@
          $gambar1 =$_FILES['gambar1']['name'];
          $gambar2 = $_FILES['gambar2']['name'];
          $gambar3 = $_FILES['gambar3']['name'];
+         $gambar4 = $_FILES['gambar4']['name'];
          $id = $this->input->post('id');
          $gambar1value = $this->input->post('gambar11');
          $gambar2value = $this->input->post('gambar12');
          $gambar3value = $this->input->post('gambar13');
+         $gambar4value = $this->input->post('gambar14');
          $warna = $this->input->post('warna');
          $diskon = $this->input->post('discount');
          
          $config['upload_path'] = './assets/admin/img/product/'; //path folder
-         $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
+         $config['allowed_types'] = 'jpg|png|jpeg'; //type yang dapat diakses bisa anda sesuaikan
          $config['encrypt_name'] = false; //nama yang terupload nantinya
  
          $this->load->library('upload',$config);
@@ -194,60 +198,154 @@
         //  gambar3 = '$gambar3'
         //  WHERE id_product= '$id'
         //  ");
-        if ($gambar1 == null && $gambar2==null && $gambar3==null){
+        if ($gambar1 == null && $gambar2==null && $gambar3==null && $gambar4 == null){
+            // var_dump('masuk');die;
             $this->db->query("UPDATE gambar SET
             gambar = '$gambar1value',
             gambar2 = '$gambar2value',
-            gambar3 = '$gambar3value'
+            gambar3 = '$gambar3value',
+            gambar4 = '$gambar4value'
             WHERE id_product= '$id'
             ");
             // var_dump($gambar3value);die;
          }
-        if ($gambar1 == null ) {
+         if ($gambar1 == null ) {
+            // var_dump('masuk');die;
             $this->db->query("UPDATE gambar SET
             gambar = '$gambar1value',
             gambar2 = '$gambar2',
-            gambar3 = '$gambar3'
+            gambar3 = '$gambar3',
+            gambar4 = '$gambar4'
             WHERE id_product= '$id'
             ");
          }
          if ($gambar2 == null) {
+            // var_dump('masuk');die;
             $this->db->query("UPDATE gambar SET
             gambar = '$gambar1',
             gambar2 = '$gambar2value',
-            gambar3 = '$gambar3'
+            gambar3 = '$gambar3',
+            gambar4 = '$gambar4value'
             WHERE id_product= '$id'
             ");
-         }if ($gambar3 == null) {
+         }
+         if ($gambar3 == null) {
+            //  var_dump('masuk');die;
             $this->db->query("UPDATE gambar SET
             gambar = '$gambar1',
             gambar2 = '$gambar2',
-            gambar3 = '$gambar3value'
+            gambar3 = '$gambar3value',
+            gambar4 = '$gambar4'
+            WHERE id_product= '$id'
+            ");
+         }
+         if ($gambar4 == null) {
+        //   var_dump('masuk');die;
+            $this->db->query("UPDATE gambar SET
+            gambar = '$gambar1',
+            gambar2 = '$gambar2',
+            gambar3 = '$gambar3',
+            gambar4 = '$gambar4value'
             WHERE id_product= '$id'
             ");
          }if ($gambar1 == null && $gambar2 == null) {
+            //  var_dump("masuk");die;
             $this->db->query("UPDATE gambar SET
             gambar = '$gambar1value',
             gambar2 = '$gambar2value',
             gambar3 = '$gambar3'
+            gambar4 = '$gambar4'
             WHERE id_product= '$id'
             ");
          }if ($gambar1 == null && $gambar3 == null) {
-            $this->db->query("UPDATE gambar SET
+            //  var_dump('masuk');die;
+             $this->db->query("UPDATE gambar SET
             gambar = '$gambar1value',
             gambar2 = '$gambar2',
             gambar3 = '$gambar3value'
+            gambar4 = '$gambar4'
             WHERE id_product= '$id'
             ");
             // var_dump("masuk");die;
-         }if ($gambar2 == null && $gambar3 == null) {
-            $this->db->query("UPDATE gambar SET
-            gambar = '$gambar1value',
+         }
+         if ($gambar2 == null && $gambar3 == null) {
+            //  var_dump('masuk');die;
+              $this->db->query("UPDATE gambar SET
+             gambar = '$gambar1',
+             gambar2 = '$gambar2value',
+             gambar3 = '$gambar3value',
+             gambar4 = '$gambar4'
+             WHERE id_product= '$id'
+             ");
+             // var_dump($gambar3value);die;
+            }
+            if ($gambar2 == null && $gambar4 == null) {
+                // var_dump('masuk');die;
+                $this->db->query("UPDATE gambar SET
+            gambar = '$gambar1',
             gambar2 = '$gambar2value',
-            gambar3 = '$gambar3value'
+            gambar3 = '$gambar3',
+            gambar4 = '$gambar4value'
             WHERE id_product= '$id'
             ");
             // var_dump($gambar3value);die;
+         }
+         if ($gambar3 == null && $gambar4 == null) {
+            $this->db->query("UPDATE gambar SET
+            gambar = '$gambar1',
+            gambar2 = '$gambar2',
+            gambar3 = '$gambar3value',
+            gambar4 = '$gambar4value'
+            WHERE id_product= '$id'
+            ");
+            // var_dump('masuk');die;
+         }
+         if ($gambar1 == null && $gambar4 == null) {
+            $this->db->query("UPDATE gambar SET
+            gambar = '$gambar1value',
+            gambar2 = '$gambar2',
+            gambar3 = '$gambar3',
+            gambar4 = '$gambar4value'
+            WHERE id_product= '$id'
+            ");
+            // var_dump('masuk');die;
+         }
+         if ($gambar1 == null && $gambar2 == null && $gambar3 == null ) {
+            $this->db->query("UPDATE gambar SET
+            gambar = '$gambar1value',
+            gambar2 = '$gambar2value',
+            gambar3 = '$gambar3value',
+            gambar4 = '$gambar4'
+            WHERE id_product= '$id'
+            ");
+         }
+         if ($gambar1 == null && $gambar2 == null && $gambar4 == null) {
+            $this->db->query("UPDATE gambar SET
+            gambar = '$gambar1value',
+            gambar2 = '$gambar2value',
+            gambar3 = '$gambar3',
+            gambar4 = '$gambar4value'
+            WHERE id_product= '$id'
+            ");
+         }
+         if ($gambar1 == null && $gambar3 == null && $gambar4 == null) {
+        //    var_dump('masuk');die;
+            $this->db->query("UPDATE gambar SET
+            gambar = '$gambar1value',
+            gambar2 = '$gambar2',
+            gambar3 = '$gambar3value',
+            gambar4 = '$gambar4value'
+            WHERE id_product= '$id'
+            ");
+         }
+         if ($gambar2 == null && $gambar3 == null && $gambar4 == null) {
+            $this->db->query("UPDATE gambar SET
+            gambar = '$gambar1',
+            gambar2 = '$gambar2value',
+            gambar3 = '$gambar3value',
+            gambar4 = '$gambar4value'
+            WHERE id_product= '$id'
+            ");
          }
           $this->session->set_flashdata('message','<script>Swal.fire({ position: "center",
             icon: "success",
