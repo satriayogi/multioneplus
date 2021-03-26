@@ -1,0 +1,56 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'montserrat';
+}
+.full-width{
+width: 100%;
+display: block;
+}
+
+.main-banner{
+    display: block;
+    background-image: url('../img/banner.png');
+}
+
+.container{
+    width: 1170px;
+    margin: 0 auto;
+}
+
+
+.product-display ul{
+    text-align: center;
+    margin: 0 auto;
+}
+.product-display li{
+    background: #eeee;
+    text-align: center;
+    width: 30%;
+    margin: 0 10px;
+    padding:80px 10px;
+    display: inline-block;
+}
+.product-display li img{
+    height: 180px;
+}
+
+.product-display li h2{
+    color:#707070;
+
+}
+
+.beli-sekarang{
+    background: green;
+    padding: 20px;
+    text-align: center;
+    display: block;
+    width: 200px;
+    margin: 20px auto;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    border-radius: 10px;
+}
+

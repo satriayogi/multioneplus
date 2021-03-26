@@ -69,6 +69,7 @@ class Product extends CI_Controller{
         $this->product->update_color();
 
     }
+
     
 }
 
