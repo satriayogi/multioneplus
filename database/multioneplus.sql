@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 25 Mar 2021 pada 03.18
+-- Waktu pembuatan: 30 Mar 2021 pada 12.06
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.2.26
 
@@ -51,16 +51,11 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`id`, `nama_category`) VALUES
-(1, 'cek'),
-(2, 'wes'),
-(4, 'erw'),
-(6, 'q'),
-(7, 'hjgf'),
-(8, 'hjgf'),
-(9, 'bnm'),
-(10, 'bnm'),
-(11, 'MOP Mask'),
-(13, 'iu');
+(6, '4D'),
+(7, '5 Pleats'),
+(8, 'KF'),
+(10, 'Duckbil'),
+(13, 'Kids');
 
 -- --------------------------------------------------------
 
@@ -92,7 +87,7 @@ CREATE TABLE `customer` (
 
 INSERT INTO `customer` (`id`, `nama`, `email`, `username`, `password`, `gambar`, `tanggal_lahir`, `jenis_kelamin`, `no_tlp`, `alamat`, `kota`, `kec`, `no_rmh`, `kodepos`, `status`) VALUES
 (3, 'qe', 'qwe@gmail.com', 'asd', '$2y$10$6CDr342YKO71oeuBCOFLreY81jRJlxev2rkDH/5hiQp.Il6xCeZKW', '', '0000-00-00', '', '', '', '', '', '', 0, 1),
-(4, 'hr', 'asd@gmail.com', 'ger', '$2y$10$IbZrEOolt/ns49O0LVP2nOXSDEYK1ME2NP5yeaWYU2LrffGRWcaJ.', '', '0000-00-00', '', '', '', '', '', '', 0, 99),
+(4, 'hr', 'asd@gmail.com', 'ger', '$2y$10$IbZrEOolt/ns49O0LVP2nOXSDEYK1ME2NP5yeaWYU2LrffGRWcaJ.', '', '0000-00-00', '', '', '', '', '', '', 0, 1),
 (5, 'Satria', 'satria@gmail.com', 'Satria', '$2y$10$2HvkDLgofLggz4FzskLD2O/F887eZ6Wcl3IMPLrUDyMOFTX7PUjxm', '', '0000-00-00', '', '', '', '', '', '', 0, 1);
 
 -- --------------------------------------------------------
@@ -153,19 +148,21 @@ CREATE TABLE `gambar` (
   `id_product` int(11) NOT NULL,
   `gambar` varchar(255) NOT NULL,
   `gambar2` varchar(225) NOT NULL,
-  `gambar3` varchar(225) NOT NULL
+  `gambar3` varchar(225) NOT NULL,
+  `gambar4` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `gambar`
 --
 
-INSERT INTO `gambar` (`id`, `id_product`, `gambar`, `gambar2`, `gambar3`) VALUES
-(45, 70, 'avanz.jpg', 'camera-on-black-surface-1655817.jpg', 'cek.jpg'),
-(46, 71, 'jj.JPG', 'ff.JPG', 'asdadasdasd.JPG'),
-(48, 75, '12343.JPG', 'bnmbnm.JPG', ''),
-(49, 76, 'aaa.JPG', '12343.JPG', ''),
-(50, 77, 'camera-on-black-surface-1655817.jpg', '12343.JPG', '');
+INSERT INTO `gambar` (`id`, `id_product`, `gambar`, `gambar2`, `gambar3`, `gambar4`) VALUES
+(45, 70, 'avanz.jpg', 'camera-on-black-surface-1655817.jpg', 'cek.jpg', ''),
+(46, 71, 'jj.JPG', 'ff.JPG', 'asdadasdasd.JPG', ''),
+(48, 75, '12343.JPG', 'bnmbnm.JPG', '', ''),
+(49, 76, 'aaa.JPG', '12343.JPG', '', ''),
+(50, 77, 'camera-on-black-surface-1655817.jpg', '12343.JPG', '', ''),
+(54, 82, 'asasas.JPG', 'camera-on-black-surface-1655817.jpg', '12343.JPG', 'avanz.jpg');
 
 -- --------------------------------------------------------
 
@@ -179,8 +176,48 @@ CREATE TABLE `keranjang` (
   `id_product` int(11) NOT NULL,
   `pcs` int(11) NOT NULL,
   `harga` int(11) NOT NULL,
+  `catatan` text NOT NULL,
   `total` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `keranjang`
+--
+
+INSERT INTO `keranjang` (`id`, `id_customer`, `id_product`, `pcs`, `harga`, `catatan`, `total`) VALUES
+(14, 5, 81, 3, 50000, 'asd', 150000);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `keranjang_warna`
+--
+
+CREATE TABLE `keranjang_warna` (
+  `id` int(11) NOT NULL,
+  `id_keranjang` int(11) NOT NULL,
+  `warna` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `keranjang_warna`
+--
+
+INSERT INTO `keranjang_warna` (`id`, `id_keranjang`, `warna`) VALUES
+(1, 7, 'coklat'),
+(2, 7, 'Abu-abu'),
+(3, 9, 'coklat'),
+(4, 9, 'Abu-abu'),
+(5, 10, 'Abu-abu'),
+(6, 11, 'biru langit'),
+(7, 11, 'Biru muda'),
+(8, 12, 'coklat'),
+(9, 13, 'biru langit'),
+(10, 13, 'Biru muda'),
+(11, 14, 'coklat'),
+(12, 14, 'Abu-abu'),
+(13, 15, 'coklat'),
+(14, 15, 'Abu-abu');
 
 -- --------------------------------------------------------
 
@@ -191,10 +228,20 @@ CREATE TABLE `keranjang` (
 CREATE TABLE `komentar` (
   `id` int(11) NOT NULL,
   `id_product` int(11) NOT NULL,
-  `id_ratting` int(11) NOT NULL,
   `id_customer` int(11) NOT NULL,
-  `komen` text NOT NULL
+  `komen` text NOT NULL,
+  `ratting` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `komentar`
+--
+
+INSERT INTO `komentar` (`id`, `id_product`, `id_customer`, `komen`, `ratting`) VALUES
+(2, 81, 5, 'baragnya bagus banget', 5),
+(3, 81, 5, 'aku suka sekali', 3),
+(4, 81, 5, 'barang hilang :(', 2),
+(6, 82, 5, 'barang bagus banget', 5);
 
 -- --------------------------------------------------------
 
@@ -264,7 +311,9 @@ INSERT INTO `product` (`id`, `id_category`, `nama_product`, `keterangan`, `harga
 (74, 13, 'wer', 'werwer', 20000, 0, 10, 99),
 (75, 13, 'geer', 'fdgdf', 5000, 0, 10, 99),
 (76, 13, 'adsad', 'qweqwe', 5000, 0, 20, 99),
-(77, 13, 'vnbc', 'wqer', 5000, 0, 1, 99);
+(77, 13, 'vnbc', 'wqer', 5000, 0, 1, 99),
+(81, 13, 'Pinguin', 'Waterproof\r\n                                 Mudah di Bersihkan \r\n                                 Cocok untuk MC, Marketing, Olah Raga\r\n                                Non medical', 50000, 0, 20, 99),
+(82, 13, 'Pinguin', 'ghjhgj', 50000, 0, 20, 99);
 
 -- --------------------------------------------------------
 
@@ -276,6 +325,7 @@ CREATE TABLE `ratting` (
   `id` int(11) NOT NULL,
   `id_product` int(11) NOT NULL,
   `id_customer` int(11) NOT NULL,
+  `id_komentar` int(11) NOT NULL,
   `ratting` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -375,16 +425,6 @@ CREATE TABLE `sub_category` (
   `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data untuk tabel `sub_category`
---
-
-INSERT INTO `sub_category` (`id`, `id_category`, `nama_sub_category`, `status`) VALUES
-(1, 11, 'dfsdfsdfw', 0),
-(2, 9, 'adsdads', 0),
-(3, 11, 'jtyjtygh', 1),
-(4, 11, 'tergrtg', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -456,7 +496,19 @@ INSERT INTO `warna` (`id`, `id_product`, `id_stylecolor`) VALUES
 (10, 77, 2),
 (13, 70, 3),
 (14, 70, 4),
-(15, 70, 5);
+(15, 70, 5),
+(16, 78, 2),
+(17, 78, 3),
+(18, 78, 4),
+(19, 79, 1),
+(20, 79, 2),
+(21, 79, 3),
+(22, 80, 2),
+(23, 80, 3),
+(24, 81, 2),
+(25, 81, 4),
+(70, 82, 1),
+(71, 82, 3);
 
 --
 -- Indexes for dumped tables
@@ -502,6 +554,12 @@ ALTER TABLE `gambar`
 -- Indeks untuk tabel `keranjang`
 --
 ALTER TABLE `keranjang`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `keranjang_warna`
+--
+ALTER TABLE `keranjang_warna`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -626,19 +684,25 @@ ALTER TABLE `discount`
 -- AUTO_INCREMENT untuk tabel `gambar`
 --
 ALTER TABLE `gambar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT untuk tabel `keranjang`
 --
 ALTER TABLE `keranjang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT untuk tabel `keranjang_warna`
+--
+ALTER TABLE `keranjang_warna`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT untuk tabel `komentar`
 --
 ALTER TABLE `komentar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `kurir`
@@ -662,7 +726,7 @@ ALTER TABLE `pembayaran`
 -- AUTO_INCREMENT untuk tabel `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
 -- AUTO_INCREMENT untuk tabel `ratting`
@@ -716,7 +780,7 @@ ALTER TABLE `transaksi`
 -- AUTO_INCREMENT untuk tabel `warna`
 --
 ALTER TABLE `warna`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
