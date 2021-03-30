@@ -10,7 +10,7 @@
 </head>
 <body>
     <header class="pc">
-        <div class="navbar">
+        <div class="navbar" id="navbar">
             <div class="img">
                 <img src="img/logo-mutil-plus-one2.png" alt="logo" class="image">
             </div>
@@ -57,6 +57,16 @@
     </footer>
 </body>
 </html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-    
+    const navbar = $('#navbar');
+    $(window).scroll(function(){
+        if ($(window).scrollTop() ) {
+            navbar.removeClass("navbar");
+            navbar.addClass("scroll");
+        }else{
+            navbar.removeClass("navbar");
+
+        }
+    });
 </script>

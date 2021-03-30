@@ -1,5 +1,4 @@
 /* General Setting START */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,500&display=swap');
 *{
   margin: 0;
   padding: 0;
@@ -16,49 +15,6 @@
   width: 100%;
   max-width: 1600px;
   margin: auto;
-}
-.stok{
-  width: 100%;
-  margin-bottom: 15px;
-}
-.stok .min{
-  width: 30px;
-  height: 30px;
-  border:0px;
-  border-radius: 50%;
-  background-color: #455455;
-  padding-top: 15px;
-  
-}
-.stok .min:active{
-  width:28px;
-  height:28px;
-}
-.stok .plus{
-  width: 30px;
-  height: 30px;
-  border:0px;
-  border-radius: 50%;
-  background-color: #455455;
-  padding-top: 15px;
-}
-.stok .plus:active{
-  width: 28px;
-  height: 28px;
-}
-.stok .inputan{
-  width: 145px;
-  height: 30px;
-  border-top: 0px;
-  border-left: 0px;
-  text-align: center;
-  font-size: 30px;
-  border-right: 0px;
-}
-.stok .inputan:focus{
-  height: 30px;
-  outline: none;
-  text-align: center;
 }
 .product-section{padding: 100px 0 80px;}
 
@@ -95,14 +51,12 @@ margin-bottom: 50px;
   display: inline-block;
   float: right;
   vertical-align: middle;
-  
 }
 
 .navigation ul li{
   display: inline-block;
   text-align: right;
   margin: 15px 20px;
-  text-decoration: none;
 
 }
 
@@ -201,6 +155,7 @@ h2{
 }
 /*chage button*/
 .choose-colors ul li button{
+  border: none;
   width: 60px;
   height: 30px;
   border-radius: 20px;
@@ -208,11 +163,11 @@ h2{
   box-shadow: -1px 5px 11px grey;
 }
 
-/* .choose-colors #light-green{ background:#83e4db; } */
+.choose-colors #light-green{ background:#83e4db; }
 .choose-colors #brown{ background:#603913;}
 .choose-colors #light-blue{ background:#bfe5fa; }
 .choose-colors #light-grey{ background:#84888a;}
-.choose-colors #white{ background:white; }
+.choose-colors #white{ background:#white; }
 
 
 /* pembelian */
@@ -324,7 +279,7 @@ height: 100px;
 padding: 10px 20px;
 font-size: 20px;
 }
-.commentar-column button{
+.commentar-column a{
   vertical-align: top;
   width: 18%;
   float: right;
@@ -333,16 +288,14 @@ font-size: 20px;
   font-size: 25px;
   font-weight: bold;
   text-align: center;
-  padding-top: 0px;
+  padding-top: 35px;
   background: #f6921e;
   color: white;
   font-family: 'montserrat';
   text-decoration:none;
   font-weight: 400;
   border-radius: 10px;
-  border: none;
 }
-
 
 
 
@@ -407,49 +360,6 @@ float: left;
   .pembelian{padding: 30px; }
   .product-img-1 img{max-width: 90%;}
   .product-img > div:first-child{ padding: 0 10px}
-  .stok{
-    width: 100%;
-    margin-bottom: 15px;
-  }
-  .stok .min{
-    width: 30px;
-    height: 30px;
-    border:0px;
-    border-radius: 50%;
-    background-color: #455455;
-    padding-top: 15px;
-    
-  }
-  .stok .min:active{
-    width:28px;
-    height:28px;
-  }
-  .stok .plus{
-    width: 30px;
-    height: 30px;
-    border:0px;
-    border-radius: 50%;
-    background-color: #455455;
-    padding-top: 15px;
-  }
-  .stok .plus:active{
-    width: 28px;
-    height: 28px;
-  }
-  .stok .inputan{
-    width: 145px;
-    height: 30px;
-    border-top: 0px;
-    border-left: 0px;
-    text-align: center;
-    font-size: 30px;
-    border-right: 0px;
-  }
-  .stok .inputan:focus{
-    height: 30px;
-    outline: none;
-    text-align: center;
-  }
 }
 
 
@@ -482,5 +392,5 @@ float: left;
  .choose-colors ul li button{    height: 50px; width: 100px; }
  .commentar-column input {width: 70%; height: 70px;}
  .pembelian .button{    padding: 20px;}
- .commentar-column button {width: 28%; height: 70px; padding-top: 17px; font-size: 23px;}
+ .commentar-column a {width: 28%; height: 70px; padding-top: 17px; font-size: 23px;}
 }

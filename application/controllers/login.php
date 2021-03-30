@@ -57,8 +57,8 @@ class Login extends CI_Controller{
                             'username'=>$customer['username'],
                             'email'=>$customer['email']
                         ];
-                        $this->session->set_flashdata($data);
-                        redirect('customer/home');
+                        $this->session->set_userdata($data);
+                        redirect('product_customer/detail_product');
                     }else{
                         $this->session->set_flashdata('message','<script>Swal.fire({icon: "error",title: "Oops...",text: "sorry the password you entered is wrong"})</script>');
                     redirect('login/customer');

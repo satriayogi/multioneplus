@@ -26,14 +26,20 @@
     margin: auto;
     text-align: center;
 }
+.scroll{
+    width: 100%;
+    position: fixed;
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.4);
+    text-align: center; 
+    background-color: white; 
+}
 .nav ul li{
     font-size: 20px;
     padding: 20px;
     margin-left: 15%;
     
 }
-.footer{
-    position: fixed;
+.footer{    
     bottom: 0%;
     height: 90px;
     background-color: #445555;
@@ -94,8 +100,6 @@ margin-left: 5%;
     width: 100%;
     height: auto;
     top: 0%;
-    background-color: transparent;
-    z-index: -1;
 }
 .produk{
     width: 100%;
