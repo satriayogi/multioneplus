@@ -11,13 +11,11 @@ class Transaksi_customer extends CI_Controller{
         $data['keranjang'] = $this->transaksi->viewkeranjang();
         $this->load->view('customer/transaksi/transaksi',$data);
     }
-    public function updatekeranjang(){
-        if (isset($_POST['min'])) {
-            $this->transaksi->min();
-        }
-        if (isset($_POST['plus'])) {
-            $this->transaksi->plus();
-        }
+    public function pluskeranjang(){
+        $this->transaksi->pluskeranjang();
+    }
+    public function minkeranjang(){
+        $this->transaksi->minkeranjang();
     }
     public function hapus_keranjang(){
         $this->transaksi->hapus_keranjang();

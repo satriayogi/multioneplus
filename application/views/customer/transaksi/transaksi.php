@@ -7,6 +7,7 @@
     <title>Document</title>
 <!-- Font Awesome -->
 <link rel="stylesheet" href="<?= base_url() ?>assets/admin/plugins/fontawesome-free/css/all.min.css">
+<script src="<?= base_url() ?>assets/admin/plugins/jquery/jquery.min.js"></script>
     <style>
     tr td{
         text-align:center;
@@ -43,24 +44,36 @@
     </td>
     <td><?= $value['catatan']; ?></td>
     <td>1</td>
-    <td><?= $value['harga']; ?></td>
-    <td><button type="submit" name="min"> <i class="fas fa-minus"></i> </button><input type="text" name="pcs" id="" value="<?= $value['pcs'] ?>">
+    <td><input type="text" name="harga" id="harga" value="<?=number_format($value['harga'], 0, ',','.'); ?>"></td>
+    <td><a href="<?= base_url('transaksi_customer/minkeranjang/'.$customer['id'].'/'.$value['id']) ?>"> <i class="fas fa-minus"></i> </a><input type="text" name="pcs" id="pcs" value="<?= $value['pcs'] ?>">
     <input type="hidden" name="id_keranjang" id="" value="<?= $value['id'] ?>">
     <input type="hidden" name="id_product" id="" value="<?= $this->uri->segment(3); ?>">
     <input type="hidden" name="id_customer" id="" value="<?= $this->uri->segment(4); ?>">
-    <button type="submit" name="plus"> <i class="fas fa-plus"></i> </button></td>
-    <td><?php
-    $harga = $value['harga'];
-    $pcs = $value['pcs'];
-    $jumlah = $harga * $pcs;
-    echo $jumlah;
-    ?></td>
+    <a href="<?= base_url('transaksi_customer/pluskeranjang/'.$customer['id'].'/'.$value['id']) ?>"> <i class="fas fa-plus"></i> </a></td>
+    <td><input type="text" name="total" readonly disabled id="tot" value="<?= number_format($value['total'], 0, ',','.'); ?>"></td>
     <td><a href="<?= base_url('transaksi_customer/hapus_keranjang/'.$value['id'].'/'.$value['id_product'].'/'.$value['id_customer']) ?>"> <i class="fas fa-trash"></i> </a></td>
     </tr> 
+    <!-- <script>
+    const min =document.getElementById("min");
+    const plus=document.getElementById("plus<?= $value['id'] ?>");
+    const pcs=document.getElementById("pcs");
+    const total = document.getElementById("tot");
+    const harga = document.getElementById("harga").value;
+    plus.addEventListener("click",e=>{
+        e.preventDefault();
+        const hasil = Number(pcs.value) || <?= $value['pcs'] ?>;
+        pcs.value = hasil + 1;
+        const jumlah = harga * pcs.value;
+        total.value = jumlah;
+        console.log(jumlah);
+        // total.value=hasil;
+    })
+    </script> -->
     <?php endforeach; ?>
     <tr>
     <td colspan="6" style="text-align:end">total paid</td>
-    <td >RP. <?php $customer = $customer['id']; $qu = $this->db->query("SELECT SUM(total) as jumlah from keranjang WHERE id_customer='$customer'")->row_array(); ?> <?= $qu['jumlah'] ?> </td>
+    <td >Rp. <?php $customer = $customer['id']; $qu = $this->db->query("SELECT SUM(total) as jumlah from keranjang WHERE id_customer='$customer'")->row_array(); ?> 
+    <?= number_format($qu['jumlah'], 0, ',','.'); ?> </td>
     </tr>
     <tr>
     </tr>
@@ -68,6 +81,6 @@
     </tbody>
     </table>
     <button>Shopping Again</button>
-    <button>Checkout</button>
+    <a href=""> Checkout </a>
 </body>
 </html>
