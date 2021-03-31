@@ -3,12 +3,36 @@
     margin: 0;
     box-sizing: 0;
 }
+
+body{
+    background-image: url('https://images.pexels.com/photos/5086020/pexels-photo-5086020.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+
+}
+
+body::before{
+    content: "";
+    background: violet;
+    width: 20px;
+    height: 20px;
+}
+
 .container{
- width: 100%;
- height:auto;
+ margin-top: 100px;
+ width: 600px !important;
+ background-color: #eeeeee;
+ height:600px ;
+ padding-top: 100px;
+ border-radius: 20px;
+
 }
 .container .form{
-    width:20%;
+    width:10%;
     height:30px;
     border:1px solid black;
 }
+
+.container form{
+    width: 80%;
+    margin: 0 auto;
+}
+
