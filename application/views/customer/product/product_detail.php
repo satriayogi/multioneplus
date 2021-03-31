@@ -452,8 +452,6 @@ margin-top: -16px;"></i></button>
                             <img src="'. base_url() .'assets/customer/img/rating-star_star-1.png" class="ratting" alt=""> ';
                         }
                         ?>
-                            
-                        
                         </li>
                     </ul>
                 </div>
