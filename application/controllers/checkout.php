@@ -25,9 +25,9 @@ class Checkout extends CI_Controller{
            }
        }
     }
-    public function tarif($origin,$des,$qty,$cour){
+    public function tarif($option,$qty){
         $berat = $qty*1000;
-        $tarif = $this->ongkir->api_ongkirpost();
+        $tarif = $this->ongkir->api_ongkirpost($option,$qty);
         $data = json_decode($tarif,true);
         echo json_encode($data['rajaongkir']['results']);
     }

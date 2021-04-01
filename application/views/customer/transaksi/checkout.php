@@ -20,7 +20,7 @@
             </div>
             <div class="kota">
                 <label for=""> Kota </label><select name="kota" id="kota" class="option-kota">
-                    <option value="">-- Choose City --</option>
+                    <option disabled selected>-- Choose City --</option>
                 </select>
             </div>
             <!-- <div class="kode-pos">
@@ -28,6 +28,10 @@
             </div>
             <div class="kode-pos">
                 <label for="">Kode Pos</label><input type="text" name="kode_pos" id="" class="kode-post">
+            </div>
+            <div class="ekspedisi">
+                <label for="">Pilih ekspedisi</label><select name="ekspedisi" id="ekspedisi" class="option-kota">
+                    <option disabled selected>-- Choose City --</option>
             </div>
             <button>Ubah Alamat</button>
         </div>
@@ -46,13 +50,14 @@
         </div>
         <div class="transaksi">
             <div class="kupon">
-                <label for=""> Kode Kupon </label> <input type="text" name="kode_kupon" id=""> <button>Cek</button>
+                <label for=""> Kode Kupon </label> <input type="text" name="kode_kupon" id=""> <button type="button" >Cek</button>
             </div>
             <div class="total-keseluruhan">
-                <span>Subtotal Product</span><span>Rp. 100.000</span><br>
-                <span>Total Ongkir</span><span id="ongkir">Rp. </span><br>
-                <span>Biaya Penanganan</span><span>Rp. 5.000</span><br>
-                <span>Total</span><span>Rp. 115.000</span>
+                <span>Subtotal Product</span><span>Rp. <input type="text" name="subtotal" id="subtotal" value="100000"></span><br>
+                <span>Total Ongkir</span><span id="ongkir">Rp. <input type="text" name="ongkir" id="ongkos"></span><br>
+                <input type="text" name="hargaongkir" id="hargaongkir">
+                <span>Biaya Penanganan</span><span>Rp. <input type="text" name="penanganan" id="penanganan"> </span><br>
+                <span>Total</span><span>Rp. <input type="text" name="totalharga" id="totalharga" > </span>
                 
                 <!-- jangan di hapus -->
                 <!-- <input type="text" name="total_product" id="">
@@ -101,18 +106,49 @@
                 // alert("masuk");
                 e.preventDefault();
                 var option = $("option:selected",this).val();
+                var qty = $("#qty").val();
+                var provinsi = $("#provinsi").val();
                 if (option === 0) {
                     alert(null);
                 }else{
-                    getOngkir(option);
-                    // console.log(option);
+                    console.log(option,qty);
+                    getOngkir(option,qty);
                 }
 
             });
-            function getOngkir(getkota){
-                var ongkir =$("#ongkir");
-                $.getJSON('tarif')
+            function getOngkir(option,qty){
+                var ongkir = $("#ongkir");
+                var ekspedisi = $("#ekspedisi");
+                var i="";
+                var j="";
+                var x="";
+                $.getJSON("tarif/"+option+"/"+qty,function(data){
+                    $.each(data,function(i,field){
+                        for(i in field.costs){
+                            var ka= field.costs[i];
+                            for(j in ka.cost){
+                                x += '<option data-name="'+ka.service+'" data-harga="'+ka.cost[j].value+'"> <label> nama Ekspedisi :'+ka.description+'('+ka.service+') <br> harga : '+ka.cost[j].value+' <br> estimasi :'+ka.cost[j].etd+' </label></option>';
+                            }
+                        }
+                        ekspedisi.append(x);
+                    });
+                });
             }
-
+            $("#ekspedisi").on("change",function(e){
+                e.preventDefault();
+                var ongkir =$("#ongkos");
+                var hargaongkir = $("#hargaongkir");
+                var option = $(this.options[this.selectedIndex]);
+                var service = option.attr('data-name');
+                var harga = option.attr('data-harga');
+                var total = $("#totalharga").val();
+                var subtotal = $("#subtotal").val();
+                var penanganan = $("#penanganan").val();
+                ongkir.val(service);
+                hargaongkir.val(harga);
+                // console.log(service,harga);
+                var jumlah = parseInt(harga) + parseInt(subtotal) ;
+                console.log(jumlah);
+            });
     });
 </script>

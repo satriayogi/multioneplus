@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 class ongkir {
-    function api_ongkirpost($des,$qty,$cour)
+    function api_ongkirpost($option,$qty)
     {
          $curl = curl_init();
        curl_setopt_array($curl, array(
@@ -13,7 +13,7 @@ class ongkir {
        CURLOPT_TIMEOUT => 30,
        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
        CURLOPT_CUSTOMREQUEST => "POST",
-       CURLOPT_POSTFIELDS => "origin=457&destination=152&weight=1000&courier=jne",
+       CURLOPT_POSTFIELDS => "origin=457&destination=$option&weight=$qty&courier=jne",
        CURLOPT_HTTPHEADER => array(
          "content-type: application/x-www-form-urlencoded",
          /* masukan api key disini*/
