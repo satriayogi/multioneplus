@@ -17,6 +17,7 @@ class transaksi_model extends CI_Model{
     public function pluskeranjang(){
         $uricustomer = $this->uri->segment(3);
         $urikeranjang = $this->uri->segment(4);
+
         $this->db->query("UPDATE keranjang SET pcs=pcs+1, total=harga*pcs where id='$urikeranjang'");
         redirect('transaksi_customer/keranjang/'.$uricustomer);
     }

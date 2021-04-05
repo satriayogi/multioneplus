@@ -15,24 +15,3 @@ body::before{
     width: 20px;
     height: 20px;
 }
-
-.container{
- margin-top: 100px;
- width: 600px !important;
- background-color: #eeeeee;
- height:600px ;
- padding-top: 100px;
- border-radius: 20px;
-
-}
-.container .form{
-    width:10%;
-    height:30px;
-    border:1px solid black;
-}
-
-.container form{
-    width: 80%;
-    margin: 0 auto;
-}
-

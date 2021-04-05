@@ -23,6 +23,10 @@
     color: #28a745;
     text-decoration: none;
 }
+.login-page{
+  background-image: url('https://images.pexels.com/photos/5086020/pexels-photo-5086020.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+  background-size:cover;
+}
   </style>
 </head>
 <body>
@@ -32,7 +36,10 @@
   <!-- /.login-logo -->
   <div class="card card-outline card-success">
       <div class="card-header text-center">
-          <a href="" class="h1"><b>Multi One Plus</b></a>
+        <div >
+          <img src="<?= base_url('assets/customer/img/logo ig mop.png') ?>" style="width:50px;height:30px;"  alt=""> 
+        </div>
+      <a href="" class="h1"><b>Multi One Plus</b></a>
         </div>
         <div class="card-body">
             <p class="login-box-msg">Sign in to start your session</p>

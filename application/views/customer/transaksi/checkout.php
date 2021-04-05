@@ -147,7 +147,7 @@
                 ongkir.val(service);
                 hargaongkir.val(harga);
                 // console.log(service,harga);
-                var jumlah = parseInt(harga) + parseInt(subtotal) ;
+                var jumlah = parseInt(harga ) + parseInt(subtotal) ;
                 console.log(jumlah);
             });
     });

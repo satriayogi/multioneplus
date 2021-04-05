@@ -4,63 +4,97 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="../admin/plugins/fontawesome-free/css/all.css">
 <title>Document</title>
 <!-- Font Awesome -->
-<link rel="stylesheet" href="">
+<link rel="stylesheet" href="../admin/plugins/fontawesome-free/css/all.css">
+<link rel="stylesheet" href="../customer/css/transaksi.css">
 <style>
-tr td{
-text-align:center;
-}
+
 </style>
 </head>
 <body>
-<table>
-<thead>
+   <!-- Navigation -->
+   <section class="nav-section">
+    <div class="full-container navigation">
+      <div class="container">
+        <img src="https://www.multioneplus.com/template/s150319001001/images/logo-mutil-plus-one2.png" alt="logo">
+        <ul class="nav">
+          <li><a href=""> About MOP</a></li>
+          <li><a href=""> Shop </a></li>
+          <li><a href=""> Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  <div class="container">
+    <div class="title-table">
+      <span>your shopping cart</span>
+      <img src="img/logo-mutil-plus-one2.png" alt="">
+    </div>
+    <table class="customer">
+      <thead>
 <tr>
-<th>No.</th>
-<th>Image</th>
-<th>Description</th>
-<th>Color</th>
-<th>Price</th>
-<th>Amount</th>
-<th>total</th>
-<th>action</th>
+  <th>No.</th>
+  <th>Image</th>
+  <th>Description</th>
+  <th>Color</th>
+  <th>Price</th>
+  <th>Amount</th>
+  <th>total</th>
+  <th>action</th>
 </tr>
 </thead>
-<tbody border="1">
-<form action="" method="post">
+<tbody >
+  <form action="" method="post">
 <tr>
 <td>1</td>
-<td><img src="img/masker-master.png" alt="" style="width:20px;height:20px"></td>
+<td class="gambar-masker"><img src="img/masker-master.png" alt="" style="width:70px;height:70px"></td>
 <td>
-Test
+  Test
 </td>
 <td>1</td>
 <td>5000</td>
 <td>
-<a href="" class="button-min"> <i class="fas fa-minus"></i> </a><input type="text" name="pcs" id="" value="1">
-<a href="" class="button-plus"> <i class="fas fa-plus"></i></a>
+  <a href="" class="button-min"> <i class="fas fa-minus"></i> </a><input type="text" readonly name="pcs" class="pcs" id="" value="1">
+  <a href="" class="button-plus"> <i class="fas fa-plus"></i></a>
 </td>
-  <td>5000</td>
+<td>5000</td>
   <td><a href=""> <i class="fas fa-trash"></i> </a></td>
 </tr> 
-<tr>
+<tr class="total">
   <td colspan="6" style="text-align:end">total paid</td>
   <td >RP. 5000</td>
+  <td ></td>
 </tr>
+<td colspan="8">
+  <div class="tombol-keranjang">
+    <a href="" class="btn-chart">Shopping Again</a>
+    <a href="" class="btn-checkout"> checkout</a>
+  </div>
+</td>
 <tr>
 </tr>
-</form>
 </tbody>
+</form>
 </table>
-<div class="tombol-keranjang">
-  <a href="">Shopping Again</a>
-  <a href=""> checkout</a>
 </div>
+</section>
+<!-- Footer -->
+<footer class="footer">
+  <div class="container subfooter">
+      <div class="address">
+          <img src="img/logo-mutil-plus-one1 (1).png" alt="" class="footer-img">
+          <div class="company-addres1">
+              <p class="company">PT. MULTI ONE PLUS</p>
+              <p class="company-address">Jl.Barokah, Kp Parungdengdek, No.09 Kelurahan Wanaherang, Kec. Gunung Putri, Kab.Bogor Provinsi, Jawa Barat</p>
+          </div>
+      </div>
+
+  </div>
+  <p class="copyright">&copy; 2020 PT MULTI ONE PLUS, Proudly created by <a href=""> MIACOMPANY.ID </a></p>
+</footer>
 </body>
 </html>
 <!-- jangan di hapus -->
 <!-- <input type="hidden" name="id_keranjang" id="" value="">
-<input type="hidden" name="id_product" id="" value="">
-<input type="hidden" name="id_customer" id="" value=""> -->
+  <input type="hidden" name="id_product" id="" value="">
+  <input type="hidden" name="id_customer" id="" value=""> -->

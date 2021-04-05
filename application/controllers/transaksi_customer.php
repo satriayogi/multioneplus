@@ -5,6 +5,12 @@ class Transaksi_customer extends CI_Controller{
         parent::__construct();
         $this->load->model('customer/product_model','product');
         $this->load->model('customer/transaksi_model','transaksi');
+        if (! $this->session->userdata('username')) {
+            redirect('login/customer');
+        }elseif (!$this->session->userdata('email')) {
+            redirect('login/customer');
+            
+        }
     }
     public function keranjang(){
         $data['customer'] = $this->product->viewcustomer()->row_array();

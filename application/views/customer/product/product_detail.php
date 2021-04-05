@@ -118,7 +118,7 @@ vertical-align: middle;
 <section class="nav-section">
 <div class="full-container navigation">
 <div class="container">
-<img src="https://www.multioneplus.com/template/s150319001001/images/logo-mutil-plus-one2.png" alt="logo">
+<img src="<?= base_url() ?>assets/customer/img/logo-mutil-plus-one2.png" alt="logo">
 <ul class="nav">
     <li><a href=""> About MOP</a></li>
     <li><a href=""> Shop </a></li>
