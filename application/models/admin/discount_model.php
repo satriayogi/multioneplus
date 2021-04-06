@@ -32,6 +32,10 @@ class Discount_model extends CI_Model{
         // var_dump($uri);die;
         $this->db->delete('discount',['id_product'=>$uri]);
         redirect('discount/index');
+    } 
+    public function json_diskon(){
+        $uri = 'ramadhanberkah';
+        return $this->db->get_where('discount',['kode_discount'=>$uri])->row_array();
     }
 }
  

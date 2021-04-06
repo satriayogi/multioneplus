@@ -83,7 +83,7 @@
 <td colspan="8">
   <div class="tombol-keranjang">
     <a href="" class="btn-chart">Shopping Again</a>
-    <a href="<?= base_url('checkout/index/'.$this->uri->segment(3)) ?>" class="btn-checkout"> checkout</a>
+    <a href="<?= base_url('checkout/index')?>" class="btn-checkout"> checkout</a>
   </div>
 </td>
 <tr>
