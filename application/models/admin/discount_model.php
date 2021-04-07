@@ -34,7 +34,7 @@ class Discount_model extends CI_Model{
         redirect('discount/index');
     } 
     public function json_diskon(){
-        $uri = 'ramadhanberkah';
+        $uri = $this->uri->segment(3);
         return $this->db->get_where('discount',['kode_discount'=>$uri])->row_array();
     }
 }

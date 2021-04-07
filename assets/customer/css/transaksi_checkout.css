@@ -87,6 +87,25 @@ margin-top: 20px;
     height: 400px;
     box-shadow:3px 3px 5px 6px #ccc;;
 }
+.btn-chart1{
+  width: 50px;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 3px;
+  background-color: #f1f1f1;
+  color: black;
+  font-weight: 600;
+}
+.btn-checkout{
+  width: 50px;
+  text-decoration: none;
+  padding: 10px 30px 10px;
+  border-radius: 3px;
+  margin-left: 5px;
+  background-color: #19a95b;
+  color: white;
+  font-weight: 600;
+}
 .customer td{
 padding: 20px;
 text-align: center;
@@ -95,7 +114,7 @@ text-align: center;
     width: 150px;
 }
 .product td{
-    padding: 30px;
+  padding-top: 5px;
 }
 .transaksi{
     /* border: 1px solid black; */
@@ -125,11 +144,13 @@ text-align: end;
 
 /* footer */
 footer{
-    height: 110px;
+    height: 90px;
     background-color: #445555;
     width: 100%;
-    position: fixed;
     bottom: 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
   }
   .footer-img{
     width: 150px;
@@ -183,4 +204,5 @@ footer{
         width: 100%;
         bottom: 0;
       }
+      
   }

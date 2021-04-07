@@ -12,21 +12,21 @@ class transaksi_model extends CI_Model{
         $uricustomer = $this->uri->segment(3);
         $urikeranjang = $this->uri->segment(4);
         $this->db->query("UPDATE keranjang SET pcs=pcs-1,total=harga*pcs where id='$urikeranjang'");
-        redirect('transaksi_customer/keranjang/'.$uricustomer);
+        redirect('checkout/index');
     }
     public function pluskeranjang(){
         $uricustomer = $this->uri->segment(3);
         $urikeranjang = $this->uri->segment(4);
 
         $this->db->query("UPDATE keranjang SET pcs=pcs+1, total=harga*pcs where id='$urikeranjang'");
-        redirect('transaksi_customer/keranjang/'.$uricustomer);
+        redirect('checkout/index');
     }
     public function hapus_keranjang(){
         $urikeranjang = $this->uri->segment(3);
         $uriproduct = $this->uri->segment(4);
         $uricustomer = $this->uri->segment(5);
         $this->db->delete('keranjang',['id'=>$urikeranjang]);
-        redirect('transaksi_customer/keranjang/'.$uriproduct.'/'.$uricustomer);
+        redirect('checkout/index');
     }
 }
 
