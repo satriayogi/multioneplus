@@ -257,7 +257,7 @@ $('#img1').attr('src',image_element);
                     foreach ($warna as $key=>$value) :
                     ?> 
                     <li id="cek<?= $value['id'] ?>"  class="cek<?= $value['id'] ?>"><button id="light-green" class="warn<?= $value['id']; ?>  <?php if($key==0){echo 'wirni';}else{echo 'wirnibord';} ?>" style="background-color:<?= $value['warna'] ?>" > </button>
-                        <input type="checkbox" name="warna[]" <?php if($key==0){echo 'checked="checked" ';} ?> value="<?= $value['nama_warna'] ?>" id="cekbox<?= $value['id']; ?>" style="width: 55px;
+                        <input type="checkbox" name="warna[]" <?php if($key==0){echo 'checked="checked" ';} ?> value="<?= $value['warna'] ?>" id="cekbox<?= $value['id']; ?>" style="width: 55px;
                         height: 50px;
                         position: absolute;
                         margin-left: -57px;

@@ -7,9 +7,6 @@
     <title>Document</title>
 <script src="<?= base_url() ?>assets/admin/plugins/jquery/jquery.min.js"></script>
     <link rel="stylesheet" href="<?= base_url() ?>assets/customer/css/transaksi_checkout.css">
-    <script type="text/javascript"
-    src="https://app.sandbox.midtrans.com/snap/snap.js"
-            data-client-key="SB-Mid-client-0IdvJ2XlaIh88B3K"></script>
 <!-- Font Awesome -->
 <link rel="stylesheet" href="<?= base_url() ?>assets/admin/plugins/fontawesome-free/css/all.min.css">
 <style>
@@ -42,6 +39,9 @@
         margin-top: auto;
     margin-top: 20%;
 }
+.tot-pcs {
+    text-align: end;
+}
 </style>
 </head>
 <body>
@@ -63,7 +63,7 @@
     </div>
     <div class="container border-cont">
         <!-- <div class="border-container"> -->
-        <form action="<?= base_url("transaksi_customer/save_transaksi") ?>" method="post">
+        <form action="<?= base_url("checkout/save_transaksi") ?>" method="post">
             <div class="title-table">
                 <span>your shopping cart</span>
                 <img src="<?=  base_url() ?>assets/customer/img/logo-mutil-plus-one2.png" alt="">
@@ -77,7 +77,7 @@
                     <th>Provinsi:</th>
                     <th>Kota:</th>
                     <th>Courier:</th>
-                    <th>Ekspedisi:</th>
+                    <th colspan="2">Ekspedisi:</th>
                 </tr>
                 <tr class="customer">
                     <td>
@@ -92,24 +92,24 @@
                     <td>
                         <input type="text" name="kodepos" id="" placeholder="enter codepost"></td>
                     <td>
-                        <select name="provinsi" id="provinsi" class="option-provinsi">
+                        <select  id="provinsi" class="option-provinsi">
                         <option disabled selected>-- Choose Province --</option>
                         </select> </td>
                     <td>
-                    <select name="kota" id="kota" class="option-kota">
+                    <select  id="kota" class="option-kota">
                     <option disabled selected>-- Choose City --</option>
                 </select>
 </td>
 <td>
-<select name="kurir" id="kurir" class="option-kota">
+<select id="kurir" class="option-kota">
                     <option disabled selected>-- Choose Courier --</option>
-                    <option >JNE</option>
-                    <option >SiCepat</option>
-                    <option >J&T</option>
+                    <option data-kurir="jne">JNE</option>
+                    <option data-kurir="pos">POS Indonesia</option>
+                    <option data-kurir="tiki">TIKI</option>
                 </select>
 </td>
                     <td>
-                    <select name="ekspedisi" id="ekspedisi" class="option-kota">
+                    <select  id="ekspedisi" class="option-kota">
                     <option disabled selected>-- Choose City --</option>
                 </tr>
 </td>
@@ -130,7 +130,8 @@
                 <tr class="product">
                     <td colspan="2">
                         <span><?= $value['nama_product'] ?></span>
-                        <input type="hidden" name="id_product" id="" value="<?= $value['id_product'] ?>">
+                        <input type="hidden" name="id_product[]" id="" value="<?= $value['id_product'] ?>">
+                        <input type="hidden" name="id_keranjang[]" id="" value="<?= $value['id'] ?>">
                     </td>
                     <td>
                         <?php
@@ -144,19 +145,19 @@
                         $query2 = $this->db->query("SELECT * FROM keranjang JOIN keranjang_warna WHERE keranjang_warna.id_keranjang='$id_keranjang' AND keranjang.id=keranjang_warna.id_keranjang")->result_array();
                         foreach ($query2 as $key => $value2) :?>
                         <span><?= $value2['warna']; ?></span>
-                        <input type="hidden" name="warna[]" value="<?= $value['warna'] ?>" id="">
+                        <input type="hidden" name="warna[]" value="<?= $value2['warna'] ?>" id="">
                    <?php endforeach; ?>
                         </td>
                         <td>
                         <span><?= $value['harga'] ?></span>
-                        <input type="hidden" name="harga" value="<?= $value['harga'] ?>" id=""></td>
+                        <input type="hidden" name="harga[]" value="<?= $value['harga'] ?>" id=""></td>
                     <td>
                     <a href="<?= base_url('transaksi_customer/minkeranjang/'.$customer['id'].'/'.$value['id']) ?>" class="button-min"> <i class="fas fa-minus"></i> </a> <span style="padding-left:35px;">  <?= $value['pcs'] ?></span> 
                     <a href="<?= base_url('transaksi_customer/pluskeranjang/'.$customer['id'].'/'.$value['id']) ?>" class="button-plus" style="float:right;"> <i class="fas fa-plus"></i></a>
-                        <input type="hidden" name="" id=""></td>
+                        <input type="hidden" name="qty1[]" value="<?= $value['pcs'] ?>" id=""></td>
                     <td>
                         <span><?= $value['total'] ?></span>
-                        <input type="hidden" name="" id=""></td>
+                        <input type="hidden" name="totalproduct[]" value="<?= $value['total'] ?>" id=""></td>
                     <td>
                         <a href="<?= base_url('transaksi_customer/hapus_keranjang/'.$value['id'].'/'.$value['id_product'].'/'.$value['id_customer']) ?>"> <i class="fas fa-trash"></i> </a></td>
                   
@@ -168,7 +169,7 @@
             <div class="transaksi">
                     <tr class="kupon">
                         <td colspan="7"> <span>Kode Kupon:</span> </td>
-                        <td><input type="text" id="diskontext"  name=""> <button type="button" id="diskon">+</button></td>
+                        <td><input type="text" id="diskontext"  name="" style="width:68%"> <button type="button" id="diskon" style="width:40px;">+</button></td>
                     </tr>
                     <tr class="tot-product">
                         <td colspan="7"><span>Total Product :</span> </td>
@@ -181,6 +182,12 @@
                         <input type="text" id="" readonly disabled value="<?= number_format($asd['jumlah'], 0, ',','.'); ?>">
                         <input type="hidden" name="total-product" id="total_product" readonly disabled value="<?= $asd['jumlah'] ?>">
                     </td>
+                    <tr class="tot-pcs">
+                    <td colspan="7"><span>Total PCS :</span></td>
+                    <td>
+                    <input type="text" name="pcs" value="<?= $axc['qty_jumlah']; ?>" id="">
+                    </td>
+                    </tr>
                     </tr>
                     <tr class="ongkir">
                         <td colspan="7"><span>Ongkis Kirim :</span></td>
@@ -198,12 +205,12 @@
                     </tr>
                     <tr class="diskon">
                         <td colspan="7"><span>Discount :</span></td>
-                        <td><input type="text" name="discount" id="discount" value="0"> %
+                        <td><input type="text" name="discount" id="discount" value="0" style="width:77.5%;"> %
                         </td>
                     </tr>
                     <tr class="total">
                         <td colspan="7"><span>Total :</span></td>
-                        <td><input type="text" name="total" id="total" value="0">
+                        <td><input type="text" name="totalseluruh" id="total" value="0">
                         </td>
                     </tr>
                     <tr class="bayar">
@@ -228,6 +235,10 @@
   font-weight: 600;">Checkout</button>
 
             </div>
+            <input type="hidden" name="provinsi" id="provinsi1">
+            <input type="hidden" name="kota" id="kota1">
+            <input type="hidden" name="ekpedisi" id="ekpedisi1">
+            <input type="hidden" name="kurirr" id="kurirr">
     
         </form>
     <!-- </div> -->
@@ -261,18 +272,23 @@
             $.getJSON('provinsi',function(data){
                 $.each(data,function(i,field){
                     // console.log(field.province);
-                    pro.append('<option value="'+field.province_id+'">'+field.province+'</option>');
+                    pro.append('<option data-id="'+field.province_id+'" data-name="'+field.province+'">'+field.province+'</option>');
                 })
             });
             $("#provinsi").on("change",function(e){
                 e.preventDefault();
-                var option = $("option:selected",this).val();
-                $("#kurir").val("");
+                var option = $(this.options[this.selectedIndex]);
+                    var provinsi = option.attr('data-name');
+                    var provinsi_id = option.attr('data-id');
+                    var provalue = $("#provinsi1");
+                // $("#kurir").val("");
                 if (option === 0) {
                     alert("null");
                 }else{
                     $("#kota").prop("disabled",false);
-                    getKota(option);
+                    $("#kota option:gt(0)").remove();
+                    getKota(provinsi_id);
+                    provalue.val(provinsi);
                     // console.log(option);
                 }
             });
@@ -280,32 +296,54 @@
                 var kota=$("#kota");
                 $.getJSON('city/'+getpro,function(data){
                     $.each(data,function(i,field){
-                        // console.log(field.city_name);
-                        kota.append('<option value="'+field.city_id+'">'+field.city_name+'</option>');
+                        console.log(field.city_name);
+                        kota.append('<option data-id="'+field.city_id+'" data-name="'+field.city_name+'" value="'+field.city_id+'">'+field.city_name+'</option>');
                     })
                 })
             }
             $("#kota").on("change",function(e){
                 // alert("masuk");
                 e.preventDefault();
-                var option = $("option:selected",this).val();
+                var option = $(this.options[this.selectedIndex]);
+                var kota = option.attr("data-name");
+                var kota_id = option.attr("data-id");
+                var kota1 = $("#kota1");
                 var qty = $("#qty").val();
                 var provinsi = $("#provinsi").val();
                 if (option === 0) {
                     alert(null);
                 }else{
                     console.log(option,qty);
-                    getOngkir(option,qty);
+                    kota1.val(kota);
+                    getKur(kota_id);
+                    // getOngkir(kota_id,qty);
                 }
 
             });
-            function getOngkir(option,qty){
+            function getKur(kota_id){
+            $("#kurir").on("change",function(e){
+                e.preventDefault();
+                var option = $(this.options[this.selectedIndex]);
+                var kurir = option.attr("data-kurir");
+                var kota = option.attr("value");
+                var kurirr = $("#kurirr");
+                var qty = $("#qty").val();
+                if (option === 0) {
+                    alert(null);
+                }else{
+                    kurirr.val(kurir);
+                $("#ekspedisi option:gt(0)").remove();
+                getOngkir(kota_id,qty,kurir);
+                }
+            });
+            }
+            function getOngkir(option,qty,kurir){
                 var ongkir = $("#ongkir");
                 var ekspedisi = $("#ekspedisi");
                 var i="";
                 var j="";
                 var x="";
-                $.getJSON("tarif/"+option+"/"+qty,function(data){
+                $.getJSON("tarif/"+option+"/"+qty+"/"+kurir,function(data){
                     $.each(data,function(i,field){
                         for(i in field.costs){
                             var ka= field.costs[i];
@@ -328,11 +366,13 @@
                 var total = $("#totalharga").val();
                 var subtotal = $("#subtotal").val();
                 var penanganan = $("#penanganan").val();
+                var ekpedisi = $("#ekpedisi1");
                 var totalproduct = $("#total_product").val();
                 var totalkeseluruhan = $("#total");
                 ongkir.val(service);
                 hargaongkir1.val(harga);
                 hargaongkir.val(harga);
+                ekpedisi.val(service);
                 // console.log(service,harga);
                 var hasil = parseInt(harga ) + parseInt(totalproduct) ;
                 // console.log(hasil);
@@ -373,59 +413,47 @@
         }
     });
 </script>
-
-
-
-
-
-
-
-<!-- midtrans -->
-<!-- <script type="text/javascript">
-  
-  $('#pay-button').click(function (event) {
-    event.preventDefault();
-    $(this).attr("disabled", "disabled");
-  $.ajax({
-    url: '<?= base_url()?>/checkout/token',
-    cache: false,
-
-    success: function(data) {
-      //location = data;
-
-      console.log('token = '+data);
-      
-      var resultType = document.getElementById('result-type');
-      var resultData = document.getElementById('result-data');
-
-      function changeResult(type,data){
-        $("#result-type").val(type);
-        $("#result-data").val(JSON.stringify(data));
-        //resultType.innerHTML = type;
-        //resultData.innerHTML = JSON.stringify(data);
-      }
-
-      snap.pay(data, {
-        onSuccess: function(result){
-          changeResult('success', result);
-          console.log(result.status_message);
-          console.log(result);
-          $("#payment-form").submit();
-        },
-        onPending: function(result){
-          changeResult('pending', result);
-          console.log(result.status_message);
-          $("#payment-form").submit();
-        },
-        onError: function(result){
-          changeResult('error', result);
-          console.log(result.status_message);
-          $("#payment-form").submit();
-        }
-      });
+<script>
+    $("#diskontext").keypress(function(e){
+    if (e.keyCode === 13) {
+        e.preventDefault();
+        $("#diskon").click();
+        
     }
-  });
-});
+    // alert("asda");
 
-</script> -->
-<!-- end midtrans -->
+    // var kode_diskon = $("#diskontext").val();
+    // var diskon =$("#discount");
+    // var totalkeseluruhan = $("#total");
+    // var totalproduct = $("#total_product").val();
+    // var hargaongkir = $("#hargaongkir").val();
+    //     // console.log(hargaongkir);
+    //     if (hargaongkir === "0") {
+    //         alert("Cek untuk pemilihan ekpedisi");
+    //     }else{
+    //         // alert(kode_diskon);
+    //     $.ajax({
+    //         method:'POST',
+    //         url:"<?= base_url() ?>discount/json_diskon/"+kode_diskon,
+    //         chache:false,
+    //         dataType:'json',
+    //         // data:"diskon="+kode_diskon,
+    //         success:function (data){
+    //             // console.log(data);
+    //             diskon.val(data.potongan);
+    //             hasil = parseInt(data.potongan) / 100 * parseInt(totalproduct);
+    //             jumlah = totalproduct - hasil + parseInt(hargaongkir);
+    //             console.log(jumlah);
+    //             totalkeseluruhan.val(jumlah);
+    //         }
+    //         // console.log(url);
+    //     });
+
+    //     }
+    });
+</script>
+
+
+
+
+
