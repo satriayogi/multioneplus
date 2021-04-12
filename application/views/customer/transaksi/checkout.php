@@ -5,8 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-<script src="<?= base_url() ?>assets/admin/plugins/jquery/jquery.min.js"></script>
     <link rel="stylesheet" href="<?= base_url() ?>assets/customer/css/transaksi_checkout.css">
+    <script type="text/javascript"
+    src="https://app.sandbox.midtrans.com/snap/snap.js"
+            data-client-key="SB-Mid-client-0IdvJ2XlaIh88B3K"></script>
+<script src="<?= base_url() ?>assets/admin/plugins/jquery/jquery.min.js"></script>
 <!-- Font Awesome -->
 <link rel="stylesheet" href="<?= base_url() ?>assets/admin/plugins/fontawesome-free/css/all.min.css">
 <style>
@@ -63,7 +66,9 @@
     </div>
     <div class="container border-cont">
         <!-- <div class="border-container"> -->
-        <form action="<?= base_url("checkout/save_transaksi") ?>" method="post">
+        <form action="<?= base_url()?>/snap/finish" id="payment-form" method="post">
+        <input type="hidden" name="result_type" id="result-type" value="">
+      <input type="hidden" name="result_data" id="result-data" value="">
             <div class="title-table">
                 <span>your shopping cart</span>
                 <img src="<?=  base_url() ?>assets/customer/img/logo-mutil-plus-one2.png" alt="">
@@ -210,7 +215,7 @@
                     </tr>
                     <tr class="total">
                         <td colspan="7"><span>Total :</span></td>
-                        <td><input type="text" name="totalseluruh" id="total" value="0">
+                        <td><input type="text" name="" id="total" value="0">
                         </td>
                     </tr>
                     <tr class="bayar">
@@ -225,7 +230,8 @@
   background-color: #f1f1f1;
   color: black;
   font-weight: 600;">Buy Again</a> 
-                        <button id="pay-button" type="submit" style=" width: 130px;
+
+                        <button type="button" id="pay-button" style=" width: 130px;
   padding: 10px 20px 10px;
   border-radius: 3px;
   margin-left: 5px;
@@ -233,12 +239,12 @@
   border:none;
   color: white;
   font-weight: 600;">Checkout</button>
-
             </div>
             <input type="hidden" name="provinsi" id="provinsi1">
             <input type="hidden" name="kota" id="kota1">
             <input type="hidden" name="ekpedisi" id="ekpedisi1">
             <input type="hidden" name="kurirr" id="kurirr">
+            <input type="hidden" name="totalseluruh" id="totseluruh" value="50000">
     
         </form>
     <!-- </div> -->
@@ -266,6 +272,55 @@
 
 </body>
 </html>
+<script>
+$('#pay-button').click(function (event) {
+    event.preventDefault();
+    $(this).attr("disabled", "disabled");
+    var totalseluruh = $("#totseluruh").val();
+  $.ajax({
+    type:'POST',
+    url: '<?= base_url()?>buy/token',
+    data:{totalseluruh:totalseluruh},
+    cache: false,
+
+    success: function(data) {
+      //location = data;
+
+      console.log('token = '+data);
+      
+      var resultType = document.getElementById('result-type');
+      var resultData = document.getElementById('result-data');
+
+      function changeResult(type,data){
+        $("#result-type").val(type);
+        $("#result-data").val(JSON.stringify(data));
+        //resultType.innerHTML = type;
+        //resultData.innerHTML = JSON.stringify(data);
+      }
+
+      snap.pay(data, {
+        onSuccess: function(result){
+          changeResult('success', result);
+          console.log(result.status_message);
+          console.log(result);
+          $("#payment-form").submit();
+        },
+        onPending: function(result){
+          changeResult('pending', result);
+          console.log(result.status_message);
+          $("#payment-form").submit();
+        },
+        onError: function(result){
+          changeResult('error', result);
+          console.log(result.status_message);
+          $("#payment-form").submit();
+        }
+      });
+    }
+  });
+});
+</script>
+
 <script>
     $(document).ready(function(){
         var pro=$("#provinsi");
@@ -369,6 +424,7 @@
                 var ekpedisi = $("#ekpedisi1");
                 var totalproduct = $("#total_product").val();
                 var totalkeseluruhan = $("#total");
+    var totalseluruh = $("#totseluruh");
                 ongkir.val(service);
                 hargaongkir1.val(harga);
                 hargaongkir.val(harga);
@@ -377,15 +433,17 @@
                 var hasil = parseInt(harga ) + parseInt(totalproduct) ;
                 // console.log(hasil);
                 totalkeseluruhan.val(hasil);
+                totalseluruh.val(hasil);
 
             });
     });
 </script>
-<script>
+<!-- <script>
     $("#diskon").on("click",function(){
     var kode_diskon = $("#diskontext").val();
     var diskon =$("#discount");
     var totalkeseluruhan = $("#total");
+    var totalseluruh = $("#totseluruh");
     var totalproduct = $("#total_product").val();
     var hargaongkir = $("#hargaongkir").val();
         // console.log(hargaongkir);
@@ -395,7 +453,7 @@
             // alert(kode_diskon);
         $.ajax({
             method:'POST',
-            url:"<?= base_url() ?>discount/json_diskon/"+kode_diskon,
+            url:"<?= base_url() ?>buy/token/",
             chache:false,
             dataType:'json',
             // data:"diskon="+kode_diskon,
@@ -405,6 +463,7 @@
                 hasil = parseInt(data.potongan) / 100 * parseInt(totalproduct);
                 jumlah = totalproduct - hasil + parseInt(hargaongkir);
                 console.log(jumlah);
+                totalseluruh.val(jumlah);
                 totalkeseluruhan.val(jumlah);
             }
             // console.log(url);
@@ -412,7 +471,8 @@
 
         }
     });
-</script>
+</script> -->
+
 <script>
     $("#diskontext").keypress(function(e){
     if (e.keyCode === 13) {
@@ -421,39 +481,5 @@
         
     }
     // alert("asda");
-
-    // var kode_diskon = $("#diskontext").val();
-    // var diskon =$("#discount");
-    // var totalkeseluruhan = $("#total");
-    // var totalproduct = $("#total_product").val();
-    // var hargaongkir = $("#hargaongkir").val();
-    //     // console.log(hargaongkir);
-    //     if (hargaongkir === "0") {
-    //         alert("Cek untuk pemilihan ekpedisi");
-    //     }else{
-    //         // alert(kode_diskon);
-    //     $.ajax({
-    //         method:'POST',
-    //         url:"<?= base_url() ?>discount/json_diskon/"+kode_diskon,
-    //         chache:false,
-    //         dataType:'json',
-    //         // data:"diskon="+kode_diskon,
-    //         success:function (data){
-    //             // console.log(data);
-    //             diskon.val(data.potongan);
-    //             hasil = parseInt(data.potongan) / 100 * parseInt(totalproduct);
-    //             jumlah = totalproduct - hasil + parseInt(hargaongkir);
-    //             console.log(jumlah);
-    //             totalkeseluruhan.val(jumlah);
-    //         }
-    //         // console.log(url);
-    //     });
-
-    //     }
     });
 </script>
-
-
-
-
-

@@ -34,11 +34,6 @@
                     <th>Username</th>
                     <th>Email</th>
                     <th>Gender</th>
-                    <th>Address</th>
-                    <th>City</th>
-                    <th>sub-district</th>
-                    <th>No. Home</th>
-                    <th>Code Pos</th>
                     <th>Date of Birth</th>
                     <th>No. Telephone</th>
                     <th>Status</th>
@@ -52,11 +47,6 @@
                     <td><?= $value['username'] ?></td>
                     <td> <?= $value['email'] ?></td>
                     <td> <?= $value['jenis_kelamin'] ?></td>
-                    <td> <?= $value['alamat'] ?></td>
-                    <td> <?= $value['kota'] ?></td>
-                    <td> <?= $value['kec'] ?></td>
-                    <td> <?= $value['no_rmh'] ?></td>
-                    <td> <?= $value['kodepos'] ?></td>
                     <td> <?= $value['tanggal_lahir'] ?></td>
                     <td> <?= $value['no_tlp'] ?></td>
                     <td> 

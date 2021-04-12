@@ -83,7 +83,6 @@
                 $this->db->join("transaksi","customer.id=transaksi.id_customer");
                 $this->db->where("transaksi.id_customer='$id_customer'");
                 $query = $this->db->get()->row_array();
-
                 ?>
                 <tr class="customer">
                     <td>
@@ -216,7 +215,7 @@
                 </tr>
                 <tr class="bayar">
                     <td colspan="7">
-                        <button>Edit </button>
+                        <a href="<?= base_url('buy/token/'.$customer['id']) ?>"> Edit</a> 
                         <button type="button" id="pay-button">Buy!</button>
                     </td>
                 </tr>
@@ -252,7 +251,7 @@
     event.preventDefault();
     $(this).attr("disabled", "disabled");
   $.ajax({
-    url: '<?= base_url()?>/buy/token',
+    url: '<?= base_url()?>buy/token/5',
     cache: false,
 
     success: function(data) {
@@ -291,6 +290,5 @@
     }
   });
 });
-
 </script>
 <!-- end midtrans -->

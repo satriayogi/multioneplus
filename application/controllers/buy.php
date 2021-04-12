@@ -4,7 +4,7 @@ class Buy extends CI_Controller{
     function __construct(){
         parent::__construct();
         $this->load->model("customer/product_model","product");
-        $params = array('server_key' => 'SB-Mid-server-sqtA0D0YzIqZj4KEvNpqyNQn', 'production' => false);
+        $params = array('server_key' => 'SB-Mid-server-sqtA0D0YzIqZj4KEvNpqyNQn', 'production' => true);
 		$this->load->library('midtrans');
 		$this->midtrans->config($params);
     }
@@ -14,26 +14,30 @@ class Buy extends CI_Controller{
     }
     public function token()
     {
-		
+		// $uri = $this->uri->segment(4);
+		// $transaksi = $this->db->query("SELECT * FROM transaksi WHERE id_customer='$uri'")->row_array(); 
+		// var_dump($transaksi);die;
 		// Required
+		$totalseluruh = $this->input->post('totalseluruh');
+		// var_dump($totalseluruh);die;
 		$transaction_details = array(
 		  'order_id' => rand(),
-		  'gross_amount' => 94000, // no decimal allowed for creditcard
+		  'gross_amount' => $totalseluruh, // no decimal allowed for creditcard
 		);
 
 		// Optional
 		$item1_details = array(
 		  'id' => 'a1',
-		  'price' => 18000,
-		  'quantity' => 3,
+		  'price' => 25000,
+		  'quantity' => 1,
 		  'name' => "Apple"
 		);
 
 		// Optional
 		$item2_details = array(
 		  'id' => 'a2',
-		  'price' => 20000,
-		  'quantity' => 2,
+		  'price' => 25000,
+		  'quantity' => 1,
 		  'name' => "Orange"
 		);
 
@@ -86,10 +90,6 @@ class Buy extends CI_Controller{
         
         $transaction_data = array(
             'transaction_details'=> $transaction_details,
-            'item_details'       => $item_details,
-            'customer_details'   => $customer_details,
-            'credit_card'        => $credit_card,
-            'expiry'             => $custom_expiry
         );
 
 		error_log(json_encode($transaction_data));

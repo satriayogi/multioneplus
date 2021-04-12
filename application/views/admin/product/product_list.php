@@ -41,6 +41,7 @@
                   $no=1;
                    foreach ($product as $product):?>
                   <tr>
+                    <td><?= $product['id'] ?></td>
                     <td><?= $product['nama_product'] ?></td>
                     <td><?= $product['nama_category'] ?></td>
                     <td><?= $product['keterangan'] ?></td>

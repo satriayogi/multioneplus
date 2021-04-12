@@ -120,6 +120,10 @@ class transaksi_model extends CI_Model{
         // $this->db->insert_batch('detail_transaksiwarna',$data1);
         
     }
+    public function customer_checkout(){
+        $uri = $this->db->segment(3);
+        return $this->db->get_where('transkasi',['id_customer'=>$uri])->row_array();
+    }
 }
 
 
