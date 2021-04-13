@@ -197,12 +197,27 @@ footer{
     color: #148b4d;
     text-decoration: none;
   }
+  @media screen and (min-width:1086px){
+    .table-container{
+      width: 50%;
+    }
+    .table-checkout{
+      width: 100%;
+    }
+
+  }
   @media screen and (min-width:992px){
     footer{
         height: 110px;
         background-color: #445555;
         width: 100%;
         bottom: 0;
+      }
+      .table-container{
+        width: 50%;
+      }
+      .table-checkout{
+        width: 100%;
       }
       
   }

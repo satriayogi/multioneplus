@@ -25,7 +25,8 @@ class Discount extends CI_Controller{
         $this->discount->delete_discount();
     }
     public function json_diskon(){
-       $data = $this->discount->json_diskon();
+        $uri = $this->input->post("diskontext");
+       $data = $this->discount->json_diskon($uri);
         echo json_encode($data);
     }
 }

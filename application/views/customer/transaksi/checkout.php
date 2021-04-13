@@ -45,6 +45,29 @@
 .tot-pcs {
     text-align: end;
 }
+/* @media screen and (min-width:1086px){
+    .table-container{
+      width: 100%;
+    }
+    .table-checkout{
+      width: 100%;
+    }
+
+  } */
+  @media screen and (min-width:992px){
+    footer{
+        height: 110px;
+        background-color: #445555;
+        width: 100%;
+        bottom: 0;
+      }
+      .table-container{
+        width: 80%;
+      }
+      .table-checkout{
+        width: 50%;
+      }
+    }
 </style>
 </head>
 <body>
@@ -66,7 +89,7 @@
     </div>
     <div class="container border-cont">
         <!-- <div class="border-container"> -->
-        <form action="<?= base_url()?>/snap/finish" id="payment-form" method="post">
+        <form action="<?= base_url()?>buy/finish" id="payment-form" method="post">
         <input type="hidden" name="result_type" id="result-type" value="">
       <input type="hidden" name="result_data" id="result-data" value="">
             <div class="title-table">
@@ -87,15 +110,17 @@
                 <tr class="customer">
                     <td>
                         <span><?= $customer['nama'] ?></span> 
-                        <input type="hidden" name="id_customer" value="<?= $customer['id'] ?>" id=""></td>
+                        <input type="hidden" name="id_customer" value="<?= $customer['id'] ?>" id="id_customer"></td>
+                        <input type="hidden" name="nama_customer" value="<?= $customer['nama'] ?>" id="nama_customer"></td>
                     <td>
                         <span><?= $customer['no_tlp'] ?></span> 
-                        <input type="hidden" name="" id=""></td>
+                        <input type="hidden" name="no_tlp" id="no_tlp" value="<?= $customer['no_tlp'] ?>"></td>
+                        <input type="hidden" name="email" id="email" value="<?= $customer['email'] ?>"></td>
                     <td>
-                    <textarea name="alamat" id="" cols="20" rows="5"></textarea>
+                    <textarea name="alamat" id="alamat" cols="20" rows="5"></textarea>
                     </td>
                     <td>
-                        <input type="text" name="kodepos" id="" placeholder="enter codepost"></td>
+                        <input type="text" name="kodepos" id="kodepos" placeholder="enter codepost"></td>
                     <td>
                         <select  id="provinsi" class="option-provinsi">
                         <option disabled selected>-- Choose Province --</option>
@@ -135,8 +160,8 @@
                 <tr class="product">
                     <td colspan="2">
                         <span><?= $value['nama_product'] ?></span>
-                        <input type="hidden" name="id_product[]" id="" value="<?= $value['id_product'] ?>">
-                        <input type="hidden" name="id_keranjang[]" id="" value="<?= $value['id'] ?>">
+                        <input type="hidden" name="id_product[]" id="id_product" value="<?= $value['id_product'] ?>">
+                        <input type="hidden" name="id_keranjang[]" id="id_product" value="<?= $value['id'] ?>">
                     </td>
                     <td>
                         <?php
@@ -150,19 +175,19 @@
                         $query2 = $this->db->query("SELECT * FROM keranjang JOIN keranjang_warna WHERE keranjang_warna.id_keranjang='$id_keranjang' AND keranjang.id=keranjang_warna.id_keranjang")->result_array();
                         foreach ($query2 as $key => $value2) :?>
                         <span><?= $value2['warna']; ?></span>
-                        <input type="hidden" name="warna[]" value="<?= $value2['warna'] ?>" id="">
+                        <input type="hidden" name="warna[]" id="warna" value="<?= $value2['warna'] ?>" id="">
                    <?php endforeach; ?>
                         </td>
                         <td>
                         <span><?= $value['harga'] ?></span>
-                        <input type="hidden" name="harga[]" value="<?= $value['harga'] ?>" id=""></td>
+                        <input type="hidden" name="harga[]" id="harga" value="<?= $value['harga'] ?>" id=""></td>
                     <td>
                     <a href="<?= base_url('transaksi_customer/minkeranjang/'.$customer['id'].'/'.$value['id']) ?>" class="button-min"> <i class="fas fa-minus"></i> </a> <span style="padding-left:35px;">  <?= $value['pcs'] ?></span> 
                     <a href="<?= base_url('transaksi_customer/pluskeranjang/'.$customer['id'].'/'.$value['id']) ?>" class="button-plus" style="float:right;"> <i class="fas fa-plus"></i></a>
-                        <input type="hidden" name="qty1[]" value="<?= $value['pcs'] ?>" id=""></td>
+                        <input type="hidden" name="qty1[]" id="qty1" value="<?= $value['pcs'] ?>" id=""></td>
                     <td>
                         <span><?= $value['total'] ?></span>
-                        <input type="hidden" name="totalproduct[]" value="<?= $value['total'] ?>" id=""></td>
+                        <input type="hidden" name="totalproduct[]" id="totalproduct" value="<?= $value['total'] ?>" id=""></td>
                     <td>
                         <a href="<?= base_url('transaksi_customer/hapus_keranjang/'.$value['id'].'/'.$value['id_product'].'/'.$value['id_customer']) ?>"> <i class="fas fa-trash"></i> </a></td>
                   
@@ -170,11 +195,11 @@
                     <?php endforeach; ?>
                
             </table>
-            <table style="float:right; margin-right: -10%;">
+            <table style="float:right; margin-right: -10%;" class="table-checkout">
             <div class="transaksi">
                     <tr class="kupon">
                         <td colspan="7"> <span>Kode Kupon:</span> </td>
-                        <td><input type="text" id="diskontext"  name="" style="width:68%"> <button type="button" id="diskon" style="width:40px;">+</button></td>
+                        <td><input type="text" id="diskontext"  name="diskontext" style="width:68%"> <button type="button" id="diskon" style="width:40px;">+</button></td>
                     </tr>
                     <tr class="tot-product">
                         <td colspan="7"><span>Total Product :</span> </td>
@@ -185,7 +210,7 @@
                         ?>    
                         
                         <input type="text" id="" readonly disabled value="<?= number_format($asd['jumlah'], 0, ',','.'); ?>">
-                        <input type="hidden" name="total-product" id="total_product" readonly disabled value="<?= $asd['jumlah'] ?>">
+                        <input type="hidden" name="total_product" id="total_product"  value="<?= $asd['jumlah'] ?>">
                     </td>
                     <tr class="tot-pcs">
                     <td colspan="7"><span>Total PCS :</span></td>
@@ -210,7 +235,8 @@
                     </tr>
                     <tr class="diskon">
                         <td colspan="7"><span>Discount :</span></td>
-                        <td><input type="text" name="discount" id="discount" value="0" style="width:77.5%;"> %
+                        <td><input type="text" name="" id="discount" value="0" style="width:77.5%;"> %
+                        <td><input type="hidden" name="discount" id="discount1" value="0" style="width:77.5%;"> %
                         </td>
                     </tr>
                     <tr class="total">
@@ -244,7 +270,8 @@
             <input type="hidden" name="kota" id="kota1">
             <input type="hidden" name="ekpedisi" id="ekpedisi1">
             <input type="hidden" name="kurirr" id="kurirr">
-            <input type="hidden" name="totalseluruh" id="totseluruh" value="50000">
+            <input type="hidden" name="totalseluruh" id="totseluruh">
+            <!-- <input type="hidden" name="totalseluruh" id="totseluruh" value=""> -->
     
         </form>
     <!-- </div> -->
@@ -276,11 +303,55 @@
 $('#pay-button').click(function (event) {
     event.preventDefault();
     $(this).attr("disabled", "disabled");
-    var totalseluruh = $("#totseluruh").val();
+    // var totalseluruh = $("#totseluruh").val();
+    var nama_customer = $("#nama_customer").val();
+    var no_tlp = $("#no_tlp").val();
+    var email = $("#email").val();
+    var alamat = $("#alamat").val();
+    var kodepos = $("#kodepos").val();
+    var kota1 = $("#kota1").val();
+    var hargaongkir = $("#hargaongkir").val();
+    var totalseluruh  = $("#totseluruh").val();
+    var total_product = $("#total_product").val();
+    // baru
+    var discount = $("#discount1").val();
+    var id_customer = $("#id_customer").val();
+    var provinsi1 = $("#provinsi1").val();
+    var ekpedisi1 = $("#ekpedisi1").val();
+    var kurirr = $("#kurirr").val();
+    // produk
+    var product = $("#id_product").val();
+    var hargaproduct= $("#harga").val();
+    var qty1 = $("#qty1").val();
+    var totalproduct = $("#totalproduct").val();
+
+    // warna
+    var warna = $("#warna").val();
+    // console.log(totalproduct);
   $.ajax({
     type:'POST',
     url: '<?= base_url()?>buy/token',
-    data:{totalseluruh:totalseluruh},
+    data:{
+        nama_customer:nama_customer,
+        no_tlp:no_tlp,
+        email:email,
+        alamat:alamat,
+        kodepos:kodepos,
+        kota1:kota1,
+        hargaongkir:hargaongkir,
+        totalseluruh:totalseluruh,
+        total_product:total_product,
+        discount:discount,
+        id_customer:id_customer,
+        provinsi1:provinsi1,
+        ekpedisi1:ekpedisi1,
+        kurirr:kurirr,
+        product:product,
+        hargaproduct:hargaproduct,
+        qty1:qty1,
+        totalproduct:totalproduct,
+        warna:warna,
+    },
     cache: false,
 
     success: function(data) {
@@ -438,14 +509,15 @@ $('#pay-button').click(function (event) {
             });
     });
 </script>
-<!-- <script>
+<script>
     $("#diskon").on("click",function(){
-    var kode_diskon = $("#diskontext").val();
+    var diskontext = $("#diskontext").val();
     var diskon =$("#discount");
     var totalkeseluruhan = $("#total");
     var totalseluruh = $("#totseluruh");
     var totalproduct = $("#total_product").val();
     var hargaongkir = $("#hargaongkir").val();
+    var discount1 = $("#discount1");
         // console.log(hargaongkir);
         if (hargaongkir === "0") {
             alert("Cek untuk pemilihan ekpedisi");
@@ -453,17 +525,18 @@ $('#pay-button').click(function (event) {
             // alert(kode_diskon);
         $.ajax({
             method:'POST',
-            url:"<?= base_url() ?>buy/token/",
+            url:"<?= base_url() ?>discount/json_diskon/",
             chache:false,
             dataType:'json',
-            // data:"diskon="+kode_diskon,
+            data:{diskontext:diskontext},
             success:function (data){
-                // console.log(data);
+                console.log(data);
                 diskon.val(data.potongan);
                 hasil = parseInt(data.potongan) / 100 * parseInt(totalproduct);
                 jumlah = totalproduct - hasil + parseInt(hargaongkir);
                 console.log(jumlah);
                 totalseluruh.val(jumlah);
+                discount1.val(hasil);
                 totalkeseluruhan.val(jumlah);
             }
             // console.log(url);
@@ -471,7 +544,7 @@ $('#pay-button').click(function (event) {
 
         }
     });
-</script> -->
+</script>
 
 <script>
     $("#diskontext").keypress(function(e){
