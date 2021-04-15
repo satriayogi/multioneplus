@@ -41,12 +41,13 @@
                         </div>
                         <div class="col-md-5">
                         <div class="form-group">
-                  <label>category</label>
-                  <select class="form-control select2" name="category" style="width: 90%;">
+                  <label>category</label><div class="select2-purple">
+                    <select class="select2" multiple="multiple" data-placeholder="Select a State" data-dropdown-css-class="select2-purple" style="width: 100%;">
                   <?php foreach ($category as $category) :?>
                             <option value="<?= $category['id'] ?>"><?= $category['nama_category'];?></option>
                             <?php endforeach; ?>
                   </select>
+                </div>
                 </div>
                         </div>
                     </div>

@@ -337,7 +337,7 @@
           </li>
           <li class="nav-header">Transaction</li>
           <li class="nav-item">
-            <a href="<?= base_url('customer/transaksi_customer_list') ?>" class="nav-link">
+            <a href="<?= base_url('transaksi/index/'.$admin['id']) ?>" class="nav-link">
               <i class="nav-icon fas fa-cart-plus"></i>
               <p>
                 Transaction Customer
@@ -345,14 +345,7 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="pages/gallery.html" class="nav-link">
-              <i class="nav-icon fa fa-credit-card"></i>
-              <p>
-                Payment Midtrans 
-              </p>
-            </a>
-          </li>
+        
           
           <li class="nav-item">
             <a href="#" class="nav-link">

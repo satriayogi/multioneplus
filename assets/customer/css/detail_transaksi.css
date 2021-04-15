@@ -1,0 +1,24 @@
+*{
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+}
+.table_detailtransaksi{
+    width: 50%;
+    margin: auto;
+    margin-top: 70px;
+    border: 1px solid black;
+}
+.table_detailtransaksi td{
+    padding: 20px;
+}
+
+@media screen and (max-width:762px){
+    .table_detailtransaksi{
+        width: 100%;
+    }
+    .table_detailtransaksi td{
+        font-size: 10px;
+        width: 40%;
+    }
+}

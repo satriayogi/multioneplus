@@ -7,8 +7,8 @@
     <title>Document</title>
     <link rel="stylesheet" href="<?= base_url() ?>assets/customer/css/transaksi_checkout.css">
     <script type="text/javascript"
-    src="https://app.sandbox.midtrans.com/snap/snap.js"
-            data-client-key="SB-Mid-client-0IdvJ2XlaIh88B3K"></script>
+    src="https://app.midtrans.com/snap/snap.js"
+            data-client-key="Mid-client-9OwE4jwH-GGHDT3x"></script>
 <script src="<?= base_url() ?>assets/admin/plugins/jquery/jquery.min.js"></script>
 <!-- Font Awesome -->
 <link rel="stylesheet" href="<?= base_url() ?>assets/admin/plugins/fontawesome-free/css/all.min.css">
@@ -174,7 +174,15 @@
                         $id_keranjang = $value['id'];
                         $query2 = $this->db->query("SELECT * FROM keranjang JOIN keranjang_warna WHERE keranjang_warna.id_keranjang='$id_keranjang' AND keranjang.id=keranjang_warna.id_keranjang")->result_array();
                         foreach ($query2 as $key => $value2) :?>
-                        <span><?= $value2['warna']; ?></span>
+                        <style>
+                            .kotak-warna{
+                                width:20px;
+                                height:20px; 
+                                display:inline-block;
+                            }
+                        </style>
+                        <span> <div class="kotak-warna" style="background-color:<?= $value2['warna'] ?>; "></div> </span>
+                        <!-- <input type="checkbox" name="warna[]" id=""> -->
                         <input type="hidden" name="warna[]" id="warna" value="<?= $value2['warna'] ?>" id="">
                    <?php endforeach; ?>
                         </td>
@@ -199,7 +207,7 @@
             <div class="transaksi">
                     <tr class="kupon">
                         <td colspan="7"> <span>Kode Kupon:</span> </td>
-                        <td><input type="text" id="diskontext"  name="diskontext" style="width:68%"> <button type="button" id="diskon" style="width:40px;">+</button></td>
+                        <td><input type="text" id="diskontext"  name="diskontext" style="width:44.7%"> <button type="button" id="diskon" style="width:40px;">+</button></td>
                     </tr>
                     <tr class="tot-product">
                         <td colspan="7"><span>Total Product :</span> </td>
@@ -235,8 +243,8 @@
                     </tr>
                     <tr class="diskon">
                         <td colspan="7"><span>Discount :</span></td>
-                        <td><input type="text" name="" id="discount" value="0" style="width:77.5%;"> %
-                        <td><input type="hidden" name="discount" id="discount1" value="0" style="width:77.5%;"> %
+                        <td><input type="text" name="" id="discount" value="0" style="width:51.2%;"> %
+                        <td><input type="hidden" name="discount" id="discount1" value="0" style="width:77.5%;"> 
                         </td>
                     </tr>
                     <tr class="total">
@@ -364,7 +372,7 @@ $('#pay-button').click(function (event) {
 
       function changeResult(type,data){
         $("#result-type").val(type);
-        $("#result-data").val(JSON.stringify(data));
+        $("#result-data").val(data.order_id);
         //resultType.innerHTML = type;
         //resultData.innerHTML = JSON.stringify(data);
       }

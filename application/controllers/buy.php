@@ -4,7 +4,7 @@ class Buy extends CI_Controller{
     function __construct(){
         parent::__construct();
         $this->load->model("customer/product_model","product");
-        $params = array('server_key' => 'SB-Mid-server-sqtA0D0YzIqZj4KEvNpqyNQn', 'production' => false);
+        $params = array('server_key' => 'Mid-server-4rjeM1qPkfvzU_dCr3ZCaT8j', 'production' => true);
 		$this->load->library('midtrans');
 		$this->midtrans->config($params);
     }
@@ -147,6 +147,7 @@ class Buy extends CI_Controller{
     }
     public function finish()
     {
+		$order_id = $this->input->post('result_data');
 		$nama_customer = $this->input->post('nama_customer');
 		$no_tlp = $this->input->post('no_tlp');
 		$email =$this->input->post('email');
@@ -174,6 +175,7 @@ class Buy extends CI_Controller{
 
 		$data=[
 			'id_customer'=>$id_customer,
+			'id_order'=>$order_id,
 			'alamat'=>$alamat,
 			'kodepos'=>$kodepos,
 			'provinsi'=>$provinsi,

@@ -20,8 +20,18 @@ public function add_transaksi(){
         $this->product->save_keranjang();
     }elseif (isset($_POST['beli'])) {
         $this->product->save_product();
-        redirect('detaial');
+        redirect('checkout/index');
     }
+}
+public function list_product(){
+    $data['customer'] = $this->product->viewcustomer()->row_array();
+    $data['list_product'] = $this->product->list_product();
+    $this->load->view('customer/product/header');
+    $this->load->view('customer/product/list_product',$data);
+}
+public function add_keranjanglist(){
+    $uri = $this->uri->segment(4);
+    
 }
 }
 

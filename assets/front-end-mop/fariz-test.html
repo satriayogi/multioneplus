@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<!-- NAVIGATION -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse ms-auto" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Features</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Pricing</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        </li>
+        <li class="nav-item">
+          <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    
+  </div>
+</nav>
+
+
+<div class="jumbotron text-left">
+  <h1>My First Bootstrap Page</h1>
+  <p>Resize this responsive page to see the effect!</p> 
+</div>
+
+  
+<div class="container">
+
+  <!-- ROW -->
+  <div class="row kelas">
+    <div class="col-sm-4 text-center">
+      <img  src="https://images.pexels.com/photos/6157063/pexels-photo-6157063.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="">
+      <button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#demo">Learn More</button>
+      <div id="demo" class="collapse">
+          Seekor lebah yang mengumpulkan serbuk sari. Setiap kasta lebah mempunyai tugas masing-masing. Lebah ratu hanya satu ekor dalam setiap koloni dan
+      </div>
+    </div>
+    <div class="col-sm-4 text-center">
+      <img src="https://images.pexels.com/photos/5478144/pexels-photo-5478144.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="">
+      <button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#demo">Learn More</button>
+      <div id="demo" class="collapse">
+          Seekor lebah yang mengumpulkan serbuk sari. Setiap kasta lebah mempunyai tugas masing-masing. Lebah ratu hanya satu ekor dalam setiap koloni dan
+      </div>
+    </div>
+    <div class="col-sm-4 text-center">
+     <img src="https://images.pexels.com/photos/3070870/pexels-photo-3070870.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="">
+     <button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#demo">Learn More</button>
+        <div id="demo" class="collapse">
+            Seekor lebah yang mengumpulkan serbuk sari. Setiap kasta lebah mempunyai tugas masing-masing. Lebah ratu hanya satu ekor dalam setiap koloni dan
+        </div>
+    </div>
+  </div>
+</div>
+
+
+<style>
+    .col-sm-4 img{
+        overflow: hidden;
+        background-position: center;
+        width: 100%;
+        height: 400px;
+    }
+    .kelas .btn{
+        margin-top: 20px;
+        background:coral;
+        border: none;
+    }
+</style>
+
+</body>
+</html>

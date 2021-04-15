@@ -41,14 +41,14 @@
                   $no=1;
                    foreach ($product as $product):?>
                   <tr>
-                    <td><?= $product['id'] ?></td>
                     <td><?= $product['nama_product'] ?></td>
                     <td><?= $product['nama_category'] ?></td>
                     <td><?= $product['keterangan'] ?></td>
                     <td>
                     <div class="col-md-15">
 
-                      <img src="<?= base_url('assets/admin/img/product/'.$product['gambar']) ?>" class="rounded mx-auto d-block" height="130px" width="200px" alt=""></td>
+                      <img src="<?= base_url('assets/admin/img/product/'.$product['gambar']) ?>" class="rounded mx-auto d-block" height="130px" width="200px" alt="">
+                    </td>
                     </div>  
                     <td> <?= $product['stok'] ?></td>
                     <td> <?= $product['harga'] ?></td>

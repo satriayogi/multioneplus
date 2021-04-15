@@ -133,32 +133,32 @@ vertical-align: middle;
     <div class="product-details">
         <div class="side-by-side product-img">
                 <!-- Product Image -->
-            <div>
-                <div class="product-img-1">
-                <img src="<?= base_url() ?>assets/customer/img/masker-master.png" id="img1" alt="" style="width:371px; height:367px;">
-            </div>
-
-            </div>
-                <!-- ** use ul - li-->
-            <ul class="image-option">
                 <?php 
                 $product = $product_detail['id'];
                 $quer = $this->db->query("SELECT * FROM product JOIN gambar Where product.id='$product' AND product.id=gambar.id_product")->row_array();
                 
                 ?>
+            <div>
+                <div class="product-img-1">
+                <img src="<?= base_url() ?>assets/admin/img/product/<?= $quer['gambar'] ?>" id="img1" alt="" style="width:371px; height:367px;">
+            </div>
+
+            </div>
+                <!-- ** use ul - li-->
+            <ul class="image-option">
                 <li>
                 <div class="product-img-2" id="product-img-2">
-                    <img src="<?= base_url() ?>assets/admin/img/product/<?= $quer['gambar'] ?>" id="img4" style="width:157px;height:157px;" alt="">
+                    <img src="<?= base_url() ?>assets/admin/img/product/<?= $quer['gambar2'] ?>" id="img4" style="width:157px;height:157px;" alt="">
                 </div>
                 </li>
                 <li>
                 <div class="product-img-2" id="product-img-3">
-                    <img src="<?= base_url() ?>assets/admin/img/product/<?= $quer['gambar2'] ?>" id="img2" alt="" style="width:157px;height:157px;">
+                    <img src="<?= base_url() ?>assets/admin/img/product/<?= $quer['gambar3'] ?>" id="img2" alt="" style="width:157px;height:157px;">
                 </div>
                 </li>
                 <li>
                 <div  class="product-img-2" id="product-img-4">
-                    <img src="<?= base_url() ?>assets/admin/img/product/<?= $quer['gambar3'] ?>" id="img3" alt="" style="width:157px;height:157px;">
+                    <img src="<?= base_url() ?>assets/admin/img/product/<?= $quer['gambar4'] ?>" id="img3" alt="" style="width:157px;height:157px;">
                 </div>
                 </li>
             </ul>
@@ -243,7 +243,7 @@ $('#img1').attr('src',image_element);
             <div class="choose-colors">
                 <form action="<?= base_url('product_customer/add_transaksi') ?>" method="post">
                     <!-- <span>Pilih Warna</span> -->
-                    <input type="text" name="harga" readonly id= "harga" value="<?= $product_detail['harga'] ?>">
+                    <input type="hidden" name="harga" readonly id= "harga" value="<?= $product_detail['harga'] ?>">
                     <input type="hidden" name="product" value="<?= $product_detail['id'] ?>">
                     <input type="hidden" name="customer" value="<?= $customer['id'] ?>">
                 <h1>Pilih Warna: <br></h1>
@@ -270,7 +270,6 @@ $('#img1').attr('src',image_element);
                                 // alert('asd');
                                 $(".warn<?= $value['id']; ?>").addClass('wirni');
                                 $(".warn<?= $value['id']; ?>").removeClass('wirnibord');
-                                
                             }else{
                                 // alert('tidak');
                                 $(".warn<?= $value['id']; ?>").removeClass('wirni');

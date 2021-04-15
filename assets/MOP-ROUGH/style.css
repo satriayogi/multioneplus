@@ -1,0 +1,109 @@
+*{
+    margin: 0;
+    padding: 0;
+    
+}
+
+.full-width{
+    width: 100%;
+    height: 500px;
+    background-color: gold;
+}
+
+.main-banner{
+    width: 100%;
+    height: 500px;
+    background-size: cover;
+    background-image: url('https://images.pexels.com/photos/414171/pexels-photo-414171.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+}
+
+.container{
+    width: 100%;
+    max-width:90%;
+    height: 300px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+    text-align: center;
+    
+}
+
+.container::after{
+  content: "";
+  clear: both;
+}
+
+.first{
+    display: block;
+}
+
+.first-category{
+    background-color: green;
+    width: 100%;
+    max-width: 37%;
+    height: 300px;
+    display: inline-block;
+    margin: 0 20px 0 0;
+    background-image: url('https://images.pexels.com/photos/263929/pexels-photo-263929.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+    background-size: cover;
+}
+
+.second-category{
+    background-color: greenyellow;
+    width: 100%;
+    max-width: 60%;
+    height: 300px;
+    margin: 0 ;
+    display: inline-block;
+    background-image: url('https://images.pexels.com/photos/1145368/pexels-photo-1145368.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+    background-size: cover;
+}
+
+
+.third-category{
+    width: 100% ;
+    max-width: 60%;
+    height: 300px;
+    background-color: indigo;
+    margin-top: 20px;
+    display: inline-block;
+    margin: 20px 20px 0 0;
+    background-image: url('');
+}
+
+.fourth-category{
+    width: 100%;
+    max-width: 37.5%;
+    background-color: lightblue;
+    height: 300px;
+    display: inline-block;
+    background-image: url('https://images.pexels.com/photos/2365457/pexels-photo-2365457.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+    background-size: cover;
+}
+
+.fifth-category{
+    width: 100%;
+    height: 300px;
+    background-color: hotpink;
+    margin-top: 20px;
+    display: block;
+}
+.five-category{
+    width: 100%;
+    height: 300px;
+    background-color: hotpink;
+    margin-top: 20px;
+    display: block;
+}
+
+.clear{
+    clear: both;
+}
+
+.secondary-banner{
+   width: 100%;
+   height: 300px;
+   background-color: lightsalmon;
+   margin-top: 20px;
+   
+}

@@ -6,12 +6,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Operator List</h1>
+            <h1>Transaction</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Operator List</li>
+              <li class="breadcrumb-item active">Transaction </li>
             </ol>
           </div>
         </div>
@@ -25,127 +25,45 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
+                    <th>ID</th>
+                    <th>ID Order</th>
                     <th>Name</th>
                     <th>Email</th>
-                    <th>Alamat</th>
-                    <th>Nomor Telephone</th>
-                    <th>Status</th>
+                    <th>No Handphone</th>
+                    <th>Ekspedisi</th>
+                    <th>Courier</th>
+                    <th>Ongkir</th>
+                    <th>Discount</th>
+                    <th>Total product</th>
+                    <th>Total</th>
                     <th>Setting</th>
                   </tr>
                   </thead>
                   <tbody>
+                    <?php $no=1; foreach ($transaksi as $key => $value):?>
                   <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 4.0
+                    <td><?= $value['id'] ?></td>
+                    <td><?= $value['id_order'] ?></td>
+                    <td><?= $value['nama'] ?></td>
+                    <td><?= $value['email'] ?></td>
+                    <td><?= $value['no_tlp'] ?></td>
+                    <td><?= $value['ekspedisi'] ?></td>
+                    <td><?= $value['courier'] ?></td>
+                    <td><?= $value['harga_kurir'] ?></td>
+                    <td><?= $value['discount'] ?></td>
+                    <td>
+                      <?php 
+                      $id_transaksi = $value['id'];
+                      $query = $this->db->query("SELECT SUM(total_product) as jumlah from detail_transaksi WHERE id_transaksi='$id_transaksi'")->row_array();
+                      echo $query['jumlah'];
+                      ?>
                     </td>
-                    <td>Win 95+</td>
-                    <td> 4</td>
-                    <td> 4</td>
-                    <td>X</td>
+                    <td><?= $value['total'] ?></td>
+                    <td>
+                    <button type="submit" class="btn btn-primary w-100 mb-1" data-toggle="modal" data-target="#exampleModal<?= $no++;  ?>">Resi <i class="fa fa-book"></i> </button>  
+                    <button type="submit" class="btn btn-warning w-100">Print <i class="fas fa-print"></i> </button>  </td>
                   </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 5.0
-                    </td>
-                    <td>Win 95+</td>
-                    <td>Win 95+</td>
-                    <td>5</td>
-                    <td>C</td>
-                  </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 5.5
-                    </td>
-                    <td>Win 95+</td>
-                    <td>5.5</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 6
-                    </td>
-                    <td>Win 98+</td>
-                    <td>6</td>
-                    <td>6</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet Explorer 7</td>
-                    <td>Win XP SP2+</td>
-                    <td>7</td>
-                    <td>A</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>AOL browser (AOL desktop)</td>
-                    <td>Win XP</td>
-                    <td>Win XP</td>
-                    <td>6</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Gecko</td>
-                    <td>Firefox 1.0</td>
-                    <td>Firefox 1.0</td>
-                    <td>Win 98+ / OSX.2+</td>
-                    <td>1.7</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Gecko</td>
-                    <td>Firefox 1.5</td>
-                    <td>Win 98+ / OSX.2+</td>
-                    <td>1.8</td>
-                    <td>A</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Gecko</td>
-                    <td>Firefox 2.0</td>
-                    <td>Win 98+ / OSX.2+</td>
-                    <td>1.8</td>
-                    <td>1.8</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Gecko</td>
-                    <td>Firefox 3.0</td>
-                    <td>Win 2k+ / OSX.3+</td>
-                    <td>Win 2k+ / OSX.3+</td>
-                    <td>1.9</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Gecko</td>
-                    <td>Camino 1.0</td>
-                    <td>OSX.2+</td>
-                    <td>1.8</td>
-                    <td>1.8</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Gecko</td>
-                    <td>Camino 1.5</td>
-                    <td>OSX.3+</td>
-                    <td>1.8</td>
-                    <td>1.8</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Gecko</td>
-                    <td>Netscape 7.2</td>
-                    <td>Win 95+ / Mac OS 8.6-9.2</td>
-                    <td>1.7</td>
-                    <td>A</td>
-                    <td>A</td>
-                  </tr>
+                  <?php endforeach; ?>
                   </tbody>
                   
                 </table>
@@ -163,3 +81,23 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+  <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

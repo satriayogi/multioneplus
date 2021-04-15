@@ -17,6 +17,10 @@ class Transaksi_customer extends CI_Controller{
         $data['keranjang'] = $this->transaksi->viewkeranjang();
         $this->load->view('customer/transaksi/transaksi',$data);
     }
+    public function transaksi(){
+        $data['customer'] = $this->product->viewcustomer()->row_array();
+        $this->load->view('customer/transaksi/transaksi1',$data);
+    }
     public function pluskeranjang(){
         $this->transaksi->pluskeranjang();
     }
