@@ -39,6 +39,11 @@ class Product_model extends CI_Model{
 public function list_product(){
     return $this->db->get('product')->result_array();
 }
+public function category_product(){
+    $uri = $this->uri->segment(3);
+    // var_dump($uri);die;
+    return $this->db->query("select * FROM product,category_product,category WHERE category.id='$uri' AND category_product.id_product=product.id AND category_product.id_category=category.id")->result_array();
+}
 }
 
 

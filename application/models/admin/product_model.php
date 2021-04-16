@@ -11,7 +11,6 @@
          $this->db->select('*');
          $this->db->from('product');
          $this->db->join('gambar','product.id=gambar.id_product');
-         $this->db->join('category','product.id_category=category.id');
          $query = $this->db->get();
          return $query->result_array();
         }
@@ -51,7 +50,6 @@
 // end uploads
         $data2 = [
             'nama_product' =>$nama_product,
-            'id_category' =>$category,
             'keterangan' =>$keterangan,
             'harga' =>$price,
             'stok' =>$quantity,
@@ -75,7 +73,14 @@
             'gambar4' =>$gambar4,
         ];
         $this->db->insert('gambar',$data);
-
+        $result2 = array();
+        foreach ($category as $key1 => $value1) {
+            $result2[] = array(
+                'id_product' =>$id,
+                'id_category' => $category[$key1]
+            );
+        }
+        $this->db->insert_batch('category_product',$result2);
         // $data3=[
         //     'id_product'=>$id,
         //     'birumuda'=>$birumuda,
@@ -158,7 +163,6 @@
          $gambar4value = $this->input->post('gambar14');
          $warna = $this->input->post('warna');
          $diskon = $this->input->post('discount');
-         
          $config['upload_path'] = './assets/admin/img/product/'; //path folder
          $config['allowed_types'] = 'jpg|png|jpeg'; //type yang dapat diakses bisa anda sesuaikan
          $config['encrypt_name'] = false; //nama yang terupload nantinya

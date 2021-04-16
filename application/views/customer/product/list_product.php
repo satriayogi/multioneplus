@@ -10,14 +10,14 @@
         <div class=products>
             <div class="category">
                 <ul>
-                    <li><a href=""> ALL</a></li>
-                    <li><a href=""> Kisds Mask</a></li>
-                    <li> <a href="">  5 Pleats Mask </a></li>
-                    <li> <a href=""> Duckbill Mask</a></li>
-                    <li> <a href=""> Surgery Mask</a></li>
+                    <li><a href="<?= base_url('product_customer/list_product') ?>"> ALL</a></li>
+                    <?php
+                    foreach ($category as $category1):
+                        ?>
+                        <li><a href="<?= base_url('product_customer/category_product/'.$category1['id']) ?>"><?= $category1['nama_category'] ?></a></li>
+                    <?php endforeach; ?>
                 </ul>
               </div>
-
             <ul class="product-display">
                 <?php foreach ($list_product as $value):?>
                 <li>
@@ -25,14 +25,15 @@
                     <div class="product-display-each">
                         <h1 style="padding-top:5px;">
                     <?php 
-
-                        $id_category = $value['id_category'];
-                        $category = $this->db->get_where('category',['id'=>$id_category])->row_array();
-                        echo $category['nama_category'];
+                        $id = $value['id'];
+                        // $id_category = $value['id_category'];
+                        $category = $this->db->query("SELECT * FROM category JOIN category_product WHERE category_product.id_product='$id' AND category_product.id_category=category.id")->result_array();
+                        foreach ($category as $category) {
+                            echo $category['nama_category'].' ';
+                        }
 ?>
                     </h1>
                         <?php 
-                        $id = $value['id'];
                         $query = $this->db->get_where('gambar',['id_product'=>$id])->row_array();
 
                         ?>
@@ -41,7 +42,6 @@
                             <h3> <?= $value['nama_product']; ?></h3>
                             <h5> <?= $value['keterangan']; ?> </h5>
                             <span class="price">Rp <?= $value['harga'] ?></span>
-
                             <input type="hidden" name="id_customer" value="<?= $customer['id'] ?>">
                             <input type="hidden" name="id_product" value="<?= $value['id'] ?>">
                             <input type="hidden" name="pcs" value="1">

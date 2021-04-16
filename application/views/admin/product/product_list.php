@@ -42,7 +42,15 @@
                    foreach ($product as $product):?>
                   <tr>
                     <td><?= $product['nama_product'] ?></td>
-                    <td><?= $product['nama_category'] ?></td>
+                    <td>
+                    <?php 
+                    $id = $product['id_product'];
+                    $query = $this->db->query("SELECT * FROM category JOIN category_product WHERE category_product.id_product='$id' AND category_product.id_category=category.id")->result_array();
+                    foreach ($query as  $category) {
+                      echo $category['nama_category'].',';
+                    }
+                    ?>
+                    </td>
                     <td><?= $product['keterangan'] ?></td>
                     <td>
                     <div class="col-md-15">
@@ -94,7 +102,6 @@
                   </tr>
                  <?php endforeach; ?>
                   </tbody>
-                  
                 </table>
               </div>
               <!-- /.card-body -->
