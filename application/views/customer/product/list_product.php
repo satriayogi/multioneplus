@@ -27,10 +27,7 @@
                     <?php 
                         $id = $value['id'];
                         // $id_category = $value['id_category'];
-                        $category = $this->db->query("SELECT * FROM category JOIN category_product WHERE category_product.id_product='$id' AND category_product.id_category=category.id")->result_array();
-                        foreach ($category as $category) {
-                            echo $category['nama_category'].' ';
-                        }
+                       
 ?>
                     </h1>
                         <?php 
@@ -39,7 +36,10 @@
                         ?>
                         <a href="<?= base_url('product_customer/detail_product/'.$customer['id'].'/'.$id) ?>"><img src="<?= base_url() ?>assets/admin/img/product/<?= $query['gambar'] ?>" alt="" style="width: 80%; height:200px; margin-top: 40px;"></a>
                         <div class="product-title" >
-                            <h3> <?= $value['nama_product']; ?></h3>
+                            <h3> <?php  $category = $this->db->query("SELECT * FROM category JOIN category_product WHERE category_product.id_product='$id' AND category_product.id_category=category.id")->result_array();
+                        foreach ($category as $category) {
+                            echo $category['nama_category'].' ';
+                        } ?></h3>
                             <h5> <?= $value['keterangan']; ?> </h5>
                             <span class="price">Rp <?= $value['harga'] ?></span>
                             <input type="hidden" name="id_customer" value="<?= $customer['id'] ?>">

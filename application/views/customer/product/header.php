@@ -17,6 +17,16 @@
 .product-title{
 margin: 15% auto;
 }
+.products .product-display li {
+    background: #f7f5f6;
+    width: 100%;
+    max-width: 20%;
+    margin: 0 50px 120px 0px;
+    text-align: center;
+    height: 440px;
+    display: inline-block;
+    vertical-align: top;
+}
   
     </style>
 </head>

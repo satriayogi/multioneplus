@@ -45,6 +45,16 @@
 .tot-pcs {
     text-align: end;
 }
+.profile{
+    width: 30px !important;
+height: 30px;
+}
+.shopping-chart{
+    width: 30px !important;
+height: 30px;
+}
+
+
 /* @media screen and (min-width:1086px){
     .table-container{
       width: 100%;
@@ -54,18 +64,85 @@
     }
 
   } */
-  @media screen and (min-width:992px){
+      .table-checkout{
+        width: 50%;
+        font-size:12px;
+        float:right; 
+        margin-right: -10%;
+      }
+      .chart{
+        float:right; 
+        margin-top:5px; 
+        margin-bottom:20px; 
+        margin-right: -10%;
+      }
+      .image-chart{
+        width:100px;
+        height:100px; 
+        padding:0px;
+      }
+      @media screen and (max-width:992px){
+      .image-chart{
+        width:70px;
+        height:70px; 
+        padding:0px;
+      }
+      .chart{
+          margin-top:5px; 
+          float: right;
+margin-right: 2%;
+margin-bottom:20px; 
+        font-size:12px;
+    }
     footer{
         height: 110px;
         background-color: #445555;
         width: 100%;
         bottom: 0;
-      }
-      .table-container{
-        width: 80%;
-      }
-      .table-checkout{
+    }
+    .table-container{
+        /* width: 30%; */
+        border-collapse: collapse;
+        width: 100%;
+      display:block;
+      overflow:scroll;
+      border-spacing: 0;
+      font-size:12px;
+    }
+    .table-checkout{
         width: 50%;
+        font-size:12px;
+        float: right;
+        margin-right: 2%;
+    }
+    }
+    @media screen and (min-width:400px){
+        .image-chart{
+          width:40px;
+          height:40px; 
+          padding:0px;
+        }
+        .table-container, .table-container tbody{
+          /* width: 30%; */
+          border-collapse: collapse;
+          width: 100%;
+          display:block;
+          /* overflow:scroll; */
+    border-spacing: 0;
+    font-size:12px;
+}
+.table-checkout{
+    width: 50%;
+          font-size:12px;
+          float: right;
+          margin-right: 2%;
+        }
+        .chart{
+            margin-top:5px; 
+        float: right;
+margin-right: 2%;
+        margin-bottom:20px; 
+        font-size:12px;
       }
     }
 </style>
@@ -84,9 +161,14 @@
           <li><a href=""> About MOP</a></li>
           <li><a href=""> Shop </a></li>
           <li><a href=""> Contact</a></li>
+          <li><a href="<?= base_url('checkout/index') ?>"> <img src="<?= base_url() ?>assets/customer/img/shopping chart.png" class="shopping-chart" alt=""></a></li>
+          <li><a href=""> <img src="<?= base_url() ?>assets/customer/img/profile.png" class="profile" alt=""></a></li>
         </ul>
-      </div>
+        </div>
     </div>
+    <section class="keranjang">
+
+    
     <div class="container border-cont">
         <!-- <div class="border-container"> -->
         <form action="<?= base_url()?>buy/finish" id="payment-form" method="post">
@@ -96,7 +178,7 @@
                 <span>your shopping cart</span>
                 <img src="<?=  base_url() ?>assets/customer/img/logo-mutil-plus-one2.png" alt="">
             </div>
-            <table class="table-container">
+            <table class="table-container" style="overflow-x:auto;">
                 <tr>
                     <th>Name:</th>
                     <th>No Telephone:</th>
@@ -168,7 +250,7 @@
                         $id_product = $value['id_product'];
                         $gambar = $this->db->query("SELECT * FROM gambar WHERE gambar.id_product='$id_product'")->row_array();
                         ?>
-                        <img src="<?= base_url("assets/admin/img/product/".$gambar['gambar']) ?>" alt="" style="width:100px;heihgt:100px; padding:0px;"> </td>
+                        <img src="<?= base_url("assets/admin/img/product/".$gambar['gambar']) ?>" alt="" class="image-chart"> </td>
                     <td>
                         <?php 
                         $id_keranjang = $value['id'];
@@ -203,7 +285,7 @@
                     <?php endforeach; ?>
                
             </table>
-            <table style="float:right; margin-right: -10%;" class="table-checkout">
+            <table style="" class="table-checkout">
             <div class="transaksi">
                     <tr class="kupon">
                         <td colspan="7"> <span>Kode Kupon:</span> </td>
@@ -256,7 +338,7 @@
                     </tr>
                 </div>
             </table>
-            <div class="chart" style="float:right; margin-top:5px; margin-bottom:20px; margin-right: -10%;">
+            <div class="chart" style="">
                         <a href="" class="btn-chart1" style="width: 50px;
   text-decoration: none;
   padding: 10px;
@@ -284,6 +366,7 @@
         </form>
     <!-- </div> -->
 </div>
+</section>
 </section>
 <!-- Footer -->
 <div class="footer">

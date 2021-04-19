@@ -124,6 +124,10 @@ vertical-align: middle;
     <li><a href=""> Shop </a></li>
     <li><a href=""> Contact</a></li>
 </ul>
+<!-- <div class="icon">
+              <img src="<?= base_url() ?>assets/customer/img/shopping chart.png" alt="">
+              <img src="<?= base_url() ?>assets/customer/img/profile.png" alt="">
+            </div> -->
 </div>
 </div>
 <!-- Detail Product -->
@@ -204,10 +208,12 @@ $('#img1').attr('src',image_element);
 </h2>
 <h4>
 <?php
-                $category = $product_detail['id_category'];
-                $query = $this->db->get_where('category',['id'=>$category])->row_array();
-                echo $query['nama_category'];
+                $category = $product_detail['id'];
+                $query = $this->db->query("SELECT * FROM product,category,category_product WHERE category_product.id_product='$category' AND product.id=category_product.id_product AND category.id=category_product.id_category")->result_array();
+                foreach ($query as $category) :
                 ?>
+    <?= $category['nama_category']; ?>
+                <?php endforeach; ?>
                 <!-- 5 Pleats Mask isi 30 pcs -->
             </h4>
             <span> <b>RP.</b> <?= $product_detail['harga'] ?></span>
