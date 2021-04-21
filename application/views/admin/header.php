@@ -142,7 +142,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link"  href="<?= base_url('login/index') ?>" role="button">
+        <a class="nav-link"  href="<?= base_url('login/logout') ?>" role="button">
         <i class="fas fa-sign-out-alt"></i>
         </a>
       </li>

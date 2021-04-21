@@ -16,6 +16,13 @@ class Transaksi extends CI_Controller{
         $this->load->view('admin/customer/transaksi_customer_list',$data);
         $this->load->view('admin/footer');
     }
+    public function print(){
+        $data['print'] = $this->transaksi->print();
+        $this->load->view('admin/customer/print',$data);
+    }
+    public function update_transaksi(){
+        $this->transaksi->update_transaksi();
+    }
 }
 
 

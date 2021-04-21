@@ -6,9 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="<?= base_url() ?>assets/customer/css/transaksi_checkout.css">
-    <script type="text/javascript"
+    <!-- <script type="text/javascript"
     src="https://app.midtrans.com/snap/snap.js"
-            data-client-key="Mid-client-9OwE4jwH-GGHDT3x"></script>
+            data-client-key="Mid-client-9OwE4jwH-GGHDT3x"></script> -->
+    <script type="text/javascript"
+    src="https://app.sandbox.midtrans.com/snap/snap.js"
+            data-client-key="SB-Mid-server-JxcoOpQw8TxjcCBt8mgspLwu"></script>
 <script src="<?= base_url() ?>assets/admin/plugins/jquery/jquery.min.js"></script>
 <!-- Font Awesome -->
 <link rel="stylesheet" href="<?= base_url() ?>assets/admin/plugins/fontawesome-free/css/all.min.css">
@@ -192,7 +195,8 @@ margin-right: 2%;
                 <tr class="customer">
                     <td>
                         <span><?= $customer['nama'] ?></span> 
-                        <input type="hidden" name="id_customer" value="<?= $customer['id'] ?>" id="id_customer"></td>
+                        <input type="hidden" name="id_customer" value="<?= $customer['id'] ?>" id="id_customer">
+                        </td>
                         <input type="hidden" name="nama_customer" value="<?= $customer['nama'] ?>" id="nama_customer"></td>
                     <td>
                         <span><?= $customer['no_tlp'] ?></span> 

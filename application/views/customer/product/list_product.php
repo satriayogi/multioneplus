@@ -1,12 +1,18 @@
        <!-- Online Store Start HERE -->
+       <style>
+           html {
+  scroll-behavior: smooth;
+}
+
+       </style>
        <div class="full-banner">
            <div class="text-banner">
                <h2> Daily Mask</h2>
                <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus non dolores praesentium magnam! Modi sint sapiente aperiam cum explicabo aliquid magni, quisquam consequuntur ad, veritatis quis laborum recusandae eaque illum.</p>
-               <button> <a href=""> Beli Sekarang</a></button>
+               <button> <a href="#online-store"> Beli Sekarang</a></button>
            </div>
        </div>
-       <section class="online-store">
+       <section class="online-store" id="online-store">
         <div class=products>
             <div class="category">
                 <ul>

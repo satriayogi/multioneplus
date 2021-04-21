@@ -4,7 +4,7 @@ class Buy extends CI_Controller{
     function __construct(){
         parent::__construct();
         $this->load->model("customer/product_model","product");
-        $params = array('server_key' => 'Mid-server-4rjeM1qPkfvzU_dCr3ZCaT8j', 'production' => true);
+        $params = array('server_key' => 'SB-Mid-server-JxcoOpQw8TxjcCBt8mgspLwu', 'production' => false);
 		$this->load->library('midtrans');
 		$this->midtrans->config($params);
     }
@@ -161,6 +161,7 @@ class Buy extends CI_Controller{
 		$kurirr = $this->input->post("kurirr");
 		$ekpedisi = $this->input->post("ekpedisi");
 		$provinsi = $this->input->post("provinsi");
+		$idkeranjang = $this->input->post("id_keranjang");
 
 		$id_customer = $this->input->post("id_customer");
 
@@ -169,10 +170,10 @@ class Buy extends CI_Controller{
 		$hargaproduct = $this->input->post("harga");
 		$qty1 = $this->input->post("qty1");
 		$totalproduct = $this->input->post("totalproduct");
-
+		// delete keranjang
+		$this->db->query("DELETE FROM keranjang where id_customer='$id_customer'");
 		// warna
 		$warna = $this->input->post("warna");
-
 		$data=[
 			'id_customer'=>$id_customer,
 			'id_order'=>$order_id,

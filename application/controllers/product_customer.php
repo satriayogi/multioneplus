@@ -5,7 +5,7 @@ class Product_customer extends CI_Controller{
     $this->load->model('customer/product_model','product');
     $this->load->model('admin/category_model','category');
         if (!$this->session->userdata('username') || !$this->session->userdata('email')) {
-            redirect('login/customer');
+            redirect('loginc/customer');
         }
     }
 public function index(){
@@ -28,7 +28,7 @@ public function list_product(){
     $data['customer'] = $this->product->viewcustomer()->row_array();
     $data['list_product'] = $this->product->list_product();
     $data['category']=$this->category->read_category();
-    $this->load->view('customer/product/header');
+    $this->load->view('customer/product/header',$data);
     $this->load->view('customer/product/list_product',$data);
 }
 public function add_keranjanglist(){
@@ -38,7 +38,7 @@ public function category_product(){
     $data['customer'] = $this->product->viewcustomer()->row_array();
     $data['category']=$this->category->read_category();
     $data['category_product'] = $this->product->category_product();
-    $this->load->view('customer/product/header');
+    $this->load->view('customer/product/header',$data);
     $this->load->view('customer/product/category_product',$data);
 }
 }

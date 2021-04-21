@@ -6,9 +6,9 @@ class Transaksi_customer extends CI_Controller{
         $this->load->model('customer/product_model','product');
         $this->load->model('customer/transaksi_model','transaksi');
         if (! $this->session->userdata('username')) {
-            redirect('login/customer');
+            redirect('loginc/customer');
         }elseif (!$this->session->userdata('email')) {
-            redirect('login/customer');
+            redirect('loginc/customer');
             
         }
     }

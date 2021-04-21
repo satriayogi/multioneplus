@@ -6,6 +6,9 @@ class Checkout extends CI_Controller{
         $this->load->model('customer/transaksi_model','transaksi');
         $this->load->library('ongkir');
         // $this->load->model('customer/checkout_model','checkout');
+        if (!$this->session->userdata('username')) {
+            redirect('loginc/customer');
+        }
     }
 
 	public function save_transaksi(){

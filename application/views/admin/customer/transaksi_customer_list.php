@@ -31,6 +31,7 @@
                     <th>Email</th>
                     <th>No Handphone</th>
                     <th>Ekspedisi</th>
+                    <th>No Resi</th>
                     <th>Courier</th>
                     <th>Ongkir</th>
                     <th>Discount</th>
@@ -48,6 +49,7 @@
                     <td><?= $value['email'] ?></td>
                     <td><?= $value['no_tlp'] ?></td>
                     <td><?= $value['ekspedisi'] ?></td>
+                    <td><?= $value['no_resi'] ?></td>
                     <td><?= $value['courier'] ?></td>
                     <td><?= $value['harga_kurir'] ?></td>
                     <td><?= $value['discount'] ?></td>
@@ -60,8 +62,8 @@
                     </td>
                     <td><?= $value['total'] ?></td>
                     <td>
-                    <button type="submit" class="btn btn-primary w-100 mb-1" data-toggle="modal" data-target="#exampleModal<?= $no++;  ?>">Resi <i class="fa fa-book"></i> </button>  
-                    <button type="submit" class="btn btn-warning w-100">Print <i class="fas fa-print"></i> </button>  </td>
+                    <button type="button" class="btn btn-primary w-100 mb-1" data-toggle="modal" data-target="#exampleModal<?= $value['id'] ?>">Resi <i class="fa fa-book"></i> </button>  
+                    <a href="<?= base_url('transaksi/print/'.$value['id']) ?>" target="_blank" class="btn btn-warning w-100"> Print <i class="fas fa-print"></i></a></td>
                   </tr>
                   <?php endforeach; ?>
                   </tbody>
@@ -82,7 +84,8 @@
   </div>
   <!-- /.content-wrapper -->
   <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <?php foreach ($transaksi as $key1 => $value1):?>
+<div class="modal fade" id="exampleModal<?= $value1['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -91,13 +94,32 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+      <form action="<?= base_url('transaksi/update_transaksi') ?>" method="post">
+        <div class="modal-body">
+          <div class="form-group row">
+            <label for="" class="col-sm-2 col-form-label">No resi</label>
+            <input type="text" name="noresi" id="" class="form-control col-sm-10">
+            <input type="hidden" name="id" id="" class="form-control col-sm-10" value="<?= $value1['id'] ?>">
+            <input type="hidden" name="id_customer" id="" class="form-control col-sm-10" value="<?= $value1['id_customer'] ?>">
+            <input type="hidden" name="id_order" id="" class="form-control col-sm-10" value="<?= $value1['id_order'] ?>">
+            <input type="hidden" name="kodepos" id="" class="form-control col-sm-10" value="<?= $value1['kodepos'] ?>">
+            <input type="hidden" name="provinsi" id="" class="form-control col-sm-10" value="<?= $value1['provinsi'] ?>">
+            <input type="hidden" name="kota" id="" class="form-control col-sm-10" value="<?= $value1['kota'] ?>">
+            <input type="hidden" name="ekspedisi" id="" class="form-control col-sm-10" value="<?= $value1['ekspedisi'] ?>">
+            <input type="hidden" name="courier" id="" class="form-control col-sm-10" value="<?= $value1['courier'] ?>">
+            <input type="hidden" name="jenis_paket" id="" class="form-control col-sm-10" value="<?= $value1['jenis_paket'] ?>">
+            <input type="hidden" name="harga_kurir" id="" class="form-control col-sm-10" value="<?= $value1['harga_kurir'] ?>">
+            <input type="hidden" name="discount" id="" class="form-control col-sm-10" value="<?= $value1['discount'] ?>">
+            <input type="hidden" name="total" id="" class="form-control col-sm-10" value="<?= $value1['total'] ?>">
+            <input type="hidden" name="alamat" id="" class="form-control col-sm-10" value="<?= $value1['alamat'] ?>">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>
+<?php endforeach; ?>
