@@ -18,7 +18,7 @@ class Checkout extends CI_Controller{
 
     public function index(){
         $data['customer'] = $this->product->viewcustomer()->row_array();
-        $data['customer'] = $this->product->viewcustomer()->row_array();
+        
         $this->load->view('customer/transaksi/checkout',$data);
     }
    

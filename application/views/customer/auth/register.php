@@ -88,7 +88,7 @@
          
             <!-- /.col -->
             <div style="width:100%">
-                <a href="<?= base_url('login/customer') ?>" class="btn btn-danger float-right " >Cancel</a> 
+                <a href="<?= base_url('loginc/customer') ?>" class="btn btn-danger float-right " >Cancel</a> 
                 <button type="submit" class="btn btn-primary float-right mr-2">Submit</button>
             </div>
                 

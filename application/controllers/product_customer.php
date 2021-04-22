@@ -24,13 +24,6 @@ public function add_transaksi(){
         redirect('checkout/index');
     }
 }
-public function list_product(){
-    $data['customer'] = $this->product->viewcustomer()->row_array();
-    $data['list_product'] = $this->product->list_product();
-    $data['category']=$this->category->read_category();
-    $this->load->view('customer/product/header',$data);
-    $this->load->view('customer/product/list_product',$data);
-}
 public function add_keranjanglist(){
     $uri = $this->uri->segment(4);
 }

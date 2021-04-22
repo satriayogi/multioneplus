@@ -28,7 +28,7 @@ class Loginc extends CI_Controller{
                         ];
                         
                         $this->session->set_userdata($data);
-                        redirect('product_customer/list_product');
+                        redirect('list_product/index');
                     }else{
                         $this->session->set_flashdata('message','<script>Swal.fire({icon: "error",title: "Oops...",text: "sorry the password you entered is wrong"})</script>');
                     redirect('loginc/customer');
@@ -50,7 +50,7 @@ class Loginc extends CI_Controller{
         $this->session->unset_userdata('email');
         $this->session->unset_userdata('username');
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">You have been logged out!</div>');
-        redirect('loginc/customer');
+        redirect('list_product/index');
     }
 }
 

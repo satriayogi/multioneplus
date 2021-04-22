@@ -217,6 +217,7 @@ class Buy extends CI_Controller{
     	// echo 'RESULT <br><pre>';
     	// var_dump($result);
     	// echo '</pre>' ;
+		redirect("transaksi_customer/detail_transaksi");
 
     }
 }
