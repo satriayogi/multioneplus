@@ -186,6 +186,13 @@ ul li .dropdown li {
                 $ha = $this->db->query("SELECT COUNT(id_customer) as jumlah FROM keranjang WHERE id_customer='$id_customer'")->row_array();
           echo  $ha['jumlah'];
 ?>
+ <?php 
+        if ($customer['id'] == null) :
+      ?> 
+      <li class="nav-item">
+      <a class="nav-link" href="<?= base_url('loginc/customer') ?>">Login</a>
+    </li>
+    <?php else: ?>
               </span> <img src="<?= base_url() ?>assets/customer/img/profile.png" style="width:30px;height:30px;" alt=""></a>
               <ul class="dropdown">
               <li> <a href="asds"> Profile</a></li>
@@ -193,6 +200,7 @@ ul li .dropdown li {
               <li> <a href="<?= base_url('login/logout_customer') ?>"> Logout </a></li>
               </ul>
               </li>
+              <?php endif; ?>
 </ul>
 <!-- <div class="icon">
               <img src="<?= base_url() ?>assets/customer/img/shopping chart.png" alt="">
@@ -559,7 +567,7 @@ margin-top: -16px;"></i></button>
 <footer class="footer">
 <div class="container subfooter">
 <div class="address">
-    <img src="img/logo-mutil-plus-one1 (1).png" alt="" class="footer-img">
+    <img src="<?= base_url() ?>assets/customer/img/logo-mutil-plus-one1 (1).png" alt="" class="footer-img">
     <div class="company-addres1">
         <p class="company">PT. MULTI ONE PLUS</p>
         <p class="company-address">Jl.Barokah, Kp Parungdengdek, No.09 Kelurahan Wanaherang, Kec. Gunung Putri, Kab.Bogor Provinsi, Jawa Barat</p>

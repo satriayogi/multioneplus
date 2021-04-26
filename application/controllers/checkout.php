@@ -19,7 +19,7 @@ class Checkout extends CI_Controller{
     public function index(){
         $data['customer'] = $this->product->viewcustomer()->row_array();
         
-        $this->load->view('customer/transaksi/checkout',$data);
+        $this->load->view('customer/transaksi/checkout3',$data);
     }
    
     public function provinsi(){

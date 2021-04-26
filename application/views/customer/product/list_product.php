@@ -66,7 +66,7 @@
                         ?>
   <div class="col mb-3">
     <div class="card" style="background-color:#f7f5f6; border:none">
-    <a href="<?= base_url('product_customer/detail_product/'.$customer['id'].'/'.$id) ?>"> <img src="<?= base_url() ?>assets/admin/img/product/<?= $query['gambar'] ?>" class="card-img-top img-product" alt="<?= base_url() ?>assets/admin/img/product/<?= $query['gambar'] ?>"></a>
+    <a href="<?= base_url('product_customer/detail_product/'.$id) ?>"> <img src="<?= base_url() ?>assets/admin/img/product/<?= $query['gambar'] ?>" class="card-img-top img-product" alt="<?= base_url() ?>assets/admin/img/product/<?= $query['gambar'] ?>"></a>
       <div class="card-body">
         <h5 class="card-title">   <h3 style="text-align:center;"> <?php  $category = $this->db->query("SELECT * FROM category JOIN category_product WHERE category_product.id_product='$id' AND category_product.id_category=category.id")->result_array();
                         foreach ($category as $category) {

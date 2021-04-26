@@ -1,0 +1,57 @@
+
+/* GENERAL SETTING - START HERE */
+*{ margin: 0;  padding: 0; font-family: montserrat; }
+section{ max-width: 60%; margin: 0 auto;}
+/* GENERAL SETTING - END HERE */
+/* ------------- */
+/* TABBLE SETTING - START */
+.alamat h2{ display: inline-block; color: #445555;}
+.alamat button{
+    padding: 5px;
+    border-radius: 10px;
+    border: none;
+    width: 20%;
+    background: #1ba95d;
+    color: white;
+    margin-left: 20px;
+}
+table{ width: 100%; }
+tr{ display: flex;}
+tr:nth-child(even){background-color: #f2f2f2; margin: 10px 0;}
+td{flex: 1; margin-top: 0px; padding: 10px 0;}
+table select{ background: #d4d4d4; border: none; padding: 2px; border-radius: 5px;}
+/* TABBLE SETTING - END */
+/* ------------- */
+/* KERANJANG - START*/
+.keranjang{ margin-bottom: 50px ;}
+.keranjang h2{color: #445555;}
+.keranjang-flex{display: flex; margin: 20px auto; border-bottom: 1px solid #cccccc; padding-bottom: 30px;}
+.foto-produk{ background-color: white; border-radius: 20px; padding: 10px; box-shadow: 0px 0px 5px #cccccc;}
+.detail-keranjang{margin-left: 30px;  flex: 3;}
+.detail-keranjang h3{color: #445555;}
+.detail-keranjang span{margin: 20px 0; font-size: 14px;}
+.detail-keranjang button{
+    background-color: #e2e2e2;
+    padding: 5px;
+    border: none ;
+    border-radius: 5px;
+}
+.total-produk{float: right; text-align: right; }
+/* KERANJANG - END */
+/* ------------- */
+/* RESPONSIVE TAB */
+@media (min-width: 481px) and (max-width: 767px){
+section{ max-width: 80%;}
+table{ font-size: 12px;}
+.alamat h2{ display: block;}
+.alamat button{ width: 200px; margin: 0;}
+.detail-keranjang h3{ font-size: 14px;}
+}
+/* RESPONSIVE MOBILE */
+@media (min-width: 320px) and (max-width: 480px){
+section{ max-width: 90%;}
+.alamat h2{ font-size: 20px;}
+.alamat button{ margin: 0; width: 150px; }
+table{ font-size: 12px;}
+.detail-keranjang h3 {font-size: 16px;}
+}

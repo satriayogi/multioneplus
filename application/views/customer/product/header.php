@@ -136,7 +136,7 @@ ul li .dropdown li {
         <a class="nav-link" href="<?= base_url() ?>list_product/index">Shop</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Contact</a>
+        <a class="nav-link" href="<?= base_url('kontak/index') ?>">Contact</a>
       </li>
       <li class="nav-item mr-3">
         <a class="nav-link" href="<?= base_url('checkout/index') ?>" style="background-color:#f7f5f6; border-radius:5px;"><img src="<?= base_url() ?>assets/customer/img/shopping chart.png" style="width:30px;height:30px;" alt="">

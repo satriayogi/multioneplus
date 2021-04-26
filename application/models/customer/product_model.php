@@ -4,7 +4,7 @@ class Product_model extends CI_Model{
         return $this->db->get_where('customer',['username'=>$this->session->userdata('username')]);
     }
     public function detailproductrow(){
-        $uri = $this->uri->segment(4);
+        $uri = $this->uri->segment(3);
       return  $this->db->get_where('product',['id'=>$uri])->row_array();
     }
     public function save_keranjang(){
@@ -34,7 +34,6 @@ class Product_model extends CI_Model{
         );
     }
     $this->db->insert_batch('keranjang_warna',$result);
-    redirect('product_customer/list_product/');
 }
 public function list_product(){
     return $this->db->get('product')->result_array();

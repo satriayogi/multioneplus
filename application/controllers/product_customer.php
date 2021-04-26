@@ -4,9 +4,7 @@ class Product_customer extends CI_Controller{
         parent::__construct();
     $this->load->model('customer/product_model','product');
     $this->load->model('admin/category_model','category');
-        if (!$this->session->userdata('username') || !$this->session->userdata('email')) {
-            redirect('loginc/customer');
-        }
+       
     }
 public function index(){
 
@@ -19,8 +17,10 @@ public function detail_product(){
 public function add_transaksi(){
     if (isset($_POST['keranjang'])) {
         $this->product->save_keranjang();
+        redirect('list_product/index');
+        
     }elseif (isset($_POST['beli'])) {
-        $this->product->save_product();
+        $this->product->save_keranjang();
         redirect('checkout/index');
     }
 }

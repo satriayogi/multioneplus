@@ -85,7 +85,6 @@
         </div>
         <?= form_error('password2', '<small class="text-danger">', '</small>') ?>
         <div class="row">
-         
             <!-- /.col -->
             <div style="width:100%">
                 <a href="<?= base_url('loginc/customer') ?>" class="btn btn-danger float-right " >Cancel</a> 
