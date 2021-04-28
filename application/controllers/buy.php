@@ -69,7 +69,7 @@ class Buy extends CI_Controller{
 		  'id' => 'a1',
 		  'price' => $total_product,
 		  'quantity' => 1,
-		  'name' => "Apple"
+		  'name' => "Total Product"
 		);
 
 		// Optional
@@ -77,13 +77,13 @@ class Buy extends CI_Controller{
 		  'id' => 'a2',
 		  'price' => $hargaongkir,
 		  'quantity' => 1,
-		  'name' => "Orange"
+		  'name' => "Ongkos Kirim"
 		);
 		$item3_details = array(
 		  'id' => 'a3',
 		  'price' => -$discount,
 		  'quantity' => 1,
-		  'name' => "Orange"
+		  'name' => "Discount"
 		);
 
 		// Optional
@@ -168,10 +168,11 @@ class Buy extends CI_Controller{
 		// product
 		$product = $this->input->post("id_product");
 		$hargaproduct = $this->input->post("harga");
+		$stok = $this->input->post("stok");
 		$qty1 = $this->input->post("qty1");
 		$totalproduct = $this->input->post("totalproduct");
 		// delete keranjang
-		$this->db->query("DELETE FROM keranjang where id_customer='$id_customer'");
+		// $this->db->query("DELETE FROM keranjang where id_customer='$id_customer'");
 		// warna
 		$warna = $this->input->post("warna");
 		$data=[
@@ -193,13 +194,19 @@ class Buy extends CI_Controller{
 		$id_transaksi = $this->db->insert_id();
 		$result=array();
 		$result1=array();
+		$result2=array();
 		foreach ($product as $key => $value) {
+			// $item = $stok - $qty1;
 				$result[]= array(
 					'id_transaksi'=>$id_transaksi,
 					'id_product'=>$product[$key],
 					'harga'=>$hargaproduct[$key],
 					'pcs'=>$qty1[$key],
 					'total_product'=>$totalproduct[$key]	
+				);
+				$result2[]=array(
+					'id'=>$product[$key],
+					'stok'=>$stok[$key]
 				);
 				foreach ($warna as $key1 => $value) {
 					$result1[]=array(
@@ -209,10 +216,10 @@ class Buy extends CI_Controller{
 					);
 					
 				}
-		}
+			}
+			$this->db->update_batch('product',$result2,'id');
+			$this->db->insert_batch('detail_transaksiwarna',$result1);
 		$this->db->insert_batch('detail_transaksi',$result);
-		$this->db->insert_batch('detail_transaksiwarna',$result1);
-
     	// $result = json_decode($this->input->post('result_data'));
     	// echo 'RESULT <br><pre>';
     	// var_dump($result);

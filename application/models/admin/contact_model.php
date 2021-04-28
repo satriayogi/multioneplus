@@ -17,6 +17,9 @@ class Contact_model extends CI_Model{
         $this->session->set_flashdata('message','<script>alert("your message has been sent")</script>');
         redirect('kontak/index');
     }
+    public function list_contact(){
+        return $this->db->get('message')->result_array();
+    }
 }
 
 

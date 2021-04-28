@@ -195,7 +195,8 @@ ul li .dropdown li {
     <?php else: ?>
               </span> <img src="<?= base_url() ?>assets/customer/img/profile.png" style="width:30px;height:30px;" alt=""></a>
               <ul class="dropdown">
-              <li> <a href="asds"> Profile</a></li>
+              <li> <a href="<?= base_url('profile/index') ?>"> Profile</a></li>
+          <a class="dropdown-item" href="<?= base_url('profile/index') ?>">Riwayat Transaksi</a>
               <li> <a href="asd"> Change Password </a> </li>
               <li> <a href="<?= base_url('login/logout_customer') ?>"> Logout </a></li>
               </ul>

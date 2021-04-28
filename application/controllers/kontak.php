@@ -15,6 +15,7 @@ class Kontak extends CI_Controller{
     }
     public function kontak_list(){
         $data['admin']= $this->operator->viewadmin()->row_array();
+        $data['pesan']= $this->contact->list_contact();
         $this->load->view('admin/header',$data);
         $this->load->view('admin/kontak/kontak_list',$data);
         $this->load->view('admin/footer');

@@ -1,0 +1,82 @@
+*{
+margin: 0;
+padding: 0;
+font-family: montserrat;}
+.profile{
+    width: 100%;
+    max-width: 70%;
+    margin: 40px auto;
+    display: flex;
+    border-bottom: 2px solid #445656;
+    padding-bottom: 40px;
+}
+
+.profile-picture{
+    height: 400px;
+    width: 100%;
+    border-radius: 20px;
+    flex: 1;
+    overflow: hidden;
+}
+
+.profile-picture img{ position: relative; bottom:300px; right: 100px;}
+
+
+
+.profile-data{ flex: 1.5; padding-left: 40px; color: #445656; }
+.profile-data ul{list-style: none;  font-size: 20px; font-weight: 600;  }
+.profile-data ul li{display: flex; margin-top: 40px; font-size: 20px; align-items: center; }
+.profile-data ul li img{ height: 2em; }
+.profile-data ul li span{margin-left: 20px; }
+
+/* profile data main */
+.profile-data-main{display: flex; align-items: center; }
+.profile-data-main button {background-color: #1ba95d; border: none; padding: 10px; border-radius: 20px; width: 30%; margin-left: 20px;color: white; font-weight: 400;}
+
+/* RESPONSIVE */
+/* lowresolution tablets */
+@media (min-width: 481px) and (max-width: 767px){
+.profile{display: block;}
+.profile-data{margin-top: 40px;}
+}
+
+/* mobile-phone */
+@media (min-width: 320px) and (max-width: 480px){
+    .profile{ display: block; width: 80%;}
+    .profile-picture{height: 300px;}
+    .profile-data{padding: 0;}
+    .profile-data ul li{ font-size: 15px;}
+    .profile-data-main{display: block; }
+    .profile-data-main h2{margin: 20px auto;}
+    .profile-data-main button{ width: 100%; margin: 0;}
+}
+
+
+/* FORM */
+
+
+input, select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  input[type=submit] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  input[type=submit]:hover {
+    background-color: #45a049;
+  }
+  

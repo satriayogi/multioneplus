@@ -7,6 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="<?= base_url() ?>assets/admin/plugins/fontawesome-free/css/all.min.css">
+    <script type="text/javascript"
+    src="https://app.sandbox.midtrans.com/snap/snap.js"
+            data-client-key="SB-Mid-server-JxcoOpQw8TxjcCBt8mgspLwu"></script>
 <script src="<?= base_url() ?>assets/admin/plugins/jquery/jquery.min.js"></script>
     <title>Keranjang </title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
@@ -103,7 +108,8 @@
         <img src="<?= base_url() ?>assets/customer/img/profile.png" style="width:30px;height:30px;" alt="">
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Profile</a>
+          <a class="dropdown-item" href="<?= base_url('profile/index') ?>">Profile</a>
+          <a class="dropdown-item" href="<?= base_url('profile/index') ?>">Riwayat Transaksi</a>
           <a class="dropdown-item" href="#">Change Password</a>
           <a class="dropdown-item" href="<?= base_url('loginc/logout_customer') ?>">Logout</a>
         </div>
@@ -114,10 +120,19 @@
 </nav>
     <section>
         <!-- Data Pemebeli -->
+        
+        <form action="<?= base_url()?>buy/finish" id="payment-form" method="post">
+        <input type="hidden" name="result_type" id="result-type" value="">
+      <input type="hidden" name="result_data" id="result-data" value="">
         <div class="alamat">
             <h2>Alamat Penerima</h2>
             <button> Edit Alamat</button>
          </div>
+         
+         <input type="hidden" name="id_customer" value="<?= $customer['id'] ?>" id="id_customer">
+         <input type="hidden" name="nama_customer" value="<?= $customer['nama'] ?>" id="nama_customer">
+         <input type="hidden" name="no_tlp" id="no_tlp" value="<?= $customer['no_tlp'] ?>">
+         <input type="hidden" name="email" id="email" value="<?= $customer['email'] ?>">
         <table>
             <tr>
                 <td> Nama </td>
@@ -129,7 +144,11 @@
             </tr>
             <tr>
                 <td> Alamat </td>
-                <td> Building Lantai 2 Piazza The Mozia, Jl. BSD Boulevard Utara, Lengkong Kulon, Pagedangan, Tangerang, Banten</td>
+                <td> <textarea name="alamat" id="alamat" cols="30" rows="3" required></textarea></td>
+            </tr>
+            <tr>
+                <td> Kode Pos </td>
+                <td> <input type="text" name="kodepos" id="kodepos" placeholder="enter codepost" required></td>
             </tr>
             <tr> 
                <td>Provinsi</td> 
@@ -147,6 +166,7 @@
                 <td>Jasa Ekspedisi</td>
                 <td>
                     <select id="kurir" class="option-kota">
+                    <option disabled selected>-- Choose Courier --</option>
                     <option data-kurir="jne">JNE</option>
                     <option data-kurir="pos">POS Indonesia</option>
                     <option data-kurir="tiki">TIKI</option>
@@ -177,23 +197,47 @@
                         $id_product = $value['id_product'];
                         $gambar = $this->db->query("SELECT * FROM gambar WHERE gambar.id_product='$id_product'")->row_array();
                         ?>
+                        
+                        <input type="hidden" name="id_product[]" id="id_product" value="<?= $value['id_product'] ?>">
+                        <input type="hidden" name="id_keranjang[]" id="id_product" value="<?= $value['id'] ?>">
+                        <input type="hidden" name="harga[]" id="harga" value="<?= $value['harga'] ?>" id="">
+                        <input type="hidden" name="qty1[]" id="qty1" value="<?= $value['pcs'] ?>" id="">
+                        <input type="hidden" name="stok[]" id="stok" value="<?= $value['stok'] - $value['pcs'] ?>" id="">
+                        <input type="hidden" name="totalproduct[]" id="totalproduct" value="<?= $value['total'] ?>" id="">
                             <img src="<?= base_url() ?>assets/admin/img/product/<?= $gambar['gambar'] ?>" width="100" alt="">
                 </div>
+
                 <div class="detail-keranjang">
                     <div class="detail-produk">
                     <h3> <?= $value['nama_product'] ?></h3>
-                    <span> <?= $value['pcs'] ?> Pieces </span>
+                    <span> Pembelian:<a href="<?= base_url('transaksi_customer/minkeranjang/'.$customer['id'].'/'.$value['id']) ?>" style="background-color: #e2e2e2; text-decoration:none; margin-right:4px;
+    padding: 5px;
+    border: none ;
+    border-radius: 5px;"> - </a>  <?= $value['pcs'] ?> <a href="<?= base_url('transaksi_customer/pluskeranjang/'.$customer['id'].'/'.$value['id']) ?>" style="background-color: #e2e2e2; text-decoration:none;
+    padding: 5px;
+    border: none ;
+    border-radius: 5px;"> + </a> Pieces 
+                        | Sisa Produk: 10</span>
+                        <div class="change-color">
+                        <?php 
+                        $id_keranjang = $value['id'];
+                        $query2 = $this->db->query("SELECT * FROM keranjang JOIN keranjang_warna WHERE keranjang_warna.id_keranjang='$id_keranjang' AND keranjang.id=keranjang_warna.id_keranjang")->result_array();
+                        foreach ($query2 as $key => $value2) :?>
+                     <div class="color" style="background: <?= $value2['warna'] ?>;">  </div> 
+                     
+                     <input type="hidden" name="warna[]" id="warna" value="<?= $value2['warna'] ?>" id="">
+                    <?php endforeach; ?>
+                    </div>
                     </div>
                     <div class="total-produk">
                     <span>Total Belanja</span>
-                    <h3> Rp <?= $value['harga'] ?></h3>
+                    <h3> Rp <?= number_format($value['total'], 0, ',','.'); ?></h3>
                     <a href="<?= base_url('transaksi_customer/hapus_keranjang/'.$value['id'].'/'.$value['id_product'].'/'.$value['id_customer']) ?>" style="background-color: #e2e2e2;
     padding: 5px;
     border: none ;
-    border-radius: 5px; color:black;"> <i class="fas fa-trash"></i> hapus </a></td>
-                  
+    border-radius: 5px; color:black;"> <i class="fas fa-trash"></i> </a></div>
                     </div>
-                </div>
+
             </div>
             <?php endforeach; ?>
             <!-- NAMA DAN DETAIL PRODUK END -->
@@ -202,8 +246,54 @@
                 ?>
             
             <input type="hidden" name="qty" id="qty" value="<?= $axc['qty_jumlah'] ?>">
-
-
+<!-- Checkout -->
+<div class="checkout">
+                <table>
+                    <tr>
+                        <td> Kode Kupon:</td> <td><input type="text" name="diskontext" id="diskontext">  <button style="width: 30px; height: 100%; background-color: #1ba95d; border: none;color: white;" type="button" id="diskon" >+</button></td>
+                    </tr>
+                    <?php $id_customer = $customer['id'];
+                        $asd = $this->db->query("SELECT SUM(total) as jumlah from keranjang WHERE id_customer='$id_customer'")->row_array();
+                        $axc = $this->db->query("SELECT SUM(pcs) as qty_jumlah from keranjang WHERE id_customer='$id_customer'")->row_array();
+                        ?>   
+                    <tr>
+                        <td> Total Belanja:</td> <td> Rp <?= $asd['jumlah'] ?></td>
+                    </tr>
+                    <tr>
+                        <td>Total PCS:</td> <td><?= $axc['qty_jumlah'] ?></td>
+                    </tr>
+                    <tr>
+                        <td>Ongkos Kirim</td> <td><p id="ongkirharga">0</p>
+                            <input type="hidden"  name="hargaongkir" id="hargaongkir" value="0">
+                            <input type="hidden" name="ongkir" id="ongkos">
+                            
+                        <input type="hidden" name="total_product" id="total_product"  value="<?= $asd['jumlah'] ?>">
+                        <input type="hidden" name="qty" id="qty" value="<?= $axc['qty_jumlah'] ?>"></td>
+                        <input type="hidden" name="pcs" value="<?= $axc['qty_jumlah']; ?>" id="">
+                    </tr>
+                    <!-- <tr>
+                        <td>Biaya Penanganan</td> <td>13.000</td>
+                    </tr> -->
+                    <tr>
+                        <td>Discount</td> <td style="color: green;"> <p id="diskont">Rp. 0</p>
+                        <input type="hidden" name="discount" id="discount1" value="0" style="width:77.5%;"> 
+                    </td>
+                    </tr>
+                    <tr>
+                        <td> Total </td> <td> <h2 id="total">Rp <?= $asd['jumlah'] ?></h2> </td>
+                        <input type="hidden" name="" id="total" value="0">
+                    </tr>
+                    <tr></tr>
+                </table> 
+                <input type="hidden" name="provinsi" id="provinsi1">
+            <input type="hidden" name="kota" id="kota1">
+            <input type="hidden" name="ekpedisi" id="ekpedisi1">
+            <input type="hidden" name="kurirr" id="kurirr">
+            <input type="hidden" name="totalseluruh" id="totseluruh">
+                <button class="button-checkout" id="pay-button"> Checkout</button> 
+            </div>
+        </div>
+        </form>
         </div>
     </section>
     <!-- Footer -->
@@ -223,6 +313,98 @@
 <!-- end baru -->
 </body>
 </html>
+<script>
+$('#pay-button').click(function (event) {
+    event.preventDefault();
+    // $(this).attr("disabled", "disabled");
+    // var totalseluruh = $("#totseluruh").val();
+    var nama_customer = $("#nama_customer").val();
+    var no_tlp = $("#no_tlp").val();
+    var email = $("#email").val();
+    var alamat = $("#alamat").val();
+    var kodepos = $("#kodepos").val();
+    var kota1 = $("#kota1").val();
+    var hargaongkir = $("#hargaongkir").val();
+    var totalseluruh  = $("#totseluruh").val();
+    var total_product = $("#total_product").val();
+    // baru
+    var discount = $("#discount1").val();
+    var id_customer = $("#id_customer").val();
+    var provinsi1 = $("#provinsi1").val();
+    var ekpedisi1 = $("#ekpedisi1").val();
+    var kurirr = $("#kurirr").val();
+    // produk
+    var product = $("#id_product").val();
+    var hargaproduct= $("#harga").val();
+    var qty1 = $("#qty1").val();
+    var totalproduct = $("#totalproduct").val();
+
+    // warna
+    var warna = $("#warna").val();
+    // console.log(totalproduct);
+  $.ajax({
+    type:'POST',
+    url: '<?= base_url()?>buy/token',
+    data:{
+        nama_customer:nama_customer,
+        no_tlp:no_tlp,
+        email:email,
+        alamat:alamat,
+        kodepos:kodepos,
+        kota1:kota1,
+        hargaongkir:hargaongkir,
+        totalseluruh:totalseluruh,
+        total_product:total_product,
+        discount:discount,
+        id_customer:id_customer,
+        provinsi1:provinsi1,
+        ekpedisi1:ekpedisi1,
+        kurirr:kurirr,
+        product:product,
+        hargaproduct:hargaproduct,
+        qty1:qty1,
+        totalproduct:totalproduct,
+        warna:warna,
+    },
+    cache: false,
+
+    success: function(data) {
+      //location = data;
+
+      console.log('token = '+data);
+      
+      var resultType = document.getElementById('result-type');
+      var resultData = document.getElementById('result-data');
+
+      function changeResult(type,data){
+        $("#result-type").val(type);
+        $("#result-data").val(data.order_id);
+        //resultType.innerHTML = type;
+        //resultData.innerHTML = JSON.stringify(data);
+      }
+
+      snap.pay(data, {
+        onSuccess: function(result){
+          changeResult('success', result);
+          console.log(result.status_message);
+          console.log(result);
+          $("#payment-form").submit();
+        },
+        onPending: function(result){
+          changeResult('pending', result);
+          console.log(result.status_message);
+          $("#payment-form").submit();
+        },
+        onError: function(result){
+          changeResult('error', result);
+          console.log(result.status_message);
+          $("#payment-form").submit();
+        }
+      });
+    }
+  });
+});
+</script>
 <script>
     $(document).ready(function(){
         var pro=$("#provinsi");
@@ -315,6 +497,7 @@
             $("#ekspedisi").on("change",function(e){
                 e.preventDefault();
                 var ongkir =$("#ongkos");
+                var ongkiir= $("#ongkirharga");
                 var hargaongkir = $("#hargaongkir");
                 var hargaongkir1 = $("#hargaongkir1");
                 var option = $(this.options[this.selectedIndex]);
@@ -331,10 +514,11 @@
                 hargaongkir1.val(harga);
                 hargaongkir.val(harga);
                 ekpedisi.val(service);
+                ongkiir.text(harga);
                 // console.log(service,harga);
-                var hasil = parseInt(harga ) + parseInt(totalproduct) ;
-                // console.log(hasil);
-                totalkeseluruhan.val(hasil);
+                var hasil = parseInt(harga) + parseInt(totalproduct) ;
+                console.log(hasil);
+                totalkeseluruhan.text("Rp "+hasil);
                 totalseluruh.val(hasil);
 
             });
@@ -368,7 +552,56 @@
                 console.log(jumlah);
                 totalseluruh.val(jumlah);
                 discount1.val(hasil);
-                totalkeseluruhan.val(jumlah);
+                totalkeseluruhan.text("Rp ",jumlah);
+            }
+            // console.log(url);
+        });
+
+        }
+    });
+</script>
+
+<script>
+    $("#diskontext").keypress(function(e){
+    if (e.keyCode === 13) {
+        e.preventDefault();
+        $("#diskon").click();
+        
+    }
+    // alert("asda");
+    });
+</script>
+<script>
+    $("#diskon").on("click",function(){
+    var diskontext = $("#diskontext").val();
+    var diskon =$("#discount");
+    var totalkeseluruhan = $("#total");
+    var totalseluruh = $("#totseluruh");
+    var totalproduct = $("#total_product").val();
+    var hargaongkir = $("#hargaongkir").val();
+    var discount1 = $("#discount1");
+    var discountt = $("#diskont");
+        // console.log(hargaongkir);
+        if (hargaongkir === "0") {
+            alert("Cek untuk pemilihan ekpedisi");
+        }else{
+            // alert(kode_diskon);
+        $.ajax({
+            method:'POST',
+            url:"<?= base_url() ?>discount/json_diskon/",
+            chache:false,
+            dataType:'json',
+            data:{diskontext:diskontext},
+            success:function (data){
+                console.log(data);
+                diskon.val(data.potongan);
+                hasil = parseInt(data.potongan) / 100 * parseInt(totalproduct);
+                jumlah = totalproduct - hasil + parseInt(hargaongkir);
+                console.log(jumlah);
+                totalseluruh.val(jumlah);
+                discount1.val(hasil);
+                totalkeseluruhan.text("Rp "+jumlah);
+                discountt.text("Rp "+hasil);
             }
             // console.log(url);
         });

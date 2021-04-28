@@ -5,7 +5,7 @@ class Transaksi extends CI_Controller{
         $this->load->model('admin/operator_model','operator_model');
         $this->load->model('admin/transaksi_model','transaksi');
         if (!$this->session->userdata('username')) {
-            redirect("auth/login");
+            redirect("login/admin");
         }
     }
     

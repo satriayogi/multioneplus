@@ -15,13 +15,21 @@ public function detail_product(){
     $this->load->view('customer/product/product_detail',$data);
 }
 public function add_transaksi(){
-    if (isset($_POST['keranjang'])) {
-        $this->product->save_keranjang();
-        redirect('list_product/index');
+    if (! $this->session->userdata('username')) {
+        redirect('loginc/customer');
+    }elseif (!$this->session->userdata('email')) {
+        redirect('loginc/customer');
         
-    }elseif (isset($_POST['beli'])) {
-        $this->product->save_keranjang();
-        redirect('checkout/index');
+    }else{
+        if (isset($_POST['keranjang'])) {
+            $this->product->save_keranjang();
+            redirect('list_product/index');
+            
+        }elseif (isset($_POST['beli'])) {
+            $this->product->save_keranjang();
+            redirect('checkout/index');
+        }
+
     }
 }
 public function add_keranjanglist(){

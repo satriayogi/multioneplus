@@ -15,6 +15,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 
+    <link rel="stylesheet" href="<?= base_url() ?>assets/customer/css/profil-MOP1.css">
     <style>
           .product-display-each img:hover{
     transform: scale(1.1);
@@ -170,3 +171,75 @@ ul li .dropdown li {
   </div>
        </div>
 </nav>
+
+<div class="profile">
+        <div  style="height: 100px; width:100px; flex:1; border-radius:10px; text-align:end;">
+          
+          <?php if ($customer['gambar'] == null):?>
+            <img src="https://images.pexels.com/photos/2421586/pexels-photo-2421586.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" id="gambar1"  style="border-radius:10px;"  alt="">
+            <?php else: ?>
+              <img src="<?= base_url() ?>assets/customer/img/profile/<?= $customer['gambar'] ?>" id="gambar1" style="border-radius:10px; width:300px; height:177px;" alt="">
+              <?php endif; ?>
+            </div>
+            <div class="profile-data">
+              <div class="profile-data-main">
+                <h2>Edit Profile</h2>
+              </div>
+              <ul>
+                <style>
+                  dl, ol, ul {
+                    margin-top: -57px;
+                    margin-bottom: 1rem;
+                  }
+                  input{
+                    height:40px;
+                    font-size:15px; 
+                  }
+                  </style>
+<br><br>
+<!-- <img src="https://images.pexels.com/photos/2421586/pexels-photo-2421586.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"  style="width:500px;height:500px;" alt="">
+<input type="file" name="" id=""> -->
+<form action="<?= base_url('profile/save_profile'); ?>" method="post" enctype="multipart/form-data">
+                    <label for="nama-lengkap">Foto Profile</label>
+                    <input type="file"  id="fgambar" onchange="preview()" name="gambar">
+                    <label for="nama-lengkap">Nama Lengkap</label>
+                    <input type="text" id="fname" name="nama" placeholder="Nama Lengkap" value="<?= $customer['nama'] ?>">
+                    <input type="hidden" id="fname" name="id" value="<?= $customer['id'] ?>" placeholder="Nama Lengkap">
+                    <label for="username">Username</label>
+                    <input type="text" id="lname" name="username" placeholder="Username" value="<?= $customer['username'] ?>">
+                
+                    <label for="country">Nomor Telefon</label>
+                   <input type="tel" name="notlp" id="" placeholder="Nomor Telefon" value="<?= $customer['no_tlp'] ?>">
+            
+                    <label for="email">Alamat E-mail</label>
+                    <input type="email" name="email" id="" placeholder="nama@email.com" value="<?= $customer['email'] ?>">
+            
+                    <label for="start">Tanggal Lahir</label> <br>
+                     <input type="date" id="tgl_lahir" name="trip-start" value="<?= $customer['tanggal_lahir'] ?>">
+                  
+                    <input type="submit" value="Submit">
+                </form>
+            </ul>
+        </div>
+    </div>
+    <!-- Footer -->
+ <footer id="sticky-footer" class="py-5 text-white-50" style=" background-color:#445555;  margin-bottom:-5px;">
+        <div class="container subfooter">
+            <div class="address">
+                <img src="<?= base_url() ?>assets/customer/img/logo-mutil-plus-one1 (1).png" alt="" class="footer-img">
+                <div class="company-addres1">
+                    <p class="company">PT. MULTI ONE PLUS</p>
+                    <p class="company-address">Jl.Barokah, Kp Parungdengdek, No.09 Kelurahan Wanaherang, Kec. Gunung Putri, Kab.Bogor Provinsi, Jawa Barat</p>
+                </div>
+            </div>
+
+        </div>
+        <p class="copyright">&copy; 2020 PT MULTI ONE PLUS, Proudly created by <a href=""> MIACOMPANY.ID </a></p>
+    </footer>
+</body>
+</html>
+<script>
+function preview(){
+  gambar1.src= URL.createObjectURL(event.target.files[0])
+}
+</script>
