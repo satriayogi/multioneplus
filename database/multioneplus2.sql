@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 19 Apr 2021 pada 08.38
+-- Waktu pembuatan: 30 Apr 2021 pada 12.25
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.2.26
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `multioneplus`
+-- Database: `multioneplus2`
 --
 
 -- --------------------------------------------------------
@@ -78,7 +78,14 @@ INSERT INTO `category_product` (`id`, `id_product`, `id_category`) VALUES
 (8, 87, 8),
 (9, 88, 13),
 (10, 88, 7),
-(11, 70, 7);
+(11, 70, 7),
+(12, 89, 13),
+(13, 89, 10),
+(14, 89, 7),
+(15, 90, 10),
+(16, 90, 7),
+(17, 91, 8),
+(18, 91, 7);
 
 -- --------------------------------------------------------
 
@@ -108,7 +115,7 @@ CREATE TABLE `customer` (
 INSERT INTO `customer` (`id`, `nama`, `email`, `username`, `password`, `gambar`, `tanggal_lahir`, `jenis_kelamin`, `no_tlp`, `kec`, `no_rmh`, `status`) VALUES
 (3, 'qe', 'qwe@gmail.com', 'asd', '$2y$10$6CDr342YKO71oeuBCOFLreY81jRJlxev2rkDH/5hiQp.Il6xCeZKW', '', '0000-00-00', '', '', '', '', 1),
 (4, 'hr', 'asd@gmail.com', 'ger', '$2y$10$IbZrEOolt/ns49O0LVP2nOXSDEYK1ME2NP5yeaWYU2LrffGRWcaJ.', '', '0000-00-00', '', '', '', '', 1),
-(5, 'Satria', 'satria@gmail.com', 'Satria', '$2y$10$2HvkDLgofLggz4FzskLD2O/F887eZ6Wcl3IMPLrUDyMOFTX7PUjxm', '', '0000-00-00', '', '0812522568', '', '', 1);
+(5, 'satria yogi', 'v@gmail.com', 'satria', '$2y$10$2HvkDLgofLggz4FzskLD2O/F887eZ6Wcl3IMPLrUDyMOFTX7PUjxm', 'cek.jpg', '1990-02-14', '', '081289518242', '', '', 1);
 
 -- --------------------------------------------------------
 
@@ -121,6 +128,8 @@ CREATE TABLE `detail_transaksi` (
   `id_transaksi` int(11) NOT NULL,
   `id_product` int(11) NOT NULL,
   `pcs` int(11) NOT NULL,
+  `warna` varchar(225) NOT NULL,
+  `catatan` varchar(225) NOT NULL,
   `harga` int(11) NOT NULL,
   `total_product` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -129,15 +138,11 @@ CREATE TABLE `detail_transaksi` (
 -- Dumping data untuk tabel `detail_transaksi`
 --
 
-INSERT INTO `detail_transaksi` (`id`, `id_transaksi`, `id_product`, `pcs`, `harga`, `total_product`) VALUES
-(13, 24, 82, 3, 50000, 150000),
-(14, 24, 81, 5, 50000, 250000),
-(15, 30, 81, 2, 50000, 100000),
-(16, 31, 81, 2, 50000, 100000),
-(17, 32, 81, 2, 50000, 100000),
-(18, 33, 81, 2, 50000, 100000),
-(19, 34, 81, 2, 50000, 100000),
-(20, 35, 81, 2, 50000, 100000);
+INSERT INTO `detail_transaksi` (`id`, `id_transaksi`, `id_product`, `pcs`, `warna`, `catatan`, `harga`, `total_product`) VALUES
+(154, 167, 91, 2, '#603913', '', 9000, 18000),
+(155, 167, 90, 2, '#603913', '', 90000, 180000),
+(156, 168, 91, 2, '#603913', '', 9000, 18000),
+(157, 168, 90, 2, '#bfe5fa', '', 90000, 180000);
 
 -- --------------------------------------------------------
 
@@ -151,32 +156,6 @@ CREATE TABLE `detail_transaksiwarna` (
   `id_product` int(11) NOT NULL,
   `warna` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `detail_transaksiwarna`
---
-
-INSERT INTO `detail_transaksiwarna` (`id`, `id_transaksi`, `id_product`, `warna`) VALUES
-(49, 24, 82, '#83e4db'),
-(50, 24, 82, '#bfe5fa'),
-(51, 24, 82, '#603913'),
-(52, 24, 82, '#84888a'),
-(53, 24, 81, '#83e4db'),
-(54, 24, 81, '#bfe5fa'),
-(55, 24, 81, '#603913'),
-(56, 24, 81, '#84888a'),
-(57, 30, 81, '#603913'),
-(58, 30, 81, '#84888a'),
-(59, 31, 81, '#603913'),
-(60, 31, 81, '#84888a'),
-(61, 32, 81, '#603913'),
-(62, 32, 81, '#84888a'),
-(63, 33, 81, '#603913'),
-(64, 33, 81, '#84888a'),
-(65, 34, 81, '#603913'),
-(66, 34, 81, '#84888a'),
-(67, 35, 81, '#603913'),
-(68, 35, 81, '#84888a');
 
 -- --------------------------------------------------------
 
@@ -231,13 +210,8 @@ CREATE TABLE `gambar` (
 --
 
 INSERT INTO `gambar` (`id`, `id_product`, `gambar`, `gambar2`, `gambar3`, `gambar4`) VALUES
-(45, 70, 'masker-2_1.png', 'camera-on-black-surface-1655817.jpg', 'cek.jpg', 'masker-2_1.png'),
-(46, 71, 'masker-2_2.png', 'masker-2.png', 'asdadasdasd.JPG', 'masker-2_1.png'),
-(48, 75, 'masker-2_1.png', 'bnmbnm.JPG', 'masker-2.png', 'masker-2_2.png'),
-(50, 77, 'masker-2_3.png', '12343.JPG', 'masker-2.png', 'masker-6.png'),
-(55, 83, 'masker-3.png', 'masker-master.png', 'masker-6.png', 'masker-5.png'),
-(59, 87, 'masker.png', 'masker-2.png', 'masker-2_1.png', 'masker-2_2.png'),
-(60, 88, 'masker-2_1.png', 'masker-2_2.png', 'masker-3.png', 'masker-2.png');
+(62, 90, 'masker-2.png', 'masker-2_2.png', 'masker-2_3.png', 'masker-2_1.png'),
+(63, 91, 'masker-2.png', 'masker-2_1.png', 'masker-2_2.png', 'masker-2_3.png');
 
 -- --------------------------------------------------------
 
@@ -250,6 +224,7 @@ CREATE TABLE `keranjang` (
   `id_customer` int(11) NOT NULL,
   `id_product` int(11) NOT NULL,
   `pcs` int(11) NOT NULL,
+  `warna` varchar(225) NOT NULL,
   `harga` int(11) NOT NULL,
   `catatan` text NOT NULL,
   `total` int(11) NOT NULL
@@ -259,10 +234,9 @@ CREATE TABLE `keranjang` (
 -- Dumping data untuk tabel `keranjang`
 --
 
-INSERT INTO `keranjang` (`id`, `id_customer`, `id_product`, `pcs`, `harga`, `catatan`, `total`) VALUES
-(22, 5, 81, 2, 50000, '', 100000),
-(23, 5, 71, 2, 20000, '', 40000),
-(24, 5, 70, 2, 7000, '', 14000);
+INSERT INTO `keranjang` (`id`, `id_customer`, `id_product`, `pcs`, `warna`, `harga`, `catatan`, `total`) VALUES
+(50, 5, 91, 2, '#603913', 9000, '', 18000),
+(52, 5, 90, 2, '#bfe5fa', 90000, '', 180000);
 
 -- --------------------------------------------------------
 
@@ -275,18 +249,6 @@ CREATE TABLE `keranjang_warna` (
   `id_keranjang` int(11) NOT NULL,
   `warna` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `keranjang_warna`
---
-
-INSERT INTO `keranjang_warna` (`id`, `id_keranjang`, `warna`) VALUES
-(26, 22, '#603913'),
-(27, 22, '#84888a'),
-(28, 23, '#603913'),
-(29, 23, '#bfe5fa'),
-(30, 24, '#bfe5fa'),
-(31, 24, '#84888a');
 
 -- --------------------------------------------------------
 
@@ -315,7 +277,8 @@ INSERT INTO `komentar` (`id`, `id_product`, `id_customer`, `komen`, `ratting`) V
 (8, 77, 5, 'bagus banger', 5),
 (9, 0, 5, 'test', 4),
 (10, 77, 5, 'asd', 2),
-(11, 83, 5, 'bagus banget', 5);
+(11, 83, 5, 'bagus banget', 5),
+(12, 88, 5, 'barangnya bagus', 5);
 
 -- --------------------------------------------------------
 
@@ -347,6 +310,29 @@ CREATE TABLE `log_operator` (
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `message`
+--
+
+CREATE TABLE `message` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(100) NOT NULL,
+  `nohp` varchar(20) NOT NULL,
+  `email` varchar(225) NOT NULL,
+  `pesan` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `message`
+--
+
+INSERT INTO `message` (`id`, `nama`, `nohp`, `email`, `pesan`) VALUES
+(5, 'satria', '022555566', 's@gmail.com', 'asdal;fsdf'),
+(6, 'satria', '3', 's@gmail.com', ''),
+(7, 'satria', '1321231', 'asd@gmail.com', ' A basic example of the simple footer with text, links and copyright section.\r\n\r\nThe background color is set via CSS class .bg-light. You can set your own color choosing from MDB color palette or by setting a completely custom color via inline CSS, for example style=\"background-color: #9933CC;\"\r\n\r\nWe put a mask on the copyrights section using RGBA code to outstand it. You can change the intensity of its color by manipulating the last value in the RGBA code. ');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `pembayaran`
 --
 
@@ -369,7 +355,6 @@ CREATE TABLE `product` (
   `keterangan` text NOT NULL,
   `harga` int(11) NOT NULL,
   `discount` int(11) NOT NULL,
-  `stok` int(11) NOT NULL,
   `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -377,14 +362,9 @@ CREATE TABLE `product` (
 -- Dumping data untuk tabel `product`
 --
 
-INSERT INTO `product` (`id`, `nama_product`, `keterangan`, `harga`, `discount`, `stok`, `status`) VALUES
-(70, 'masker', 'kids', 7000, 2000, 20, 99),
-(71, 'sdfsdfhfgh', 'ererhfddfhgf', 20000, 0, 10, 99),
-(75, 'geer', 'test2', 5000, 0, 10, 99),
-(77, 'vnbc', 'test', 5000, 0, 1, 99),
-(83, 'Pinguin', 'Waterproof\r\nMudah di Bersihkan \r\nCocok untuk MC, Marketing, Olah Raga\r\nNon medical', 15000, 0, 20, 99),
-(87, 'coba', 'asdasd', 20000, 0, 5, 99),
-(88, 'Pinguin', 'kjhdkfjh klsdjfdsio lksjdflks isdfks', 15000, 0, 5, 99);
+INSERT INTO `product` (`id`, `nama_product`, `keterangan`, `harga`, `discount`, `status`) VALUES
+(90, 'lkjf', 'kjsdfhkjsdf', 90000, 0, 99),
+(91, 'masker', 'asdkjaskdha', 9000, 0, 99);
 
 -- --------------------------------------------------------
 
@@ -525,7 +505,6 @@ CREATE TABLE `sys_user` (
 --
 
 INSERT INTO `sys_user` (`id`, `nama`, `email`, `alamat`, `no_tlp`, `username`, `password`, `status`) VALUES
-(5, 'satria', 'as@gmail.com', 'Jl.garuda', '08887888767', 'satria', 'asd', 1),
 (8, 'yogi', 'bayu@gmail.com', 'Jl.garuda ujung', '08887888767', 'asd', 'asd', 1);
 
 -- --------------------------------------------------------
@@ -558,15 +537,8 @@ CREATE TABLE `transaksi` (
 --
 
 INSERT INTO `transaksi` (`id`, `id_customer`, `id_order`, `alamat`, `kodepos`, `provinsi`, `kota`, `ekspedisi`, `courier`, `jenis_paket`, `no_resi`, `metode_pembayaran`, `harga_kurir`, `discount`, `total`, `status`) VALUES
-(24, 5, 0, 'asdasd', '66666', 'DKI Jakarta', 'Jakarta Pusat', 'YES', 'jne', 'YES', '', '', 18000, 40, 258000, 0),
-(28, 5, 0, 'asdasdasd', '10620', 'Jambi', 'Merangin', 'REG', 'jne', 'REG', '', '', 39000, 40000, 99000, 0),
-(29, 5, 0, 'asds', '106102', 'DKI Jakarta', 'Jakarta Pusat', 'YES', 'jne', 'YES', '', '', 18000, 40000, 78000, 0),
-(30, 5, 0, 'asds', '106102', 'DKI Jakarta', 'Jakarta Pusat', 'YES', 'jne', 'YES', '', '', 18000, 40000, 78000, 0),
-(31, 5, 0, 'asdad', '102325', 'DKI Jakarta', 'Jakarta Pusat', 'YES', 'jne', 'YES', '', '', 18000, 40000, 78000, 0),
-(32, 5, 0, 'asdas', '10620', 'DKI Jakarta', 'Jakarta Pusat', 'YES', 'jne', 'YES', '', '', 18000, 40000, 78000, 0),
-(33, 5, 0, 'asdas', '1023', 'DKI Jakarta', 'Jakarta Pusat', 'YES', 'jne', 'YES', '', '', 18000, 40000, 78000, 0),
-(34, 5, 1692068523, 'asdasd', '10620', 'DKI Jakarta', 'Jakarta Pusat', 'YES', 'jne', 'YES', '', '', 18000, 40000, 78000, 0),
-(35, 5, 2097618545, 'asdsa', '54654', 'DKI Jakarta', 'Jakarta Pusat', 'YES', 'jne', 'YES', '', '', 18000, 40000, 78000, 0);
+(167, 5, 1517606841, 'sad', '12312', 'DKI Jakarta', 'Jakarta Pusat', 'Express Next Day Barang', 'pos', 'Express Next Day Barang', '', '', 18000, 0, 216000, 0),
+(168, 5, 493839772, 'asd', '10620', 'DKI Jakarta', 'Jakarta Pusat', 'YES', 'jne', 'YES', '', '', 18000, 0, 216000, 0);
 
 -- --------------------------------------------------------
 
@@ -577,59 +549,19 @@ INSERT INTO `transaksi` (`id`, `id_customer`, `id_order`, `alamat`, `kodepos`, `
 CREATE TABLE `warna` (
   `id` int(11) NOT NULL,
   `id_product` int(11) NOT NULL,
-  `id_stylecolor` int(11) NOT NULL
+  `id_stylecolor` int(11) NOT NULL,
+  `stok` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `warna`
 --
 
-INSERT INTO `warna` (`id`, `id_product`, `id_stylecolor`) VALUES
-(3, 0, 1),
-(4, 0, 2),
-(5, 0, 3),
-(16, 78, 2),
-(17, 78, 3),
-(18, 78, 4),
-(19, 79, 1),
-(20, 79, 2),
-(21, 79, 3),
-(22, 80, 2),
-(23, 80, 3),
-(24, 81, 2),
-(25, 81, 4),
-(75, 82, 1),
-(76, 82, 3),
-(77, 70, 3),
-(78, 70, 4),
-(79, 70, 5),
-(96, 76, 2),
-(97, 76, 3),
-(98, 76, 4),
-(101, 83, 2),
-(102, 83, 3),
-(103, 83, 4),
-(106, 75, 3),
-(107, 75, 5),
-(110, 71, 2),
-(111, 71, 3),
-(114, 77, 1),
-(115, 77, 2),
-(116, 84, 1),
-(117, 84, 2),
-(118, 84, 3),
-(119, 85, 2),
-(120, 85, 3),
-(121, 85, 4),
-(122, 86, 2),
-(123, 86, 3),
-(124, 86, 4),
-(125, 87, 1),
-(126, 87, 2),
-(127, 87, 3),
-(128, 88, 3),
-(129, 88, 4),
-(130, 88, 5);
+INSERT INTO `warna` (`id`, `id_product`, `id_stylecolor`, `stok`) VALUES
+(142, 90, 1, 36),
+(143, 91, 4, 20),
+(157, 91, 2, 10),
+(158, 90, 3, 18);
 
 --
 -- Indexes for dumped tables
@@ -714,6 +646,12 @@ ALTER TABLE `log_operator`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `message`
+--
+ALTER TABLE `message`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeks untuk tabel `pembayaran`
 --
 ALTER TABLE `pembayaran`
@@ -793,13 +731,13 @@ ALTER TABLE `balas_komentar`
 -- AUTO_INCREMENT untuk tabel `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT untuk tabel `category_product`
 --
 ALTER TABLE `category_product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT untuk tabel `customer`
@@ -811,13 +749,13 @@ ALTER TABLE `customer`
 -- AUTO_INCREMENT untuk tabel `detail_transaksi`
 --
 ALTER TABLE `detail_transaksi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=158;
 
 --
 -- AUTO_INCREMENT untuk tabel `detail_transaksiwarna`
 --
 ALTER TABLE `detail_transaksiwarna`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=273;
 
 --
 -- AUTO_INCREMENT untuk tabel `discount`
@@ -829,25 +767,25 @@ ALTER TABLE `discount`
 -- AUTO_INCREMENT untuk tabel `gambar`
 --
 ALTER TABLE `gambar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT untuk tabel `keranjang`
 --
 ALTER TABLE `keranjang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT untuk tabel `keranjang_warna`
 --
 ALTER TABLE `keranjang_warna`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT untuk tabel `komentar`
 --
 ALTER TABLE `komentar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT untuk tabel `kurir`
@@ -862,6 +800,12 @@ ALTER TABLE `log_operator`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT untuk tabel `message`
+--
+ALTER TABLE `message`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT untuk tabel `pembayaran`
 --
 ALTER TABLE `pembayaran`
@@ -871,7 +815,7 @@ ALTER TABLE `pembayaran`
 -- AUTO_INCREMENT untuk tabel `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
 
 --
 -- AUTO_INCREMENT untuk tabel `ratting`
@@ -919,13 +863,13 @@ ALTER TABLE `sys_user`
 -- AUTO_INCREMENT untuk tabel `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=169;
 
 --
 -- AUTO_INCREMENT untuk tabel `warna`
 --
 ALTER TABLE `warna`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=131;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=159;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

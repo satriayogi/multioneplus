@@ -30,6 +30,15 @@ class Transaksi_customer extends CI_Controller{
     public function hapus_keranjang(){
         $this->transaksi->hapus_keranjang();
     }
+    public function riwayat_transaksi(){
+        $data['customer'] = $this->product->viewcustomer()->row_array();
+        $this->load->view('customer/transaksi/riwayat_transaksi',$data);
+    }
+    public function detail_transaksi(){
+        $data['customer'] = $this->product->viewcustomer()->row_array();
+        $data['transaksi'] = $this->transaksi->detail_transaksi();
+        $this->load->view('customer/transaksi/detail_transaksi',$data);
+    }
 }
 
 

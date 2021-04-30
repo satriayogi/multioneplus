@@ -31,8 +31,6 @@
                     <th>Quantity</th>
                     <th>Price</th>
                     <th>Discount</th>
-                    <th>Color</th>
-                    <th>Status</th>
                     <th>Setting</th>
                   </tr>
                   </thead>
@@ -56,38 +54,27 @@
                     <div class="col-md-15">
 
                       <img src="<?= base_url('assets/admin/img/product/'.$product['gambar']) ?>" class="rounded mx-auto d-block" height="130px" width="200px" alt="">
-                    </td>
-                    </div>  
-                    <td> <?= $product['stok'] ?></td>
+                    </div> 
+                  </td>
+                  <td>
+                    <table class="table table-borderless">
+                      
+                      <?php
+                    $id_product = $product['id_product'];
+                    $stok = $this->db->query("SELECT * FROM product,warna,style_warna WHERE product.id='$id' AND warna.id_product=product.id AND warna.id_stylecolor=style_warna.id")->result_array();
+                    foreach ($stok as $key5 => $value5) :
+                      ?>
+                      
+                      <tr>
+                        <td><div class="birumuda" style="width:20px;height:20px; background-color:<?= $value5['warna'] ?>; margin-right:3px;"></div></td>
+                        <td><?= $value5['stok'] ?></td>
+                      </tr>
+                      <?php endforeach; ?>
+                    </table> 
+                  </td>
                     <td> <?= $product['harga'] ?></td>
                     <td> <?= $product['discount'] ?></td>
-                    <td>
-                      <div class="row">
-                        <?php
-                        $id = $product['id_product'];
-                        $warna = $this->db->query("SELECT * FROM product,warna,style_warna WHERE product.id='$id' AND warna.id_product=product.id AND warna.id_stylecolor=style_warna.id")->result_array();
-                        // echo $warna['id'];
-                        foreach ($warna as $key => $warna) {
-                          // echo $warna['warna'];
-                            echo '<div class="birumuda" style="width:20px;height:20px; background-color:'.$warna['warna'].'; margin-right:3px;"></div>';
-                          // $warnaview = $this->db->query("SELECT * FROM warna,style_warna WHERE warna.id='$idwarna'  AND warna.id_stylecolor=style_warna.id")->result_array();
-                        // foreach ($warnaview as $key => $valueview) {
-                        // }
-                        }
-                          // if ($product['id_stylecolor'] == ) {
-                          //   echo '<div class="birumuda" style="width:20px;height:20px; background-color:#83e4db; margin-right:3px;"></div>';
-                          // }
-                         
-                        ?> 
-                      </div>
-                  </td>
-                    <td> <?php
-                    if ($product['status'] == 99) {
-                      echo 'Stok Tersedia';
-                    }else{
-                      echo 'Stok Tidak Tersedia';
-                    }
-                    ?></td>
+                    
                     <td>
                           <a class="btn btn-info btn-sm" href="<?= base_url('product/edit_product/'.$admin['id'].'/'.$product['id_product']) ?>">
                               <i class="fas fa-pencil-alt">

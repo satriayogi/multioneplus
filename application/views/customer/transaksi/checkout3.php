@@ -109,7 +109,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="<?= base_url('profile/index') ?>">Profile</a>
-          <a class="dropdown-item" href="<?= base_url('profile/index') ?>">Riwayat Transaksi</a>
+          <a class="dropdown-item" href="<?= base_url('transaksi_customer/riwayat_transaksi') ?>">Riwayat Transaksi</a>
           <a class="dropdown-item" href="#">Change Password</a>
           <a class="dropdown-item" href="<?= base_url('loginc/logout_customer') ?>">Logout</a>
         </div>
@@ -126,7 +126,13 @@
       <input type="hidden" name="result_data" id="result-data" value="">
         <div class="alamat">
             <h2>Alamat Penerima</h2>
-            <button> Edit Alamat</button>
+            <a href="" style="padding: 5px;
+border-radius: 10px;
+border: none;
+width: 20%;
+background: #1ba95d;
+color: white;
+margin-left: 20px;"> Edit Alamat</a>
          </div>
          
          <input type="hidden" name="id_customer" value="<?= $customer['id'] ?>" id="id_customer">
@@ -188,7 +194,8 @@
             <!-- NAMA DAN DETAIL PRODUK START -->
             <?php 
             $id_customer = $customer['id'];
-            $query = $this->db->query("SELECT * FROM product JOIN keranjang   WHERE id_customer='$id_customer' AND product.id=keranjang.id_product ")->result_array(); 
+            $query = $this->db->query("SELECT *,keranjang.id FROM keranjang,product  WHERE keranjang.id_customer='$id_customer' AND product.id=keranjang.id_product")->result_array(); 
+            
             foreach ($query as $key => $value) :
             ?>
             <div class="keranjang-flex">
@@ -197,14 +204,19 @@
                         $id_product = $value['id_product'];
                         $gambar = $this->db->query("SELECT * FROM gambar WHERE gambar.id_product='$id_product'")->row_array();
                         ?>
-                        
+                        <?php
+                        $id_product = $value['id_product'];
+                        $colorstyle = $value['warna']; 
+                        $query2 = $this->db->query("SELECT *,warna.id FROM warna JOIN style_warna WHERE id_product='$id_product' AND style_warna.warna='$colorstyle' AND warna.id_stylecolor=style_warna.id ")->row_array();
+                         ?>
                         <input type="hidden" name="id_product[]" id="id_product" value="<?= $value['id_product'] ?>">
                         <input type="hidden" name="id_keranjang[]" id="id_product" value="<?= $value['id'] ?>">
                         <input type="hidden" name="harga[]" id="harga" value="<?= $value['harga'] ?>" id="">
                         <input type="hidden" name="qty1[]" id="qty1" value="<?= $value['pcs'] ?>" id="">
-                        <input type="hidden" name="stok[]" id="stok" value="<?= $value['stok'] - $value['pcs'] ?>" id="">
+                        <input type="text" name="stok[]" id="stok" value="<?= $query2['stok'] - $value['pcs'] ?>" id="">
+                        <input type="text" name="idwarna[]" id="stok" value="<?= $query2['id'] ?>" id="">
                         <input type="hidden" name="totalproduct[]" id="totalproduct" value="<?= $value['total'] ?>" id="">
-                            <img src="<?= base_url() ?>assets/admin/img/product/<?= $gambar['gambar'] ?>" width="100" alt="">
+                            <img src="<?= base_url() ?>assets/admin/img/product/<?= $gambar['gambar'] ?>" width="100%" alt="">
                 </div>
 
                 <div class="detail-keranjang">
@@ -219,15 +231,13 @@
     border-radius: 5px;"> + </a> Pieces 
                         | Sisa Produk: 10</span>
                         <div class="change-color">
-                        <?php 
-                        $id_keranjang = $value['id'];
-                        $query2 = $this->db->query("SELECT * FROM keranjang JOIN keranjang_warna WHERE keranjang_warna.id_keranjang='$id_keranjang' AND keranjang.id=keranjang_warna.id_keranjang")->result_array();
-                        foreach ($query2 as $key => $value2) :?>
-                     <div class="color" style="background: <?= $value2['warna'] ?>;">  </div> 
+                       
+                     <div class="color" style="background: <?= $value['warna'] ?>;">  </div> 
                      
-                     <input type="hidden" name="warna[]" id="warna" value="<?= $value2['warna'] ?>" id="">
-                    <?php endforeach; ?>
-                    </div>
+                     <input type="text" name="warna[]" id="warna" value="<?= $value['warna'] ?>" id="">
+                     <input type="hidden" name="id_warna[]" id="warna" value="<?= $query2['id_stylecolor'] ?>" id="">
+                    </div><br>
+                    <textarea name="catatan[]" id="" cols="40" rows="3"><?= $value['catatan'] ?></textarea>
                     </div>
                     <div class="total-produk">
                     <span>Total Belanja</span>

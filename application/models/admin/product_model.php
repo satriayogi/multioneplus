@@ -7,6 +7,8 @@
          $query = $this->db->get();
          return $query->result_array();
      }
+     
+
      public function read_product(){
          $this->db->select('*');
          $this->db->from('product');
@@ -52,7 +54,6 @@
             'nama_product' =>$nama_product,
             'keterangan' =>$keterangan,
             'harga' =>$price,
-            'stok' =>$quantity,
             'status' => 99
         ];
         $this->db->insert('product',$data2);
@@ -61,7 +62,8 @@
         foreach ($warna as $key => $value) {
             $result[] = array(
                 'id_product' => $id,
-                'id_stylecolor' =>  $warna[$key]
+                'id_stylecolor' =>  $warna[$key],
+                'stok' =>  $quantity[$key],
             );
         }
         $this->db->insert_batch('warna',$result);

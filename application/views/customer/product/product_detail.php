@@ -196,7 +196,7 @@ ul li .dropdown li {
               </span> <img src="<?= base_url() ?>assets/customer/img/profile.png" style="width:30px;height:30px;" alt=""></a>
               <ul class="dropdown">
               <li> <a href="<?= base_url('profile/index') ?>"> Profile</a></li>
-          <a class="dropdown-item" href="<?= base_url('profile/index') ?>">Riwayat Transaksi</a>
+          <a class="dropdown-item" href="<?= base_url('transaksi_customer/riwayat_transaksi') ?>">Riwayat Transaksi</a>
               <li> <a href="asd"> Change Password </a> </li>
               <li> <a href="<?= base_url('login/logout_customer') ?>"> Logout </a></li>
               </ul>
@@ -324,6 +324,13 @@ $('#img1').attr('src',image_element);
                     width: 50px;
                     height: 20px;
                 }
+                .warn{
+                    width: 60px;
+  height: 30px;
+  border-radius: 20px;
+  display: inline-block;
+  box-shadow: -1px 5px 11px grey;
+                }
             </style>
             <div class="choose-colors">
                 <form action="<?= base_url('product_customer/add_transaksi') ?>" method="post">
@@ -341,28 +348,51 @@ $('#img1').attr('src',image_element);
                     $warna = $this->db->query("SELECT * FROM warna JOIN style_warna WHERE warna.id_product='$id' AND warna.id_stylecolor=style_warna.id")->result_array();
                     foreach ($warna as $key=>$value) :
                     ?> 
-                    <li id="cek<?= $value['id'] ?>"  class="cek<?= $value['id'] ?>"><button id="light-green" class="warn<?= $value['id']; ?>  <?php if($key==0){echo 'wirni';}else{echo 'wirnibord';} ?>" style="background-color:<?= $value['warna'] ?>" > </button>
-                        <input type="checkbox" name="warna[]" <?php if($key==0){echo 'checked="checked" ';} ?> value="<?= $value['warna'] ?>" id="cekbox<?= $value['id']; ?>" style="width: 55px;
+                    <li id="cek<?= $value['id'] ?>"  class="cek<?= $value['id'] ?>">
+                    <a href="<?= base_url('product_customer/detail_product/'.$value['id_product'].'/'.$value['id']) ?>" id="light-green" class="warn <?php $uri1 = $this->uri->segment(4);
+                    $id_stylec = $value['id'];
+                    if ($uri1 == $id_stylec) {
+                        echo 'wirni';
+                        
+                    }
+ ?>" style="background-color:<?= $value['warna'] ?>"></a>
+                    <!-- <button  name="warni" class="warn<?= $value['id']; ?>  <?php if($key==0){echo 'wirni';}else{echo 'wirnibord';} ?>" style="background-color:<?= $value['warna'] ?>" > </button> -->
+                        <!-- <input type="radio" name="warna[]"  value="<?= $value['warna'] ?>" id="cekbox<?= $value['id']; ?>" style="width: 55px;
                         height: 50px;
                         position: absolute;
                         margin-left: -57px;
-                        margin-top: -7px; opacity:0;">
-                        </li>
+                        margin-top: -7px; opacity:1;">
+                        </li> -->
                     <script>
+                    
                         // $(".warn").css('border','none');
-                        $(".cek<?= $value['id']; ?>").on('change',function(){
-                            if ($(cekbox<?= $value['id'] ?>).is(':checked')) {
-                                // alert('asd');
-                                $(".warn<?= $value['id']; ?>").addClass('wirni');
-                                $(".warn<?= $value['id']; ?>").removeClass('wirnibord');
-                            }else{
-                                // alert('tidak');
-                                $(".warn<?= $value['id']; ?>").removeClass('wirni');
-                                $(".warn<?= $value['id']; ?>").addClass('wirnibord');
-                                // $(".warn<?= $value['id']; ?>").css('border','none');
 
-                            }
-                        })
+                        // $('.cek<?= $value['id']; ?>').click(function(){
+                        //     if ($('#cekbox<?= $value['id'] ?>').is(':checked')) {
+                        //         alert('asd');
+                        //         // $(".warn<?= $value['id']; ?>").css('border','none');
+                        //         // $(".warn<?= $value['id']; ?>").addClass('wirni');
+                        //         // $(".warn<?= $value['id']; ?>").removeClass('wirnibord');
+                        //     }else{
+                        //         // $(".warn<?= $value['id']; ?>").removeClass('wirni');
+                        //         // $(".warn<?= $value['id']; ?>").addClass('wirnibord');
+                        //         alert('tidak');
+
+                        //     }
+                        // })
+                        // $(".cek<?= $value['id']; ?>").on('change',function(){
+                        //     if ($(cekbox<?= $value['id'] ?>).is(':checked')) {
+                        //         // alert('asd');
+                        //         $(".warn<?= $value['id']; ?>").addClass('wirni');
+                        //         $(".warn<?= $value['id']; ?>").removeClass('wirnibord');
+                        //     }else{
+                        //         // alert('tidak');
+                        //         $(".warn<?= $value['id']; ?>").removeClass('wirni');
+                        //         $(".warn<?= $value['id']; ?>").addClass('wirnibord');
+                        //         // $(".warn<?= $value['id']; ?>").css('border','none');
+
+                        //     }
+                        // })
                     </script>
                 <?php endforeach; ?>
             </ul>
@@ -419,7 +449,13 @@ text-align: center;
 <input type="text" name="stok" value="1" id="stok" class="inputan">
 <button type="button" class="plus" id="plus"><i class="fa fa-plus" id="plus" style="color:white;position: absolute;margin-left: -6.5px;
 margin-top: -16px;"></i></button>
-
+<input type="hidden" name="warni_warni" value="<?php 
+$uri1 = $this->uri->segment(4);
+$id_product3 = $this->uri->segment(3);
+$ahk = $this->db->query("SELECT * FROM warna JOIN style_warna WHERE warna.id_product='$id_product3' AND warna.id_stylecolor='$uri1' AND warna.id_stylecolor=style_warna.id")->row_array();
+echo $ahk['warna'];
+?>
+" id="">
 <input type="hidden" name="total" value="<?= $product_detail['harga'] ?>" id="total">
                         <script>
                             const min = document.getElementById('minus');
@@ -447,9 +483,13 @@ margin-top: -16px;"></i></button>
                         // const stok = document.getElementById('stok').value;
                         
                         </script>
-                        <span style="font-size:30px; margin-left:20px;">STOK <?= $product_detail['stok'] ?></span>
+                        <span style="font-size:30px; margin-left:20px;">STOK <?php 
+                        $id_productD = $product_detail['id'];
+                        $productD = $this->db->query("SELECT * FROM product,warna,style_warna WHERE product.id='$id_productD' AND warna.id_product=product.id AND warna.id_stylecolor=style_warna.id")->row_array();
+                        echo $productD['stok'];
+                        ?></span>
                     </div>
-                    <span>Stock <?= $product_detail['stok'] ?></span>
+                    <span>Stock <?= $productD['stok'] ?></span>
                 <span>Max Pembelian 31</span>
                 <h4> <img src="https://image.flaticon.com/icons/png/512/61/61456.png"> Tambah Catatan</h4>
                 <textarea name="catatan" id="" cols="30" rows="10"></textarea> <br>

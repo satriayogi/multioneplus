@@ -12,6 +12,106 @@ class Buy extends CI_Controller{
         $data['customer'] = $this->product->viewcustomer()->row_array();
         $this->load->view("customer/transaksi/checkout1",$data);
     }
+	public function test(){
+		$order_id = $this->input->post('result_data');
+		$nama_customer = $this->input->post('nama_customer');
+		$no_tlp = $this->input->post('no_tlp');
+		$email =$this->input->post('email');
+		$catatan = $this->input->post("catatan");
+		$alamat = $this->input->post("alamat");
+		$kodepos = $this->input->post("kodepos");
+		$kota1 = $this->input->post("kota");
+		$totalseluruh = $this->input->post("totalseluruh");
+		$hargaongkir = $this->input->post("hargaongkir");
+		$total_product = $this->input->post("total_product");
+		$discount = $this->input->post("discount");
+		$kurirr = $this->input->post("kurirr");
+		$ekpedisi = $this->input->post("ekpedisi");
+		$provinsi = $this->input->post("provinsi");
+		$idkeranjang = $this->input->post("id_keranjang");
+
+		$id_customer = $this->input->post("id_customer");
+		$idwarna = $this->input->post("idwarna");
+
+		// product
+		$product = $this->input->post("id_product");
+		$hargaproduct = $this->input->post("harga");
+		$stok = $this->input->post("stok");
+		$qty1 = $this->input->post("qty1");
+		$totalproduct = $this->input->post("totalproduct");
+		// delete keranjang
+		// $this->db->query("DELETE FROM keranjang where id_customer='$id_customer'");
+		// warna
+		$warna = $this->input->post("warna");
+		$id_warna = $this->input->post("id_warna");
+		$data=[
+			'id_customer'=>$id_customer,
+			'id_order'=>$order_id,
+			'alamat'=>$alamat,
+			'kodepos'=>$kodepos,
+			'provinsi'=>$provinsi,
+			'kota'=>$kota1,
+			'ekspedisi'=>$ekpedisi,
+			'courier'=>$kurirr,
+			'jenis_paket'=>$ekpedisi,
+			'harga_kurir'=>$hargaongkir,
+			'discount'=>$discount,
+			'total'=>$totalseluruh
+
+		];
+		$this->db->insert('transaksi',$data);
+		$id_transaksi = $this->db->insert_id();
+		$result=array();
+		$result1=array();
+		$result2=array();
+		$where1=array();
+		$index=0;
+		foreach ($product as $key => $value) {
+			// $item = $stok - $qty1;
+				$result[]= array(
+					'id_transaksi'=>$id_transaksi,
+					'id_product'=>$product[$key],
+					'harga'=>$hargaproduct[$key],
+					'pcs'=>$qty1[$key],
+					'warna'=>$warna[$key],
+					'catatan'=>$catatan[$key],
+					'total_product'=>$totalproduct[$key]	
+				);
+				$result2[]=array(
+					'id_product'=>$product[$key],
+					'stok'=>$stok[$key],
+					'id_stylecolor'=>$id_warna[$key]
+				);
+					
+				
+			}
+// 			echo "<pre>";
+// print_r($where1);
+// echo "</pre>";
+			// $h = array($where);
+			// var_dump($result2);die;
+			$this->db->where_in('id',$idwarna);
+			$this->db->delete('warna');
+			// foreach ($warna as $key1 => $value1) {
+			// 	$result1[]=array(
+			// 		'id_transaksi'=>$id_transaksi,
+			// 		'id_product'=>$product[$key],
+			// 		'warna'=>$warna[$key1]
+			// 	);
+				// var_dump($result2);die;
+			// }
+			// var_dump($result1);die;
+			// $this->db->insert_batch('detail_transaksiwarna',$result1);
+			$this->db->insert_batch('detail_transaksi',$result);
+			$this->db->insert_batch('warna',$result2);
+			// var_dump($result2);die;
+			// $this->db->where('id_stylecolor',$id_warna);
+			// $this->db->update_batch('warna',$result2,'id');
+			// $result = json_decode($this->input->post('result_data'));
+    	// echo 'RESULT <br><pre>';
+    	// var_dump($result);
+    	// echo '</pre>' ;
+	}
     public function token()
     {
 		// $uri = $this->uri->segment(4);
@@ -151,6 +251,7 @@ class Buy extends CI_Controller{
 		$nama_customer = $this->input->post('nama_customer');
 		$no_tlp = $this->input->post('no_tlp');
 		$email =$this->input->post('email');
+		$catatan = $this->input->post("catatan");
 		$alamat = $this->input->post("alamat");
 		$kodepos = $this->input->post("kodepos");
 		$kota1 = $this->input->post("kota");
@@ -164,6 +265,7 @@ class Buy extends CI_Controller{
 		$idkeranjang = $this->input->post("id_keranjang");
 
 		$id_customer = $this->input->post("id_customer");
+		$idwarna = $this->input->post("idwarna");
 
 		// product
 		$product = $this->input->post("id_product");
@@ -175,6 +277,7 @@ class Buy extends CI_Controller{
 		// $this->db->query("DELETE FROM keranjang where id_customer='$id_customer'");
 		// warna
 		$warna = $this->input->post("warna");
+		$id_warna = $this->input->post("id_warna");
 		$data=[
 			'id_customer'=>$id_customer,
 			'id_order'=>$order_id,
@@ -195,6 +298,8 @@ class Buy extends CI_Controller{
 		$result=array();
 		$result1=array();
 		$result2=array();
+		$where1=array();
+		$index=0;
 		foreach ($product as $key => $value) {
 			// $item = $stok - $qty1;
 				$result[]= array(
@@ -202,25 +307,41 @@ class Buy extends CI_Controller{
 					'id_product'=>$product[$key],
 					'harga'=>$hargaproduct[$key],
 					'pcs'=>$qty1[$key],
+					'warna'=>$warna[$key],
+					'catatan'=>$catatan[$key],
 					'total_product'=>$totalproduct[$key]	
 				);
 				$result2[]=array(
-					'id'=>$product[$key],
-					'stok'=>$stok[$key]
+					'id_product'=>$product[$key],
+					'stok'=>$stok[$key],
+					'id_stylecolor'=>$id_warna[$key]
 				);
-				foreach ($warna as $key1 => $value) {
-					$result1[]=array(
-						'id_transaksi'=>$id_transaksi,
-						'id_product'=>$product[$key],
-						'warna'=>$warna[$key1]
-					);
 					
-				}
+				
 			}
-			$this->db->update_batch('product',$result2,'id');
-			$this->db->insert_batch('detail_transaksiwarna',$result1);
-		$this->db->insert_batch('detail_transaksi',$result);
-    	// $result = json_decode($this->input->post('result_data'));
+// 			echo "<pre>";
+// print_r($where1);
+// echo "</pre>";
+			// $h = array($where);
+			// var_dump($result2);die;
+			$this->db->where_in('id',$idwarna);
+			$this->db->delete('warna');
+			// foreach ($warna as $key1 => $value1) {
+			// 	$result1[]=array(
+			// 		'id_transaksi'=>$id_transaksi,
+			// 		'id_product'=>$product[$key],
+			// 		'warna'=>$warna[$key1]
+			// 	);
+				// var_dump($result2);die;
+			// }
+			// var_dump($result1);die;
+			// $this->db->insert_batch('detail_transaksiwarna',$result1);
+			$this->db->insert_batch('detail_transaksi',$result);
+			$this->db->insert_batch('warna',$result2);
+			// var_dump($result2);die;
+			// $this->db->where('id_stylecolor',$id_warna);
+			// $this->db->update_batch('warna',$result2,'id');
+			// $result = json_decode($this->input->post('result_data'));
     	// echo 'RESULT <br><pre>';
     	// var_dump($result);
     	// echo '</pre>' ;

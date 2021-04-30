@@ -31,87 +31,78 @@
               <!-- /.card-header -->
               <!-- form start -->
               <form action="<?= base_url('product/update_product') ?>" method="post" enctype="multipart/form-data">
-                <div class="card-body">
+              <div class="card-body">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                              <label for="exampleInputEmail1">Name Product</label>
-                              <input type="text" name="nama_product" value="<?= $edit['nama_product'] ?>" class="form-control col-md-9" id="exampleInputEmail1" placeholder="Name Product">
-                              <input type="hidden" name="id" value="<?= $edit['id_product'] ?>" class="form-control col-md-9" id="exampleInputEmail1" placeholder="Name Product">
+                              <label for="exampleInputEmail1">Jenis Product</label>
+                              <input type="text" name="nama_product" class="form-control col-md-9" id="exampleInputEmail1" placeholder="Name Product">
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-5">
                         <div class="form-group">
-                  <label>Category</label>
-                  <select class="form-control select" name="category" style="width: 100%;">
-                  <option value="<?= $edit['id_category'] ?>" disabled selected style="background-color:#A9A9A9"><?php $id_category = $edit['id_category'];
-                  $query = $this->db->query("SELECT * FROM product JOIN category Where category.id='$id_category' AND category.id=product.id_category")->row_array();
-                  echo $query['nama_category'];
-                  ?></option>
+                  <label>category</label><div class="select2-purple">
+                    <select class="select2" multiple="multiple" name="category[]" data-placeholder="Select a State" data-dropdown-css-class="select2-purple" style="width: 100%;">
                   <?php foreach ($category as $category) :?>
                             <option value="<?= $category['id'] ?>"><?= $category['nama_category'];?></option>
                             <?php endforeach; ?>
                   </select>
+                </div>
                 </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6 " >
                           <label for="exampleInputPassword1">Keterangan</label>
-                          <input type="text" name="keterangan" value="<?= $edit['keterangan'] ?>" class="form-control col-md-9" id="exampleInputPassword1" placeholder="Keterangan">
+                          <!-- <input type="text" name="keterangan" class="form-control col-md-9" id="exampleInputPassword1" placeholder="Keterangan"> -->
+                          <textarea name="keterangan" id="" class="form-control col-md-9"></textarea>
                         </div>
                         <div class="col-md-6">
 
-<div class="form-group">
+<!-- <div class="form-group">
     <label for="exampleInputPassword1">Quantity</label>
-    <input type="text" name="quantity" value="<?= $edit['stok'] ?>" class="form-control col-md-9" id="exampleInputPassword1" placeholder="Quantity Product">
+    <input type="text" name="quantity" class="form-control col-md-9" id="exampleInputPassword1" placeholder="Quantity Product">
+</div> -->
+                    <div class="col-md-12" id="stok3">
+                      <div id="wil" >
+                        <div class="form-row">
+                          <div class="col-md-5" >
+                            <label for=""> Pilih Warna</label> <br>
+                            <select class="form-control select2" name="warna[]" style="width: 100%;">
+                              <?php foreach ($color_list as $key => $value) :?>
+                                <option selected="selected" value="<?= $value['id'] ?>"><?= $value['nama_warna'] ?></option>
+                                <?php endforeach; ?>
+                              </select>
+                            </div>
+                            <div class="col-md-3">
+                              <label for="">Quantity</label>
+                              <input type="text" name="quantity[]" id="" class="col-md-6 form-control">
+                            </div>
+                            <div class="col-md-1">
+                              <label for=""> </label>
+                              <button type="button" class="btn btn-primary mt-1" id="tambah_tambah">+</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
 </div>
 </div>
-                  </div>
-                        
-                  <div class="row">
+                    <div class="row">
                     <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Price</label>
-                                    <input type="text" name="price" value="<?= $edit['harga'] ?>" class="form-control col-md-9" id="exampleInputPassword1" placeholder="Price">
+                                    <input type="text" name="price" class="form-control col-md-9" id="exampleInputPassword1" placeholder="Price">
                                   </div>
                             </div>
                             <div class="col-md-6">
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Discount</label>
-                                <input type="text" name="discount" value="<?= $edit['discount'] ?>" class="form-control col-md-9" id="exampleInputPassword1" placeholder="Discount">
+                                <input type="text" name="discount" class="form-control col-md-9" id="exampleInputPassword1" placeholder="Discount">
                             </div>
                     </div>
-                    <div class="row">
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label for=""> Pilih Warna</label> <br>
-                        <div class="form-check form-check-inline">
-                        <?php 
-                        $id_product = $edit['id_product'];
-                        // echo $id;
-                        $style = $this->db->query("SELECT * FROM style_warna")->result_array();
-                        foreach ($style as $key => $style) :                        // $warna = $this->db->query("SELECT * FROM style_warna,warna,product WHERE product.id='$id' AND warna.id_product=product.id AND style_warna.id=warna.id_stylecolor")->result_array();
-                        // foreach ($warna as $key => $warna) {
-                        //   echo $warna['warna'];
-                        // }
-                        ?>
-                        <input class="form-check-input birumuda" name="warna[]" type="checkbox" id="inlineCheckbox1" value="<?= $style['id'] ?>" <?php
-                        $id = $style['id'];
-                        $warna = $this->db->query("SELECT * FROM warna,style_warna WHERE warna.id_product='$id_product' AND style_warna.id='$id' AND warna.id_stylecolor=style_warna.id")->row_array();
-                        if ($warna['id_product']==$id_product) {
-                          echo 'checked ';
-                        }else{
-                          
-                        }
-                        ?>style=";width:25px;height:25px;">
-                          <label class="form-check-label" id="labelbirumuda" for="inlineCheckbox1" style="margin-right:3px;"><?= $style['nama_warna']?>
-                          </label>
-                          <?php endforeach ?>
-                        </div>
-                    </div>
-                  
-                                        </div>
+                    
+                  </div>
+                  <div class="row">
                       <div class="col-md-6">
                           <div class="form-group ">
                                       <label for="exampleInputFile">Image </label>

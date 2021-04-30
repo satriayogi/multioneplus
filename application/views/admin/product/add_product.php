@@ -59,11 +59,34 @@
                         </div>
                         <div class="col-md-6">
 
-<div class="form-group">
+<!-- <div class="form-group">
     <label for="exampleInputPassword1">Quantity</label>
     <input type="text" name="quantity" class="form-control col-md-9" id="exampleInputPassword1" placeholder="Quantity Product">
+</div> -->
+                    <div class="col-md-12" id="stok3">
+                      <div id="wil" >
+                        <div class="form-row">
+                          <div class="col-md-5" >
+                            <label for=""> Pilih Warna</label> <br>
+                            <select class="form-control select2" name="warna[]" style="width: 100%;">
+                              <?php foreach ($color_list as $key => $value) :?>
+                                <option selected="selected" value="<?= $value['id'] ?>"><?= $value['nama_warna'] ?></option>
+                                <?php endforeach; ?>
+                              </select>
+                            </div>
+                            <div class="col-md-3">
+                              <label for="">Quantity</label>
+                              <input type="text" name="quantity[]" id="" class="col-md-6 form-control">
+                            </div>
+                            <div class="col-md-1">
+                              <label for=""> </label>
+                              <button type="button" class="btn btn-primary mt-1" id="tambah_tambah">+</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
 </div>
-</div></div>
+</div>
                     <div class="row">
                     <div class="col-md-6">
                                 <div class="form-group">
@@ -80,18 +103,6 @@
                     
                   </div>
                   <div class="row">
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label for=""> Pilih Warna</label> <br>
-                        <?php foreach ($color_list as $key => $value) :?>
-                        <div class="form-check form-check-inline">
-                          <!-- <input type="hidden" name="warna[]" value="99"> -->
-                          <input class="birumuda" name="warna[]" value="<?= $value['id'] ?>" type="checkbox" id="inlineCheckbox1" onchange="changecolor1()"  style="width:30px;height:30px;">
-                          <label class="form-check-label" id="labelbirumuda" for="inlineCheckbox1" style="color:'83e4db';"><?= $value['nama_warna'] ?></label>
-                        </div>
-                        <?php endforeach; ?>
-                      </div>
-                    </div>
                     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
                     <script>
                       $("#birumuda").is(':checked',function(){
@@ -238,4 +249,25 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+
+
+<!-- jQuery -->
+<script src="<?= base_url() ?>assets/admin/plugins/jquery/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="<?= base_url() ?>assets/admin/plugins/jquery-ui/jquery-ui.min.js"></script>
+  <script>
+    var i = 1;
+    i++;
+    var qty= '<div id="hap'+i+'"> <div class="form-row" ><div class="form-group col-md-5" ><label for="" > Pilih Warna</label> <br><select class="form-control select2" name="warna[]" style="width: 100%;"><?php foreach ($color_list as $key => $value) :?><option selected="selected" value="<?= $value['id'] ?>"><?= $value['nama_warna'] ?></option><?php endforeach; ?></select></div><div class="form-group col-md-3" id="hap'+i+'"><label for="">Quantity</label><input type="text" name="quantity[]" id="" class="col-md-6 form-control"></div><div class="form-group col-md-1"><label for=""> </label><button type="button" class="btn btn-primary mt-1 hapus" id="'+i+'">-</button></div></div>';
+  $("#tambah_tambah").on("click",function(e){
+    e.preventDefault();
+    $("#stok3").append(qty);
+  });
+  $("#stok3").on("click",".hapus",function(e){
+    e.preventDefault();
+    var buttonhapus =$(this).attr("id");
+    console.log("delete",buttonhapus);
+        $('#hap'+buttonhapus+'').remove();
+  })
+  </script>
  

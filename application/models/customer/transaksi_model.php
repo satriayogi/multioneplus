@@ -11,6 +11,7 @@ class transaksi_model extends CI_Model{
     public function minkeranjang(){
         $uricustomer = $this->uri->segment(3);
         $urikeranjang = $this->uri->segment(4);
+        // var_dump($uricustomer);die;
         $this->db->query("UPDATE keranjang SET pcs=pcs-1,total=harga*pcs where id='$urikeranjang'");
         redirect('checkout/index');
     }
@@ -25,6 +26,7 @@ class transaksi_model extends CI_Model{
         $urikeranjang = $this->uri->segment(3);
         $uriproduct = $this->uri->segment(4);
         $uricustomer = $this->uri->segment(5);
+        // var_dump($urikeranjang);die;
         $this->db->delete('keranjang',['id'=>$urikeranjang]);
         redirect('checkout/index');
     }
@@ -123,6 +125,11 @@ class transaksi_model extends CI_Model{
     public function customer_checkout(){
         $uri = $this->db->segment(3);
         return $this->db->get_where('transkasi',['id_customer'=>$uri])->row_array();
+    }
+    public function detail_transaksi(){
+        $uri = $this->uri->segment(3);
+        // var_dump($uri);die;
+        return $this->db->get_where('transaksi',['id' => $uri])->row_array();
     }
 }
 
