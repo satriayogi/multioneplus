@@ -62,7 +62,12 @@
                     </td>
                     <td><?= $value['total'] ?></td>
                     <td>
+                    <?php 
+                    if ($value['no_resi'] == null):?>
                     <button type="button" class="btn btn-primary w-100 mb-1" data-toggle="modal" data-target="#exampleModal<?= $value['id'] ?>">Resi <i class="fa fa-book"></i> </button>  
+                    <?php else: ?>
+                    <button type="button" class="btn btn-primary w-100 mb-1" data-toggle="modal" data-target="#exampleModal<?= $value['id'] ?>">Update Resi <i class="fa fa-book"></i> </button>  
+                    <?php endif; ?>
                     <a href="<?= base_url('transaksi/print/'.$value['id']) ?>" target="_blank" class="btn btn-warning w-100"> Print <i class="fas fa-print"></i></a></td>
                   </tr>
                   <?php endforeach; ?>

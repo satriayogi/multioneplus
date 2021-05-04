@@ -274,7 +274,7 @@ class Buy extends CI_Controller{
 		$qty1 = $this->input->post("qty1");
 		$totalproduct = $this->input->post("totalproduct");
 		// delete keranjang
-		// $this->db->query("DELETE FROM keranjang where id_customer='$id_customer'");
+		$this->db->query("DELETE FROM keranjang where id_customer='$id_customer'");
 		// warna
 		$warna = $this->input->post("warna");
 		$id_warna = $this->input->post("id_warna");
@@ -345,7 +345,7 @@ class Buy extends CI_Controller{
     	// echo 'RESULT <br><pre>';
     	// var_dump($result);
     	// echo '</pre>' ;
-		redirect("transaksi_customer/detail_transaksi");
+		redirect("transaksi_customer/detail_transaksi/".$id_transaksi);
 
     }
 }

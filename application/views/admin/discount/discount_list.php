@@ -29,7 +29,6 @@
                   <thead>
                   <tr>
                     <th>Nomor</th>
-                    <th>Name Product</th>
                     <th>Customer</th>
                     <th>Discount</th>
                     <th>Code Discount</th>
@@ -43,11 +42,10 @@
                   foreach ($discount_list as $key => $discount):?>
                   <tr>
                     <td><?= $no++; ?></td>
-                    <td><?= $discount['nama_product'] ?></td>
                     <td><?= $discount['id_customer'] ?></td>
                     <td><?= $discount['potongan'] ?></td>
                     <td><?= $discount['kode_discount'] ?></td>
-                    <td>  <a class="btn btn-danger btn-sm hapus" href="<?= base_url('discount/delete_discount/'.$discount['id_product']) ?>">
+                    <td>  <a class="btn btn-danger btn-sm hapus" href="<?= base_url('discount/delete_discount/'.$discount['id']) ?>">
                               <i class="fas fa-trash">
                               </i>
                               Delete
@@ -86,15 +84,15 @@
             <div class="modal-body">
                 <form action="<?= base_url('discount/save_discount') ?>" class="form-horizontal" name="randform" method="post">
                     <div class="card-body">
-                                    <div class="form-group row">
-                                      <label for="exampleInputEmail1" class="col-sm-2 col-form-label">Product</label>
-                                      <select class="form-control select2" style="width: 75%;" name="product">
-                    <?php foreach ($product as $product) :?>
+                                    <!--<div class="form-group row">-->
+                                    <!--  <label for="exampleInputEmail1" class="col-sm-2 col-form-label">Product</label>-->
+                                    <!--  <select class="form-control select2" style="width: 75%;" name="product">-->
+                  <!--  <?php foreach ($product as $product) :?>-->
                     
-                    <option value="<?= $product['id_product'] ?>"><?= $product['nama_product']; ?></option>
-                    <?php endforeach; ?>
-                  </select>
-                                    </div>
+                  <!--  <option value="<?= $product['id_product'] ?>"><?= $product['nama_product']; ?></option>-->
+                  <!--  <?php endforeach; ?>-->
+                  <!--</select>-->
+                                    <!--</div>-->
                                     <div class="form-group row">
                                       <label for="exampleInputEmail1" class="col-sm-2 col-form-label">Potongan</label>
                                       <input type="text" class="form-control col-md-9" id="exampleInputEmail1" name="potongan" placeholder="Masukkan Jumlah potongan tanpa menggunakan persen"> <h3>%</h3>

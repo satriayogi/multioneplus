@@ -6,7 +6,7 @@ class List_product extends CI_Controller{
         $this->load->model('admin/category_model','category');
     }
     public function index(){
-        $data['customer'] = $this->product->viewcustomer()->row_array();
+    $data['customer'] = $this->product->viewcustomer()->row_array();
     $data['list_product'] = $this->product->list_product();
     $data['category']=$this->category->read_category();
     $this->load->view('customer/product/header',$data);

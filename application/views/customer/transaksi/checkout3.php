@@ -79,7 +79,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow p-3 mb-5">
        <div class="container">
-  <a class="navbar-brand" href="#"><img src="https://www.multioneplus.com/template/s150319001001/images/logo-mutil-plus-one2.png" style="width: 173px;height: 65px;" alt=""></a>
+  <a class="navbar-brand" href="<?= base_url('list_product/index') ?>"><img src="https://www.multioneplus.com/template/s150319001001/images/logo-mutil-plus-one2.png" style="width: 173px;height: 65px;" alt=""></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -126,7 +126,7 @@
       <input type="hidden" name="result_data" id="result-data" value="">
         <div class="alamat">
             <h2>Alamat Penerima</h2>
-            <a href="" style="padding: 5px;
+            <a href="<?= base_url('profile/edit_profile') ?>" style="padding: 5px;
 border-radius: 10px;
 border: none;
 width: 20%;
@@ -213,8 +213,8 @@ margin-left: 20px;"> Edit Alamat</a>
                         <input type="hidden" name="id_keranjang[]" id="id_product" value="<?= $value['id'] ?>">
                         <input type="hidden" name="harga[]" id="harga" value="<?= $value['harga'] ?>" id="">
                         <input type="hidden" name="qty1[]" id="qty1" value="<?= $value['pcs'] ?>" id="">
-                        <input type="text" name="stok[]" id="stok" value="<?= $query2['stok'] - $value['pcs'] ?>" id="">
-                        <input type="text" name="idwarna[]" id="stok" value="<?= $query2['id'] ?>" id="">
+                        <input type="hidden" name="stok[]" id="stok" value="<?= $query2['stok'] - $value['pcs'] ?>" id="">
+                        <input type="hidden" name="idwarna[]" id="stok" value="<?= $query2['id'] ?>" id="">
                         <input type="hidden" name="totalproduct[]" id="totalproduct" value="<?= $value['total'] ?>" id="">
                             <img src="<?= base_url() ?>assets/admin/img/product/<?= $gambar['gambar'] ?>" width="100%" alt="">
                 </div>
@@ -234,7 +234,7 @@ margin-left: 20px;"> Edit Alamat</a>
                        
                      <div class="color" style="background: <?= $value['warna'] ?>;">  </div> 
                      
-                     <input type="text" name="warna[]" id="warna" value="<?= $value['warna'] ?>" id="">
+                     <input type="hidden" name="warna[]" id="warna" value="<?= $value['warna'] ?>" id="">
                      <input type="hidden" name="id_warna[]" id="warna" value="<?= $query2['id_stylecolor'] ?>" id="">
                     </div><br>
                     <textarea name="catatan[]" id="" cols="40" rows="3"><?= $value['catatan'] ?></textarea>

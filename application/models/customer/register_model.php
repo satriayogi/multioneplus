@@ -20,7 +20,7 @@ class Register_model extends CI_Model{
             showConfirmButton: false,
             timer: 2000
         })</script>');
-        redirect('login/customer');
+        redirect('loginc/customer');
     } 
 }
 

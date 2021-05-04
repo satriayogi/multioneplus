@@ -450,9 +450,8 @@ text-align: center;
 <button type="button" class="plus" id="plus"><i class="fa fa-plus" id="plus" style="color:white;position: absolute;margin-left: -6.5px;
 margin-top: -16px;"></i></button>
 <input type="hidden" name="warni_warni" value="<?php 
-$uri1 = $this->uri->segment(4);
 $id_product3 = $this->uri->segment(3);
-$ahk = $this->db->query("SELECT * FROM warna JOIN style_warna WHERE warna.id_product='$id_product3' AND warna.id_stylecolor='$uri1' AND warna.id_stylecolor=style_warna.id")->row_array();
+$ahk = $this->db->query("SELECT * FROM warna JOIN style_warna WHERE warna.id_product='$id_product3' AND warna.id_stylecolor=style_warna.id")->row_array();
 echo $ahk['warna'];
 ?>
 " id="">
