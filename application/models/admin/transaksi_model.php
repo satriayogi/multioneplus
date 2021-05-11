@@ -41,9 +41,11 @@ class Transaksi_model extends CI_Model{
         no_resi = '$noresi',
         harga_kurir = '$harga_kurir',
         discount = '$discount',
-        total = '$total'
+        total = '$total',
+        status = 1
         WHERE id='$id'
         ");
+    redirect('transaksi/index');
     }
 }
 

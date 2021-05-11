@@ -12,6 +12,7 @@ public function index(){
 public function detail_product(){
     $data['customer'] = $this->product->viewcustomer()->row_array();
     $data['product_detail'] = $this->product->detailproductrow();
+    $this->load->view('customer/product/header',$data);
     $this->load->view('customer/product/product_detail',$data);
 }
 public function add_transaksi(){
@@ -35,13 +36,7 @@ public function add_transaksi(){
 public function add_keranjanglist(){
     $uri = $this->uri->segment(4);
 }
-public function category_product(){
-    $data['customer'] = $this->product->viewcustomer()->row_array();
-    $data['category']=$this->category->read_category();
-    $data['category_product'] = $this->product->category_product();
-    $this->load->view('customer/product/header',$data);
-    $this->load->view('customer/product/category_product',$data);
-}
+
 }
 
 

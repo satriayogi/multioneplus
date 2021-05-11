@@ -11,6 +11,14 @@ class List_product extends CI_Controller{
     $data['category']=$this->category->read_category();
     $this->load->view('customer/product/header',$data);
     $this->load->view('customer/product/list_product',$data);
+}
+public function category_product(){
+    $data['customer'] = $this->product->viewcustomer()->row_array();
+    $data['list_product'] = $this->product->list_product();
+        $data['category']=$this->category->read_category();
+        $data['category_product'] = $this->product->category_product();
+        $this->load->view('customer/product/header',$data);
+        $this->load->view('customer/product/category_product',$data);
     }
 }
 

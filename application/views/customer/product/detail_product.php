@@ -8,6 +8,39 @@
     <link rel="stylesheet" href="<?= base_url() ?>assets/customer/css/product-details.css">
      <!-- Font Awesome -->
   <link rel="stylesheet" href="<?= base_url() ?>assets/admin/plugins/fontawesome-free/css/all.min.css">
+  <style>
+      /*Tab*/
+@media screen and (max-width: 991px){
+  .product-img-1 img { width: 100%;}
+  .product-img-2 { padding: 10px;}
+  .product-section{ padding: 50px 20px;}
+  .product-section h2{font-size: 35px;}
+  .product-desc h4{font-size: 20px;}
+  .product-desc h5{font-size: 15px;}
+  .product-desc{padding: 10px 10px 10px 30px;}
+  .commentar ul li{font-size: 15px;}
+  .address{ width: 100%;}
+  .company-addres1{margin-left: 35px;}
+   .copyright{ width: 95%; font-size: 9px; padding-bottom: -10px;}
+}
+
+
+/* Phone*/
+@media screen and (max-width: 768px){
+ .product-section h2 {font-size: 28px;}
+ .choose-colors ul li button  {width: 40px;}
+ .choose-colors ul {padding: 30px 0;}
+ .side-by-side{width: 100%;}
+ .product-section h2 {font-size: 48px;}
+ .product-section h4 {font-size: 34px;}
+ .product-section h5{font-size: 25px;}
+ .product-desc ul{    font-size: 20px;}
+ .choose-colors ul li button{    height: 50px; width: 100px; }
+ .commentar-column input {width: 70%; height: 70px;}
+ .pembelian .button{    padding: 20px;}
+ .commentar-column button {width: 28%; height: 70px; padding-top: 17px; font-size: 23px;}
+}
+  </style>
 </head>
 <body>
 

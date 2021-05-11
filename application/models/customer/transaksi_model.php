@@ -131,6 +131,64 @@ class transaksi_model extends CI_Model{
         // var_dump($uri);die;
         return $this->db->get_where('transaksi',['id' => $uri])->row_array();
     }
+    // public function update_status(){
+    //     $uri = $this->uri->segment(3);
+    //     // $this->db->query("UPDATE transaksi SET status='1' where id='$uri'");
+    //     $this->session->set_flashdata("pesan","<script>Swal.fire({
+        //         title: 'Are you sure?',
+        //         icon: 'warning',
+        //         showCancelButton: true,
+        //         confirmButtonColor: '#3085d6',
+        //         cancelButtonColor: '#d33',
+        //         confirmButtonText: 'Yes, delete it!'
+        //       }).then((result) => {
+            //         if (result.isConfirmed) {
+                //           document.location.href=''
+                //         }
+                //       })</script>");
+                //       redirect("transaksi_customer/ratting/".$uri);
+                // }
+                public function ratting_json(){
+                    $this->db->select("*");
+                    $this->db->from("transaksi");
+                    $this->db->join("detail_transaksi","transaksi.id=detail_transaksi.id_transaksi");
+                    $query =$this->db->get();
+        return $query->row();
+        
+    }
+    public function update_status(){
+        $uri = $this->uri->segment(3);
+            $this->db->query("UPDATE transaksi SET status='2' where id='$uri'");
+        // var_dump($uri);die;
+    }
+    public function save_ratting(){
+        $id_customer = $this->input->post("id_customer");
+        $ratting = $this->input->post("ratting");
+        $komentar = $this->input->post("komentar");
+        $id_product = $this->input->post("id_product");
+        $result=array();
+        foreach ($id_product as $key => $value) {
+            $result[]=array(
+                'id_product'=>$id_product[$key],
+                'id_customer'=>$id_customer,
+                'komen' => $komentar,
+                'ratting' =>$ratting
+            );
+        }
+        // var_dump($result);die;
+        $this->db->insert_batch('komentar',$result);
+        $this->session->set_flashdata("pesan","<script>Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Terima kasih Telah Percaya Product Kami',
+            showConfirmButton: false,
+            timer: 1500
+          })</script>");
+          redirect('transaksi_customer/riwayat_transaksi');
+    }
+    public function json_cek($id){
+        return $this->db->get_where('transaksi',['id'=>$id])->row_array();
+    }
 }
 
 

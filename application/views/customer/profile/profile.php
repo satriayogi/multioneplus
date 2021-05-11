@@ -27,16 +27,16 @@
    <div class="collapse navbar-collapse justify-content-end p-4" id="navbarNavDropdown">
      <ul class="navbar-nav">
        <li class="nav-item active">
-         <a class="nav-link" href="#">About MOP <span class="sr-only">(current)</span></a>
+         <a class="nav-link" href="<?= base_url('about/index') ?>">About MOP <span class="sr-only">(current)</span></a>
        </li>
        <li class="nav-item">
-         <a class="nav-link" href="#">Shop</a>
+         <a class="nav-link" href="<?= base_url() ?>list_product/index">Shop</a>
        </li>
        <li class="nav-item">
          <a class="nav-link" href="<?= base_url('kontak/index') ?>">Contact</a>
        </li>
        <li class="nav-item mr-3">
-         <a class="nav-link" href="#" style="background-color:#f7f5f6; border-radius:5px;"><img src="<?= base_url() ?>assets/customer/img/shopping chart.png" style="width:30px;height:30px;" alt="">
+         <a class="nav-link" href="<?= base_url('checkout/index') ?>" style="background-color:#f7f5f6; border-radius:5px;"><img src="<?= base_url() ?>assets/customer/img/shopping chart.png" style="width:30px;height:30px;" alt="">
          <?php
                 $id_customer = $customer['id'];
                 $ha = $this->db->query("SELECT COUNT(id_customer) as jumlah FROM keranjang WHERE id_customer='$id_customer'")->row_array();

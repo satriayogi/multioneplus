@@ -131,7 +131,7 @@ ul li .dropdown li {
   <div class="collapse navbar-collapse justify-content-end p-4" id="navbarNavDropdown">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="#">About MOP <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="<?= base_url('about/index') ?>">About MOP <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="<?= base_url() ?>list_product/index">Shop</a>

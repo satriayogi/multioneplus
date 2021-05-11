@@ -1,57 +1,89 @@
- <!-- Online Store Start HERE -->
- <div class="full-banner">
-           <div class="text-banner">
-               <h2> Daily Mask</h2>
-               <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus non dolores praesentium magnam! Modi sint sapiente aperiam cum explicabo aliquid magni, quisquam consequuntur ad, veritatis quis laborum recusandae eaque illum.</p>
-               <button> <a href=""> Beli Sekarang</a></button>
-           </div>
-          
-       </div>
 
+       <!-- Online Store Start HERE -->
+       <style>
+           html {
+  scroll-behavior: smooth;
+}
+
+       </style>
+      <div class="container">
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active" style="background-color:green;"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1" style="background-color:green;"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2" style="background-color:green;"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="<?= base_url() ?>assets/customer/img/banner.png" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="<?= base_url() ?>assets/customer/img/banner.png" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="<?= base_url() ?>assets/customer/img/banner.png" class="d-block w-100" alt="...">
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" style="background-color:green;" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" style="background-color:green;" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div></div>
 
        <section class="online-store">
         <div class=products>
             <div class="category">
                 <ul>
-                <li><a href="<?= base_url('product_customer/list_product') ?>"> ALL</a></li>
+                <li><a href="<?= base_url('list_product/index') ?>"> ALL</a></li>
                 <?php 
                 foreach ($category as $category) :?>    
-                <li><a href="<?= base_url('product_customer/category_product/'.$category['id']) ?>"> <?= $category['nama_category'] ?></a></li>
+                <li><a href="<?= base_url('list_product/category_product/'.$category['id']) ?>"> <?= $category['nama_category'] ?></a></li>
                     <?php endforeach; ?>
                 </ul>
               </div>
 
-            <ul class="product-display">
-                <?php 
-                foreach ($category_product as $key => $value):?>
-                <li>
-                    <div class="product-display-each">
-                        <?php
-                        $id = $value['id_product'];
-                        $query = $this->db->get_where('gambar',['id_product'=>$id])->row_array();
-                        ?>
-                        <h1 style="padding-top:5px;">
+              <style>
+              .img-product{
+                transition: all .4s ease-in-out;
+              }
+              .img-product:hover{
+                  cursor: pointer;
+                  transform: scale(1.1);
+              }
+              </style>
+              <div class="row row-cols-1 row-cols-md-4" >
+                <?php foreach ($list_product as $value):?>
                     <?php 
+                        $id = $value['id'];
                         // $id_category = $value['id_category'];
-                        $category = $this->db->query("SELECT * FROM category JOIN category_product WHERE category_product.id_product='$id' AND category_product.id_category=category.id")->result_array();
+?>
+                        <?php 
+                        $query = $this->db->get_where('gambar',['id_product'=>$id])->row_array();
+
+                        ?>
+  <div class="col mb-3">
+    <div class="card" style="background-color: #f7f5f6;border: none; height: 300px;">
+    <a href="<?= base_url('product_customer/detail_product/'.$id) ?>"> <img src="<?= base_url() ?>assets/admin/img/product/<?= $query['gambar'] ?>" class="card-img-top img-product"  style="width: 200px;
+    transition: all .4s ease-in-out;
+    display: block;
+    margin: 0 auto;" alt="<?= base_url() ?>assets/admin/img/product/<?= $query['gambar'] ?>"></a>
+    </div>
+      <div class="card-body">
+      <a href="<?= base_url('product_customer/detail_product/'.$id) ?>" style="color:#000; text-decoration:none"> <h5 class="card-title">   <h5 style=" text-align: left;
+    font-size: 20px;
+    color: grey;"> <?php  $category = $this->db->query("SELECT * FROM category JOIN category_product WHERE category_product.id_product='$id' AND category_product.id_category=category.id")->result_array();
                         foreach ($category as $category) {
                             echo $category['nama_category'].' ';
-                        }
-?>
-                    </h1>
-                    <a href="<?= base_url('product_customer/detail_product/'.$customer['id'].'/'.$id) ?>"> <img src="<?= base_url() ?>assets/admin/img/product/<?= $query['gambar'] ?>" alt="" style="width: 80%; margin-top: 40px;"></a>
-                    
-                        <div class="product-title">
-                            <h3> <?= $value['nama_product'] ?></h3>
-                            <h5> <?= $value['keterangan'] ?></h5>
-                            <span class="price">Rp <?= $value['harga'] ?></span>
-                            <button><a href="<?= base_url('product_customer/detail_product/'.$customer['id'].'/'.$id) ?>"> <img src="<?= base_url() ?>assets/customer/img/add-to-cart.png" alt="" style="width: 20px;"></a></button>
-                        </div>
-                    </div>
-                </li>
-                <?php endforeach; ?>
-            </ul>
-        </div>
+                        } ?></h5></h5></a>
+       <a href="<?= base_url('product_customer/detail_product/'.$id) ?>" style="text-decoration:none">  <p class="card-text mx-auto"><h5 style=" color:#24ae5c; font-weight:600;"> Rp.<?= $value['harga']; ?> </h5></p></a>
+      </div>
+  </div>
+  <?php endforeach; ?>
+</div>
        </section>
 
        <div class="clear"></div>

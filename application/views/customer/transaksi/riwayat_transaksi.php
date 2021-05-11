@@ -15,9 +15,16 @@
  <link rel="stylesheet" href="<?= base_url() ?>assets/customer/css/online-store-2.css">
   <!-- DataTables -->
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.css"/>
-
+  <script src="https://unpkg.com/clipboard@2/dist/clipboard.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- sweetalert -->
+  <script src="<?= base_url(); ?>/assets/admin/dist/js/sweetalert2.all.min.js"></script>
+<script src="<?= base_url(); ?>/assets/admin/dist/js/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="<?= base_url(); ?>/assets/admin/dist/js/sweetalert2.min.css">
+<!-- end sweet aler -->
 </head>
 <body>
+<?= $this->session->flashdata("pesan"); ?>
      <!-- Navigation -->
      <nav class="navbar navbar-expand-lg navbar-light bg-light shadow p-3 mb-5 " style="z-index:1;">
         <div class="container">
@@ -28,13 +35,13 @@
    <div class="collapse navbar-collapse justify-content-end p-4" id="navbarNavDropdown">
      <ul class="navbar-nav">
        <li class="nav-item active">
-         <a class="nav-link" href="#">About MOP <span class="sr-only">(current)</span></a>
+         <a class="nav-link" href="<?= base_url('about/index') ?>">About MOP <span class="sr-only">(current)</span></a>
        </li>
        <li class="nav-item">
-         <a class="nav-link" href="#">Shop</a>
+         <a class="nav-link" href="<?= base_url() ?>list_product/index">Shop</a>
        </li>
        <li class="nav-item">
-         <a class="nav-link" href="#">Contact</a>
+         <a class="nav-link" href="<?= base_url('kontak/index') ?>">Contact</a>
        </li>
        <li class="nav-item mr-3">
         <a class="nav-link" href="<?= base_url('checkout/index') ?>" style="background-color:#f7f5f6; border-radius:5px;"><img src="<?= base_url() ?>assets/customer/img/shopping chart.png" style="width:30px;height:30px;" alt="">
@@ -70,9 +77,25 @@
         </div>
  </nav>
  <!-- end nav -->
+ <!-- style -->
+ <style>
+ 
+@media (min-width: 992px) { 
+.table{
+  font-size:15px;
+}
+}
+@media (min-width: 768px) { 
+  .table{
+    font-size:13px;
+    
+  }
+ }
+ </style>
 <!-- table section -->
 <div class="container">
-<table class="table table-striped" id="myTable" >
+<div class="table-responsive">
+<table class="table" id="myTable" >
     <thead>
       <tr>
         <th scope="col">#</th>
@@ -91,23 +114,177 @@
       <?php 
         $id_customer = $customer['id'];
         $query = $this->db->query("SELECT * FROM transaksi WHERE id_customer='$id_customer'")->result_array();
-      $no =1;
-      foreach ($query as $key => $value):?>
+        $no =1;
+        foreach ($query as $key => $value):?>
       <tr style="text-align:center;">
         <th scope="row"><?= $no++; ?></th>
         <td><?= $value['id_order']; ?></td>
-        <td><?= $value['no_resi']; ?></td>
+        <td>
+          <style>
+        #nores{
+          border:none;
+
+        }
+        </style>
+        <?php if ($value['no_resi'] == null):?>
+          <?php else: ?>
+        <input type="text" name="asd" id="nores<?= $value['no_resi'] ?>"  value="<?= $value['no_resi'] ?>" style="margin-bottom:2px;" >
+        <button class="cekres text-info" style="border:none; background:transparent" id="nores<?= $value['no_resi'] ?>" data-id="<?= $value['id'] ?>" data-clipboard-target="#nores<?= $value['no_resi'] ?>"> <h4>cek</h4>  </button>
+<?php endif; ?>     
+      </td>
+      <script>
+          new ClipboardJS('.cekres');
+          $(".cekres").on("click",function(){
+            var id= $(this).data('id');
+            // alert(id);
+            $.ajax({
+              url:'<?= base_url() ?>transaksi_customer/json_cek/',
+        data:{id:id},
+        method: 'post',
+        dataType:'json',
+              success: (data)=>{
+  //  console.log(data.courier);             
+                if (data.courier == "jne") {
+Swal.fire({
+  title: 'Langsung Paste Aja yah ;)',
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Cus Langsung ke link Ekspedisi'
+}).then((result) => {
+  if (result.value) {
+    // location.href= 'https://www.jne.co.id/id/tracking/trace';
+    // alert(href);
+   window.open('https://www.jne.co.id/id/tracking/trace');
+  }
+});
+                }
+                if (data.courier == "pos") {
+                  Swal.fire({
+  title: 'Langsung Paste Aja yah ;)',
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Cus Langsung ke link Ekspedisi'
+}).then((result) => {
+  if (result.value) {
+    // location.href= 'https://www.jne.co.id/id/tracking/trace';
+    // alert(href);
+   window.open('https://www.posindonesia.co.id/id/tracking');
+  }
+});
+                }
+                if (data.courier == "tiki") {
+                  Swal.fire({
+  title: 'Langsung Paste Aja yah ;)',
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Cus Langsung ke link Ekspedisi'
+}).then((result) => {
+  if (result.value) {
+    // location.href= 'https://www.jne.co.id/id/tracking/trace';
+    // alert(href);
+   window.open('https://tiki.id/id/tracking');
+  }
+});
+                }
+              }
+            });
+          })
+//           $(".cekres").on("click",function(e){
+// e.preventDefault();
+// // alert(href);
+// // console.log()
+// Swal.fire({
+//   title: 'Langsung Paste Aja yah ;)',
+//   icon: 'warning',
+//   showCancelButton: true,
+//   confirmButtonColor: '#3085d6',
+//   cancelButtonColor: '#d33',
+//   confirmButtonText: 'Cus Langsung ke link Ekspedisi'
+// }).then((result) => {
+//   if (result.value) {
+//     // location.href= 'https://www.jne.co.id/id/tracking/trace';
+//     // alert(href);
+//    window.open('https://www.jne.co.id/id/tracking/trace');
+//   }
+// });
+//   });
+        // $("#nores<?= $value['no_resi'] ?>").on('click',function(){
+          
+          
+          // alert("masuk");
+            // var id = $("#nores<?= $value['no_resi'] ?>").val();
+          // alert(id);
+          // id.focus();
+          // id.select();
+          // document.execCommand("copy", false);
+        // $.ajax({
+        //   type: "POST",
+        //   url: "<?= base_url() ?>transaksi_customer/json_cek",
+        //   data: {id:id},
+        //   dataType: "json",
+        //   success: function (data) {
+            
+        //   }
+        // });
+        // })
+
+
+
+// function myFunction() {
+//   // e.preventDefault();
+//   var copyText<?= $value['id'] ?> = document.getElementById("nores<?= $value['id'] ?>").value;
+//   alert(copyText<?= $value['id'] ?>);
+//   copyText<?= $value['id'] ?>.select();
+//   copyText<?= $value['id'] ?>.setSelectionRange(0, 99999);
+//   document.execCommand("copy");
+  
+//   var tooltip = document.getElementById("myTooltip");
+//   tooltip.innerHTML = "Copied: " + copyText.value;
+
+// }
+
+// function outFunc() {
+//   var tooltip = document.getElementById("myTooltip");
+//   tooltip.innerHTML = "Copy to clipboard";
+// }
+
+</script>
         <td><?= $value['alamat']; ?></td>
         <td><?= $value['courier'] ?></td>
         <td><?= $value['ekspedisi'] ?></td>
         <td><?= $value['discount'] ?></td>
         <td><?= $value['total'] ?></td>
-        <td>pending</td>
-        <td> <a href="<?= base_url('transaksi_customer/detail_transaksi/'.$value['id']) ?>" class="btn btn-primary">Detail Transaksi</a> </td>
+        <td><?php 
+        if ($value['status'] == 0) {
+          echo 'pending';
+        }elseif($value['status'] == 1){
+          echo 'Sedang Di Kirim';
+        }elseif($value['status'] == 2){
+          echo 'sudah sampai';
+        }
+        
+        ?></td>
+        <td> <a href="<?= base_url('transaksi_customer/detail_transaksi/'.$value['id']) ?>" class="btn btn-primary" style="margin-bottom:5px;">Detail Transaksi</a> 
+         <?php if ($value['no_resi'] == null):?>
+         <?php else: ?>
+          <?php if($value['status'] == 2): ?>
+            <?php else: ?>
+         <a href="<?= base_url('transaksi_customer/update_status/'.$value['id']) ?>" class="btn btn-warning"> Transaksi Selesai</a>
+          <?php endif; ?>
+          <?php endif; ?>
+          </td>
       </tr>
       <?php endforeach; ?>
     </tbody>
-  </table></div>
+  </table>
+          </div>
+  </div>
  <!-- Footer -->
  <footer id="sticky-footer" class="py-5 text-white-50" style=" background-color:#445555;  margin-bottom:0px; position:absolute; width:100%; margin-top:375px;">
     <div class="container subfooter">
@@ -122,12 +299,28 @@
     </div>
     <p class="copyright">&copy; 2020 PT MULTI ONE PLUS, Proudly created by <a href=""> MIACOMPANY.ID </a></p>
 </footer>
+
 </body>
 </html>
+<!-- ratting -->
+<!-- <script>
+$(document).ready(function(){
+$.ajax({
+  type: "POST",
+  url: "<?= base_url() ?>transaksi_customer/ratting_json",
+  data: "data",
+  dataType: "dataType",
+  success: function (response) {
+    
+  }
+});
+});
+</script> -->
 <!-- datatable -->
 <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.24/datatables.min.js"></script>
 <script>
   $(document).ready( function () {
     $('#myTable').DataTable();
 } );
+</script>
 </script>

@@ -39,6 +39,19 @@ class Transaksi_customer extends CI_Controller{
         $data['transaksi'] = $this->transaksi->detail_transaksi();
         $this->load->view('customer/transaksi/detail_transaksi',$data);
     }
+    public function update_status(){
+        $data['customer'] = $this->product->viewcustomer()->row_array();
+        $this->transaksi->update_status();
+    $this->load->view('customer/product/header',$data);
+    $this->load->view('customer/ratting/ratting.php');
+    }
+    public function save_ratting(){
+        $this->transaksi->save_ratting();
+    }
+    public function json_cek(){
+        $data = $this->transaksi->json_cek($_POST['id']);
+        echo json_encode($data);
+    }
 }
 
 
