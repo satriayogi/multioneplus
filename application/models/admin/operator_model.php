@@ -91,6 +91,25 @@ class operator_model extends CI_Model{
           })</script>');
         redirect('operator/index');
     }
+    public function total_bulanan(){
+        return $this->db->query("SELECT CONCAT(YEAR(date),'/',MONTH(date)) AS tahun_bulan, COUNT(*) AS jumlah_bulanan
+        FROM visitor WHERE CONCAT(YEAR(date),'/',MONTH(date))=CONCAT(YEAR(NOW()),'/',MONTH(date))
+        GROUP BY YEAR(date),MONTH(date)")->result_array();
+    }
+    public function total_bulan(){
+        return $this->db->query("SELECT COUNT(*) AS total_bulanan
+    FROM visitor
+    WHERE CONCAT(YEAR(visitor.date),'/',MONTH(visitor.date))=CONCAT(YEAR(NOW()),'/',MONTH(NOW()))")->row_array();
+    }
+    public function jumlah_perbulan(){
+        return $this->db->query("SELECT CONCAT(YEAR(date),'/',MONTH(date)) AS tahun_bulan, COUNT(*) AS jumlah_bulanan
+        FROM visitor
+        WHERE CONCAT(YEAR(date),'/',MONTH(date))=CONCAT(YEAR(NOW()),'/',MONTH(NOW()))
+        GROUP BY YEAR(date),MONTH(date);")->row_array();
+    }
+    public function count_data(){
+        return $this->db->query("SELECT (SELECT COUNT(*) FROM customer )as customer,(SELECT COUNT(*) FROM message )as message,(SELECT COUNT(*) FROM product)as product,(SELECT COUNT(*) FROM transaksi)as transaksi FROM DUAL")->row_array();
+    }
 }
 
 ?>

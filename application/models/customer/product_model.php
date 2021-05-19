@@ -48,7 +48,7 @@ public function list_product(){
 public function category_product(){
     $uri = $this->uri->segment(3);
     // var_dump($uri);die;
-    return $this->db->query("select * FROM product,category_product,category WHERE category.id='$uri' AND category_product.id_product=product.id AND category_product.id_category=category.id")->result_array();
+    return $this->db->query("SELECT * FROM product,category_product,category WHERE category.id='$uri' AND category_product.id_product=product.id AND category_product.id_category=category.id")->result_array();
 }
 }
 

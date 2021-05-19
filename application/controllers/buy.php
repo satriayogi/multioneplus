@@ -290,6 +290,7 @@ class Buy extends CI_Controller{
 			'jenis_paket'=>$ekpedisi,
 			'harga_kurir'=>$hargaongkir,
 			'discount'=>$discount,
+			'tanggal'=>date("Y-m-d"),
 			'total'=>$totalseluruh
 
 		];

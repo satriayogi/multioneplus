@@ -73,6 +73,18 @@
 <script src="<?= base_url() ?>assets/admin/plugins/select2/js/select2.full.min.js"></script>
 <!-- bs-custom-file-input -->
 <script src="<?= base_url() ?>assets/admin/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+
+<!-- FLOT CHARTS -->
+<script src="<?= base_url() ?>assets/admin/plugins/flot/jquery.flot.js"></script>
+<!-- FLOT RESIZE PLUGIN - allows the chart to redraw when the window is resized -->
+<script src="<?= base_url() ?>assets/admin/plugins/flot/plugins/jquery.flot.resize.js"></script>
+<!-- FLOT PIE PLUGIN - also used to draw donut charts -->
+<script src="<?= base_url() ?>assets/admin/plugins/flot/plugins/jquery.flot.pie.js"></script>
+
+<!-- OPTIONAL SCRIPTS -->
+<script src="<?= base_url() ?>assets/admin/plugins/chart.js/Chart.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="<?= base_url() ?>assets/admin/dist/js/demo.js"></script>
 <script>
   $(function () {
   bsCustomFileInput.init();
@@ -219,6 +231,152 @@
     myDropzone.removeAllFiles(true);
   };
   // DropzoneJS Demo Code End
+</script>
+<script>
+  /* global Chart:false */
+
+$(function () {
+  'use strict'
+
+  var ticksStyle = {
+    fontColor: '#495057',
+    fontStyle: 'bold'
+  }
+
+  var mode = 'index'
+  var intersect = true
+
+  var $salesChart = $('#sales-chart')
+  // eslint-disable-next-line no-unused-vars
+  var salesChart = new Chart($salesChart, {
+    type: 'bar',
+    data: {
+      labels: ['JAN','FEB','MAR','APR','MEI','JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
+      datasets: [
+       
+        {
+          backgroundColor: '#28a745',
+          borderColor: '#28a745',
+          data: [1000, 2000, 3000, 2500, 2700, 2500, 3000]
+        }
+      ]
+    },
+    options: {
+      maintainAspectRatio: false,
+      tooltips: {
+        mode: mode,
+        intersect: intersect
+      },
+      hover: {
+        mode: mode,
+        intersect: intersect
+      },
+      legend: {
+        display: false
+      },
+      scales: {
+        yAxes: [{
+          // display: false,
+          gridLines: {
+            display: true,
+            lineWidth: '4px',
+            color: 'rgba(0, 0, 0, .2)',
+            zeroLineColor: 'transparent'
+          },
+          ticks: $.extend({
+            beginAtZero: true,
+
+            // Include a dollar sign in the ticks
+            callback: function (value) {
+              if (value >= 1000) {
+                // value /= 1000
+              }
+
+              return  value
+            }
+          }, ticksStyle)
+        }],
+        xAxes: [{
+          display: true,
+          gridLines: {
+            display: false
+          },
+          ticks: ticksStyle
+        }]
+      }
+    }
+  })
+  var $salesChart = $('#sales-chart2')
+  // eslint-disable-next-line no-unused-vars
+  var salesChart = new Chart($salesChart, {
+    type: 'bar',
+    data: {
+      labels: ['JAN','FEB','MAR','APR','MEI','JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
+      datasets: [
+        {
+          backgroundColor: '#28a745',
+          borderColor: '#28a745',
+          data: [<?php
+          $totalbulan = $totalbulan['total_bulanan'];
+          foreach ($count_bulanan as $value) {
+            $bulan1 = $value['jumlah_bulanan'];
+                                $total = (1000 / $totalbulan) * 1;
+                                echo $bulan1.',';
+          }
+          
+          ?>]
+        }
+      ]
+    },
+    options: {
+      maintainAspectRatio: false,
+      tooltips: {
+        mode: mode,
+        intersect: intersect
+      },
+      hover: {
+        mode: mode,
+        intersect: intersect
+      },
+      legend: {
+        display: false
+      },
+      scales: {
+        yAxes: [{
+          // display: false,
+          gridLines: {
+            display: true,
+            lineWidth: '4px',
+            color: 'rgba(0, 0, 0, .2)',
+            zeroLineColor: 'transparent'
+          },
+          ticks: $.extend({
+            beginAtZero: true,
+
+            // Include a dollar sign in the ticks
+            callback: function (value) {
+              if (value >= 1000) {
+                // value /= 1000
+                // value += 'k'
+              }
+
+              return value
+            }
+          }, ticksStyle)
+        }],
+        xAxes: [{
+          display: true,
+          gridLines: {
+            display: false
+          },
+          ticks: ticksStyle
+        }]
+      }
+    }
+  })
+
+})
+
 </script>
 </body>
 </html>

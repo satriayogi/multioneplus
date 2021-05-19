@@ -21,7 +21,7 @@ public function add_transaksi(){
     }elseif (!$this->session->userdata('email')) {
         redirect('loginc/customer');
         
-    }else{
+    }else{  
         if (isset($_POST['keranjang'])) {
             $this->product->save_keranjang();
             redirect('list_product/index');

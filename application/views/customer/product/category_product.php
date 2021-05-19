@@ -56,14 +56,13 @@
               }
               </style>
               <div class="row row-cols-1 row-cols-md-4" >
-                <?php foreach ($list_product as $value):?>
+                <?php foreach ($category_product as $value):?>
                     <?php 
-                        $id = $value['id'];
+                        $id = $value['id_product'];
                         // $id_category = $value['id_category'];
 ?>
                         <?php 
                         $query = $this->db->get_where('gambar',['id_product'=>$id])->row_array();
-
                         ?>
   <div class="col mb-3">
     <div class="card" style="background-color: #f7f5f6;border: none; height: 300px;">
@@ -77,7 +76,7 @@
     font-size: 20px;
     color: grey;"> <?php  $category = $this->db->query("SELECT * FROM category JOIN category_product WHERE category_product.id_product='$id' AND category_product.id_category=category.id")->result_array();
                         foreach ($category as $category) {
-                            echo $category['nama_category'].' ';
+                            echo $category['nama_category'].'';
                         } ?></h5></h5></a>
        <a href="<?= base_url('product_customer/detail_product/'.$id) ?>" style="text-decoration:none">  <p class="card-text mx-auto"><h5 style=" color:#24ae5c; font-weight:600;"> Rp.<?= $value['harga']; ?> </h5></p></a>
       </div>

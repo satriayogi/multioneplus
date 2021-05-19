@@ -222,6 +222,7 @@
                                           </script>
 </div>
                   </div>
+                                          <span>*Ukuran Gambar Harus kurang dari 1mb</span>
                 </div>
               </div>
                        

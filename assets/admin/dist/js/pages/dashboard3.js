@@ -76,34 +76,24 @@ $(function () {
       }
     }
   })
-
-  var $visitorsChart = $('#visitors-chart')
+  var $salesChart = $('#sales-chart2')
   // eslint-disable-next-line no-unused-vars
-  var visitorsChart = new Chart($visitorsChart, {
+  var salesChart = new Chart($salesChart, {
+    type: 'bar',
     data: {
-      labels: ['18th', '20th', '22nd', '24th', '26th', '28th', '30th'],
-      datasets: [{
-        type: 'line',
-        data: [100, 120, 170, 167, 180, 177, 160],
-        backgroundColor: 'transparent',
-        borderColor: '#007bff',
-        pointBorderColor: '#007bff',
-        pointBackgroundColor: '#007bff',
-        fill: false
-        // pointHoverBackgroundColor: '#007bff',
-        // pointHoverBorderColor    : '#007bff'
-      },
-      {
-        type: 'line',
-        data: [60, 80, 70, 67, 80, 77, 100],
-        backgroundColor: 'tansparent',
-        borderColor: '#ced4da',
-        pointBorderColor: '#ced4da',
-        pointBackgroundColor: '#ced4da',
-        fill: false
-        // pointHoverBackgroundColor: '#ced4da',
-        // pointHoverBorderColor    : '#ced4da'
-      }]
+      labels: ['JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
+      datasets: [
+        {
+          backgroundColor: '#007bff',
+          borderColor: '#007bff',
+          data: [1000, 2000, 3000, 2500, 2700, 2500, 3000]
+        },
+        {
+          backgroundColor: '#ced4da',
+          borderColor: '#ced4da',
+          data: [700, 1700, 2700, 2000, 1800, 1500, 2000]
+        }
+      ]
     },
     options: {
       maintainAspectRatio: false,
@@ -129,7 +119,16 @@ $(function () {
           },
           ticks: $.extend({
             beginAtZero: true,
-            suggestedMax: 200
+
+            // Include a dollar sign in the ticks
+            callback: function (value) {
+              if (value >= 1000) {
+                value /= 1000
+                value += 'k'
+              }
+
+              return '$' + value
+            }
           }, ticksStyle)
         }],
         xAxes: [{
@@ -142,4 +141,5 @@ $(function () {
       }
     }
   })
+
 })
