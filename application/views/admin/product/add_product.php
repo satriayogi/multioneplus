@@ -69,7 +69,7 @@
                           <div class="col-md-5" >
                             <label for=""> Pilih Warna</label> <br>
                             <select class="form-control select2" name="warna[]" style="width: 100%;">
-                              <?php foreach ($color_list as $key => $value) :?>
+                              <?php foreach ($color_list as $value) :?>
                                 <option selected="selected" value="<?= $value['id'] ?>"><?= $value['nama_warna'] ?></option>
                                 <?php endforeach; ?>
                               </select>
@@ -222,7 +222,6 @@
                                           </script>
 </div>
                   </div>
-                                          <span>*Ukuran Gambar Harus kurang dari 1mb</span>
                 </div>
               </div>
                        

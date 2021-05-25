@@ -251,13 +251,35 @@ $(function () {
   var salesChart = new Chart($salesChart, {
     type: 'bar',
     data: {
-      labels: ['JAN','FEB','MAR','APR','MEI','JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
+      labels: [
+        <?php 
+          $bln = array("JAN","FEB","MAR","APR","MEI","JUN","JUL","AUG","SEP","NOV","DES");
+          for ($i=0; $i < 11 ; $i++) { 
+            echo '"'.$bln[$i].'",';
+          }
+          ?>
+      ],
       datasets: [
        
         {
           backgroundColor: '#28a745',
           borderColor: '#28a745',
-          data: [1000, 2000, 3000, 2500, 2700, 2500, 3000]
+          data: [
+            <?php
+          foreach ($jml_transaksi as $value4) {
+            $bulan1 = $value4['bulan'];
+            $bulan2 = $value4['jumlah_bulanan'];
+                                // $total = (1000 / $totalbulan) * 1;
+                                echo 'null,null,null,null,'.$bulan1.',';
+                              }
+                              
+                              ?>
+            <?php 
+            // for ($i=2; $i < 11 ; $i++) { 
+            //   echo $bulan1[$i].',';
+            // }
+            ?>
+          ]
         }
       ]
     },
@@ -283,18 +305,19 @@ $(function () {
             color: 'rgba(0, 0, 0, .2)',
             zeroLineColor: 'transparent'
           },
-          ticks: $.extend({
+          ticks: {
             beginAtZero: true,
 
             // Include a dollar sign in the ticks
-            callback: function (value) {
-              if (value >= 1000) {
-                // value /= 1000
-              }
+            callback: function(value, index, labels) {
+                     // when the floored value is the same as the value we have a whole number
+                     if (Math.floor(value) === value) {
+                         return value;
+                     }
 
               return  value
-            }
-          }, ticksStyle)
+            },
+          }
         }],
         xAxes: [{
           display: true,

@@ -34,12 +34,15 @@
   <!-- Select2 -->
   <link rel="stylesheet" href="<?= base_url() ?>assets/admin/plugins/select2/css/select2.min.css">
   <link rel="stylesheet" href="<?= base_url() ?>assets/admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+<!-- jquery -->
 
+<script src="<?= base_url() ?>assets/admin/plugins/jquery/jquery.min.js"></script>
   <!-- sweetalert -->
 <script src="<?= base_url(); ?>/assets/admin/dist/js/sweetalert2.all.min.js"></script>
 <script src="<?= base_url(); ?>/assets/admin/dist/js/sweetalert2.min.js"></script>
 <link rel="stylesheet" href="<?= base_url(); ?>/assets/admin/dist/js/sweetalert2.min.css">
 <!-- end sweet aler -->
+<script src="https://unpkg.com/clipboard@2/dist/clipboard.min.js"></script>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -64,76 +67,29 @@
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
       <!-- Messages Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-comments"></i>
-          <span class="badge badge-danger navbar-badge">3</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="<?= base_url() ?>assets/admin/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  Brad Diesel
-                  <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">Call me whenever you can...</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="<?= base_url() ?>assets/admin/dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  John Pierce
-                  <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">I got your message bro</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="<?= base_url() ?>assets/admin/dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  Nora Silvester
-                  <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">The subject goes here</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
-        </div>
-      </li>
+      
       <!-- Notifications Dropdown Menu -->
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-bell"></i>
-          <span class="badge badge-warning navbar-badge">15</span>
+          <span class="badge badge-warning navbar-badge"><?= $tot_masuk['jml'] ?></span>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <span class="dropdown-item dropdown-header">15 Notifications</span>
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-envelope mr-2"></i> 4 new messages
+          <?php
+            foreach ($notif_masuk as $key => $notif) :
+          ?>
+          <p class="dropdown-item">
+            <i class="fas fa-user mr-2"></i>  <input type="text" style="border:none;" class="col-md-5" id="foo<?= $notif['id_order'] ?>" value="<?= $notif['id_order'] ?>"> <button class="notif btn btn-light float-right" data-clipboard-target="#foo<?= $notif['id_order'] ?>"><i class="fas fa-copy float-right"></i></button> 
             <!-- <span class="float-right text-muted text-sm">3 mins</span> -->
-          </a>
+          </p>
+            <script>
+            new ClipboardJS('.notif');
+            </script>
+          <?php 
+            endforeach;
+          ?>
          
       </li>
       <li class="nav-item">
@@ -331,6 +287,7 @@
               <p>
                 Message
                 <!-- <span class="right badge badge-danger">New</span> -->
+                <span class="badge badge-info right"><?= $tot_message['jml'] ?></span>
               </p>
             </a>
           </li>
@@ -346,7 +303,7 @@
           </li>
           <li class="nav-header">Transaction</li>
           <li class="nav-item">
-            <a href="<?= base_url('transaksi/index/'.$admin['id']) ?>" class="nav-link">
+            <a href="<?= base_url('transaction/index/'.$admin['id']) ?>" class="nav-link">
               <i class="nav-icon fas fa-cart-plus"></i>
               <p>
                 Transaction Customer
@@ -372,7 +329,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/mailbox/compose.html" class="nav-link">
+                <a href="<?= base_url('transaction/index/'.$admin['id']) ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Report Transaction</p>
                 </a>

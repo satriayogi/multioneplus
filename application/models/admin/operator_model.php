@@ -92,7 +92,7 @@ class operator_model extends CI_Model{
         redirect('operator/index');
     }
     public function total_bulanan(){
-        return $this->db->query("SELECT CONCAT(YEAR(date),'/',MONTH(date)) AS tahun_bulan, COUNT(*) AS jumlah_bulanan
+        return $this->db->query("SELECT CONCAT(YEAR(date),'/',MONTH(date)) AS tahun_bulan,CONCAT(MONTH(date)) AS bulan, COUNT(*) AS jumlah_bulanan
         FROM visitor WHERE CONCAT(YEAR(date),'/',MONTH(date))=CONCAT(YEAR(NOW()),'/',MONTH(date))
         GROUP BY YEAR(date),MONTH(date)")->result_array();
     }
@@ -105,10 +105,36 @@ class operator_model extends CI_Model{
         return $this->db->query("SELECT CONCAT(YEAR(date),'/',MONTH(date)) AS tahun_bulan, COUNT(*) AS jumlah_bulanan
         FROM visitor
         WHERE CONCAT(YEAR(date),'/',MONTH(date))=CONCAT(YEAR(NOW()),'/',MONTH(NOW()))
-        GROUP BY YEAR(date),MONTH(date);")->row_array();
+        GROUP BY YEAR(date),MONTH(date)")->row_array();
     }
     public function count_data(){
         return $this->db->query("SELECT (SELECT COUNT(*) FROM customer )as customer,(SELECT COUNT(*) FROM message )as message,(SELECT COUNT(*) FROM product)as product,(SELECT COUNT(*) FROM transaksi)as transaksi FROM DUAL")->row_array();
+    }
+    public function jml_transaksi(){
+        return $this->db->query("SELECT CONCAT(YEAR(tanggal),'/',MONTH(tanggal)) AS tahun_bulan,CONCAT(MONTH(tanggal)) AS bulan, COUNT(*) AS jumlah_bulanan FROM transaksi WHERE status='2' AND CONCAT(YEAR(tanggal),'/',MONTH(tanggal))=CONCAT(YEAR(NOW()),'/',MONTH(tanggal)) GROUP BY YEAR(tanggal),MONTH(tanggal) ")->result_array();
+    }
+    public function masuk_notif(){
+        $this->db->select("*");
+        $this->db->from("transaksi");
+        $this->db->where("status_pembayaran='Accept'");
+        $this->db->where("no_resi=''");
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+    public function tot_masuk(){
+        $this->db->select("COUNT(*) as jml");
+        $this->db->from("transaksi");
+        $this->db->where("status_pembayaran='Accept'");
+        $this->db->where("no_resi=''");
+        $query = $this->db->get();
+        return $query->row_array();
+    }
+    public function tot_message(){
+        $this->db->select("COUNT(*) as jml");
+        $this->db->from("message");
+        $this->db->where("status='00'");
+        $query = $this->db->get();
+        return $query->row_array();
     }
 }
 

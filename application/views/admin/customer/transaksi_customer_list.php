@@ -37,12 +37,13 @@
                     <th>Discount</th>
                     <th>Total product</th>
                     <th>Total</th>
+                    <th>Status</th>
                     <th>Setting</th>
                   </tr>
                   </thead>
                   <tbody>
                     <?php $no=1; foreach ($transaksi as $key => $value):?>
-                  <tr>
+                  <tr id="pembayaran">
                     <td><?= $value['id'] ?></td>
                     <td><?= $value['id_order'] ?></td>
                     <td><?= $value['nama'] ?></td>
@@ -60,15 +61,17 @@
                       echo $query['jumlah'];
                       ?>
                     </td>
-                    <td><?= $value['total'] ?></td>
+                    <td ><?= $value['total'] ?></td>
+                    <td><?= $value['status_pembayaran'] ?></td>
                     <td>
                     <?php 
                     if ($value['no_resi'] == null):?>
                     <button type="button" class="btn btn-primary w-100 mb-1" data-toggle="modal" data-target="#exampleModal<?= $value['id'] ?>">Resi <i class="fa fa-book"></i> </button>  
+                    <a href="<?= base_url('transaction/print/'.$value['id']) ?>" target="_blank" class="btn btn-warning w-100"> Print <i class="fas fa-print"></i></a>
                     <?php else: ?>
                     <button type="button" class="btn btn-primary w-100 mb-1" data-toggle="modal" data-target="#exampleModal<?= $value['id'] ?>">Update Resi <i class="fa fa-book"></i> </button>  
                     <?php endif; ?>
-                    <a href="<?= base_url('transaksi/print/'.$value['id']) ?>" target="_blank" class="btn btn-warning w-100"> Print <i class="fas fa-print"></i></a></td>
+                     </td>
                   </tr>
                   <?php endforeach; ?>
                   </tbody>
@@ -104,7 +107,8 @@
           <div class="form-group row">
             <label for="" class="col-sm-2 col-form-label">No resi</label>
             <input type="text" name="noresi" id="" class="form-control col-sm-10">
-            <input type="hidden" name="id" id="" class="form-control col-sm-10" value="<?= $value1['id'] ?>">
+            <input type="hidden" name="id"  class="form-control col-sm-10" value="<?= $value1['id'] ?>">
+            <input type="hidden" name="order_id" id="dta-id" class="form-control col-sm-10" value="<?= $value1['id_order'] ?>">
             <input type="hidden" name="id_customer" id="" class="form-control col-sm-10" value="<?= $value1['id_customer'] ?>">
             <input type="hidden" name="id_order" id="" class="form-control col-sm-10" value="<?= $value1['id_order'] ?>">
             <input type="hidden" name="kodepos" id="" class="form-control col-sm-10" value="<?= $value1['kodepos'] ?>">
@@ -128,3 +132,73 @@
   </div>
 </div>
 <?php endforeach; ?>
+<script src="<?= base_url() ?>assets/admin/plugins/jquery/jquery.min.js"></script>
+<!-- Modal -->
+<div class="modal fade" id="example" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="getdat modal-body">
+      <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">id Order</th>
+      <th scope="col">Tipe Pembayaran</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody id="pemb">
+   
+    
+  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <script>
+     $(document).ready(function(){
+      $(".example").on("click",function(){
+        // alert("masuk");
+        var order_id = $(this).attr('data-id');
+        //  alert(order_id);
+         var arr = ['asd','aswqe'];
+         console.log(arr);
+         $.ajax({
+           type: "GET",
+           url: "<?= base_url() ?>transaction/process",
+           dataType: "json",
+           data: {order_id:order_id},
+           success: data => {
+             console.log(data);
+             $.each(data,function(status_message,va_numbers){
+               if (data.transaction_status == "settlement") {
+                 $("#pemb").html( "<tr><td>"+data.order_id+"</td><td>"+data.payment_type+"</td><td> <div style='width: 80%;height: 26px;background-color: yellow;margin: auto;text-align: center;'>"+data.transaction_status+"</div></td></tr>");
+                 
+               }else if(data.transaction_status == "expire")
+              $("#pemb").html( "<tr><td>"+data.order_id+"</td><td>"+data.payment_type+"</td><td><div style='width: 80%;height: 26px;background-color: red;margin: auto;text-align: center;'>"+data.transaction_status+"</div></td></tr>");
+               
+              });
+              //  for(var i = 0; i<data.length;i++){
+                //    console.log(data.status_message);
+                //  }
+           }
+           
+          });
+       });
+
+
+     });
+        </script> -->
+
+<!-- jQuery -->
+   

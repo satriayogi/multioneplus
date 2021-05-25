@@ -12,12 +12,18 @@ class Product extends CI_Controller{
     public function index(){
         $data['admin']= $this->operator->viewadmin()->row_array();
         $data['product'] = $this->product->read_product();
+        $data['notif_masuk'] = $this->operator_model->masuk_notif();
+        $data['tot_masuk'] = $this->operator_model->tot_masuk();
+        $data['tot_message'] = $this->operator_model->tot_message();
         $this->load->view('admin/header',$data);
         $this->load->view('admin/product/product_list',$data);
         $this->load->view('admin/footer');
     }
     public function product_list_detail(){
         $data['admin'] = $this->operator->viewadmin()->row_array();
+        $data['notif_masuk'] = $this->operator_model->masuk_notif();
+        $data['tot_masuk'] = $this->operator_model->tot_masuk();
+        $data['tot_message'] = $this->operator_model->tot_message();
         $this->load->view('admin/header',$data);
         $this->load->view('admin/product/product_list_detail');
         $this->load->view('admin/footer');
@@ -26,6 +32,9 @@ class Product extends CI_Controller{
         $data['admin'] = $this->operator->viewadmin()->row_array();
         $data['category'] = $this->product->readcategory();
         $data['color_list'] = $this->product->color_list();
+        $data['notif_masuk'] = $this->operator_model->masuk_notif();
+        $data['tot_masuk'] = $this->operator_model->tot_masuk();
+        $data['tot_message'] = $this->operator_model->tot_message();
         $this->load->view('admin/header',$data);
         $this->load->view('admin/product/add_product',$data);
         $this->load->view('admin/footer');
@@ -47,7 +56,13 @@ class Product extends CI_Controller{
     public function edit_product(){
         $data['admin'] = $this->operator->viewadmin()->row_array();
         $data['category'] = $this->product->readcategory();
+        $data['stok'] = $this->product->stok();
+        $data['color_list'] = $this->product->color_list();
         $data['edit'] = $this->product->read_productrow();
+        $data['editcategory'] = $this->product->editcategory();
+        $data['notif_masuk'] = $this->operator_model->masuk_notif();
+        $data['tot_masuk'] = $this->operator_model->tot_masuk();
+        $data['tot_message'] = $this->operator_model->tot_message();
         $this->load->view('admin/header',$data);
         $this->load->view('admin/product/edit_product',$data);
         $this->load->view('admin/footer');       
@@ -58,6 +73,9 @@ class Product extends CI_Controller{
     public function color_list(){
         $data['admin']= $this->operator->viewadmin()->row_array();
         $data['color_list'] = $this->product->color_list();
+        $data['notif_masuk'] = $this->operator_model->masuk_notif();
+        $data['tot_masuk'] = $this->operator_model->tot_masuk();
+        $data['tot_message'] = $this->operator_model->tot_message();
         $this->load->view('admin/header',$data);
         $this->load->view('admin/product/color_list',$data);
         $this->load->view('admin/footer');

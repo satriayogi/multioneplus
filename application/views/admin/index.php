@@ -34,7 +34,6 @@
                 <span class="info-box-text">Customer</span>
                 <span class="info-box-number">
                   <?= $jml['customer'] ?>
-                  <small>%</small>
                 </span>
               </div>
               <!-- /.info-box-content -->
@@ -44,7 +43,7 @@
           <!-- /.col -->
           <div class="col-12 col-sm-6 col-md-3">
             <div class="info-box mb-3">
-              <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
+              <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-boxes"></i></span>
 
               <div class="info-box-content">
                 <span class="info-box-text">Product</span>
@@ -62,7 +61,7 @@
 
           <div class="col-12 col-sm-6 col-md-3">
             <div class="info-box mb-3">
-              <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-envelope"></i></span>
+              <span class="info-box-icon bg-success elevation-1"><i class="fas fa-envelope"></i></span>
 
               <div class="info-box-content">
                 <span class="info-box-text">New Message</span>
@@ -139,7 +138,7 @@
             <div class="card">
               <div class="card-header border-0">
                 <div class="d-flex justify-content-between">
-                  <h3 class="card-title">Sales</h3>
+                  <h3 class="card-title">Transaction</h3>
                   <a href="javascript:void(0);">View Report</a>
                 </div>
               </div>

@@ -123,16 +123,16 @@ ul li .dropdown li {
         </div>
        </section> -->
        
-       <nav class="navbar navbar-expand-lg navbar-light bg-light shadow p-3 mb-5" style="z-index:1;">
-       <div class="container">
-  <a class="navbar-brand" href="<?= base_url('list_product/index') ?>"><img src="https://www.multioneplus.com/template/s150319001001/images/logo-mutil-plus-one2.png" style="width: 173px;height: 65px;" alt=""></a>
+       <nav class="navbar navbar-expand-lg navbar-light p-3 mb-5" style="z-index:1;">
+       <div class="container" style="width: 40%;">
+  <a class="navbar-brand" href="<?= base_url('list_product/index') ?>"><img src="<?= base_url('assets/customer/img/logo-mutil-plus-one1 (1).png') ?>" style="width: 173px;height: 65px;" alt=""></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse justify-content-end p-4" id="navbarNavDropdown">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="<?= base_url('about/index') ?>">About MOP <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="<?= base_url("about/index") ?>">About MOP <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="<?= base_url() ?>list_product/index">Shop</a>
@@ -142,7 +142,7 @@ ul li .dropdown li {
       </li>
       
       <li class="nav-item mr-3">
-        <a class="nav-link" href="<?= base_url('checkout/index') ?>" style="background-color:#f7f5f6; border-radius:5px;"><img src="<?= base_url() ?>assets/customer/img/shopping chart.png" style="width:30px;height:30px;" alt="">
+        <a class="nav-link" href="<?= base_url('checkout/index') ?>" style=" border-radius:5px;"><img src="<?= base_url() ?>assets/customer/img/shopping chart.png" style="width:30px;height:30px;" alt="">
         <?php
 $id_customer = $customer['id'];
                 $ha = $this->db->query("SELECT COUNT(id_customer) as jumlah FROM keranjang WHERE id_customer='$id_customer'")->row_array();
@@ -164,7 +164,7 @@ $id_customer = $customer['id'];
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="<?= base_url('profile/index') ?>">Profile</a>
-          <a class="dropdown-item" href="<?= base_url('transaksi_customer/riwayat_transaksi') ?>">Riwayat Transaksi</a>
+          <a class="dropdown-item" href="<?= base_url('transaksi_customer/noti') ?>">Riwayat Transaksi</a>
           <a class="dropdown-item" href="#">Change Password  </a>
           <a class="dropdown-item" href="<?= base_url('loginc/logout_customer') ?>">Logout</a>
         </div>

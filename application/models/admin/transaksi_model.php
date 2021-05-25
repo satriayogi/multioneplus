@@ -7,7 +7,7 @@ class Transaksi_model extends CI_Model{
         $query = $this->db->get();
         return $query->result_array();
     }
-    public function print(){
+    public function print_transaksi(){
         $uri = $this->uri->segment(3);
         return $this->db->get_where("transaksi",['id'=>$uri])->row_array();
         // var_dump($uri);die;
@@ -41,12 +41,12 @@ class Transaksi_model extends CI_Model{
         no_resi = '$noresi',
         harga_kurir = '$harga_kurir',
         discount = '$discount',
-        total = '$total',
-        status = 1
+        total = '$total'
         WHERE id='$id'
         ");
-    redirect('transaksi/index');
+        redirect('transaksi/index');
     }
+    
 }
 
 

@@ -17,9 +17,12 @@ class Transaksi_customer extends CI_Controller{
         $data['keranjang'] = $this->transaksi->viewkeranjang();
         $this->load->view('customer/transaksi/transaksi',$data);
     }
+    public function noti(){
+        redirect('notification/index');
+    }
     public function transaksi(){
         $data['customer'] = $this->product->viewcustomer()->row_array();
-        $this->load->view('customer/transaksi/transaksi1',$data);
+
     }
     public function pluskeranjang(){
         $this->transaksi->pluskeranjang();
@@ -33,6 +36,7 @@ class Transaksi_customer extends CI_Controller{
     public function riwayat_transaksi(){
         $data['customer'] = $this->product->viewcustomer()->row_array();
         $this->load->view('customer/transaksi/riwayat_transaksi',$data);
+      
     }
     public function detail_transaksi(){
         $data['customer'] = $this->product->viewcustomer()->row_array();

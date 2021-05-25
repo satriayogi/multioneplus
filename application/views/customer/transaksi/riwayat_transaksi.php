@@ -35,7 +35,7 @@
    <div class="collapse navbar-collapse justify-content-end p-4" id="navbarNavDropdown">
      <ul class="navbar-nav">
        <li class="nav-item active">
-         <a class="nav-link" href="<?= base_url('about/index') ?>">About MOP <span class="sr-only">(current)</span></a>
+         <a class="nav-link" href="<?= base_url("about/index") ?>">About MOP <span class="sr-only">(current)</span></a>
        </li>
        <li class="nav-item">
          <a class="nav-link" href="<?= base_url() ?>list_product/index">Shop</a>
@@ -65,7 +65,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="<?= base_url('profile/index') ?>">Profile</a>
-          <a class="dropdown-item" href="<?= base_url('transaksi_customer/riwayat_transaksi') ?>">Riwayat Transaksi</a>
+          <a class="dropdown-item" href="<?= base_url('transaksi_customer/noti') ?>">Riwayat Transaksi</a>
           <a class="dropdown-item" href="#">Change Password</a>
           <a class="dropdown-item" href="<?= base_url('loginc/logout_customer') ?>">Logout</a>
         </div>
@@ -107,6 +107,7 @@
         <th scope="col">diskon</th>
         <th scope="col">Total</th>
         <th scope="col">Status</th>
+        <th scope="col">Status Pembayaran</th>
         <th scope="col">Action</th>
       </tr>
     </thead>
@@ -270,6 +271,7 @@ Swal.fire({
         }
         
         ?></td>
+        <td><?= $value['status_pembayaran'] ?></td>
         <td> <a href="<?= base_url('transaksi_customer/detail_transaksi/'.$value['id']) ?>" class="btn btn-primary" style="margin-bottom:5px;">Detail Transaksi</a> 
          <?php if ($value['no_resi'] == null):?>
          <?php else: ?>

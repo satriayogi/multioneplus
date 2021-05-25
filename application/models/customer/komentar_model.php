@@ -12,7 +12,7 @@ class Komentar_model extends CI_Model{
             'ratting'=>$rating
         ];
         $this->db->insert('komentar',$data);
-        redirect('product_customer/detail_product/'.$product);
+        redirect('product_customer/detail_product/'.$customer.'/'.$product);
     }
 }
 

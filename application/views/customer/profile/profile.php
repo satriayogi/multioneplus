@@ -27,7 +27,7 @@
    <div class="collapse navbar-collapse justify-content-end p-4" id="navbarNavDropdown">
      <ul class="navbar-nav">
        <li class="nav-item active">
-         <a class="nav-link" href="<?= base_url('about/index') ?>">About MOP <span class="sr-only">(current)</span></a>
+         <a class="nav-link" href="<?= base_url("about/index") ?>">About MOP <span class="sr-only">(current)</span></a>
        </li>
        <li class="nav-item">
          <a class="nav-link" href="<?= base_url() ?>list_product/index">Shop</a>
@@ -57,7 +57,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="<?= base_url('profile/index') ?>">Profile</a>
-          <a class="dropdown-item" href="<?= base_url('transaksi_customer/riwayat_transaksi') ?>">Riwayat Transaksi</a>
+          <a class="dropdown-item" href="<?= base_url('transaksi_customer/noti') ?>">Riwayat Transaksi</a>
           <a class="dropdown-item" href="#">Change Password</a>
           <a class="dropdown-item" href="<?= base_url('loginc/logout_customer') ?>">Logout</a>
         </div>
@@ -95,16 +95,16 @@ display: inline-block;
             }
         </style>
         <div class="form-group">
-            <div class="bg-success text-light bulet col-md-2"><i class="fas fa-at"></i></div>  <label for=""> <h4>Satria yogi</h4></label>
+            <div class="bg-success text-light bulet col-md-2"><i class="fas fa-at"></i></div>  <label for=""> <h4><?= $customer['nama'] ?></h4></label>
         </div>
         <div class="form-group">
-            <div class=" bg-success text-light bulet col-md-2"> <i class="fas fa-phone-square-alt"></i> </div><label for=""> <h4>+ 081233288</h4></label>
+            <div class=" bg-success text-light bulet col-md-2"> <i class="fas fa-phone-square-alt"></i> </div><label for=""> <h4><?= $customer['no_tlp'] ?></h4></label>
         </div>
         <div class="form-group">
-            <div class="bg-success text-light bulet col-md-2"> <i class="fas fa-calendar-week"></i> </div><label for=""> <h4>12 mei 1990</h4></label>
+            <div class="bg-success text-light bulet col-md-2"> <i class="fas fa-calendar-week"></i> </div><label for=""> <h4><?= $customer['tanggal_lahir'] ?></h4></label>
         </div>
         <div class="form-group">
-            <div class="bg-success text-light bulet col-md-2"> <i class="fas fa-envelope-open-text"></i> </div><label for=""> <h4>satria@gmail.com</h4></label>
+            <div class="bg-success text-light bulet col-md-2"> <i class="fas fa-envelope-open-text"></i> </div><label for=""> <h4>satria<?= $customer['email'] ?></h4></label>
         </div>
     </div>
 </div>

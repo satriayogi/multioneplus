@@ -12,6 +12,9 @@ class Category extends CI_Controller{
         $data['admin']=$this->operator->viewadmin()->row_array();
         $data['category']=$this->category->read_category();
         $data['category1']=$this->category->read_category();
+        $data['notif_masuk'] = $this->operator_model->masuk_notif();
+        $data['tot_masuk'] = $this->operator_model->tot_masuk();
+        $data['tot_message'] = $this->operator_model->tot_message();
         $this->load->view('admin/header',$data);
         $this->load->view('admin/category/category_list',$data);
         $this->load->view('admin/footer');
@@ -31,6 +34,9 @@ class Category extends CI_Controller{
         $data['category'] = $this->category->read_category();
         $data['subcategory'] = $this->category->read_subcategory();
         $data['subcategory1'] = $this->category->read_subcategory();
+        $data['notif_masuk'] = $this->operator_model->masuk_notif();
+        $data['tot_masuk'] = $this->operator_model->tot_masuk();
+        $data['tot_message'] = $this->operator_model->tot_message();
         $this->load->view('admin/header',$data);
         $this->load->view('admin/category/subcategory',$data);
         $this->load->view('admin/footer');

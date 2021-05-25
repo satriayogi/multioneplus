@@ -245,8 +245,10 @@ class Buy extends CI_Controller{
 		error_log($snapToken);
 		echo $snapToken;
     }
-    public function finish()
+     public function finish()
     {
+		$result = json_decode($this->input->post('result_data'),true);
+		    	
 		$order_id = $this->input->post('result_data');
 		$nama_customer = $this->input->post('nama_customer');
 		$no_tlp = $this->input->post('no_tlp');
@@ -274,13 +276,14 @@ class Buy extends CI_Controller{
 		$qty1 = $this->input->post("qty1");
 		$totalproduct = $this->input->post("totalproduct");
 		// delete keranjang
-		$this->db->query("DELETE FROM keranjang where id_customer='$id_customer'");
+// 		$this->db->query("DELETE FROM keranjang where id_customer='$id_customer'");
 		// warna
 		$warna = $this->input->post("warna");
 		$id_warna = $this->input->post("id_warna");
+		
 		$data=[
 			'id_customer'=>$id_customer,
-			'id_order'=>$order_id,
+			'id_order'=>$result['order_id'],
 			'alamat'=>$alamat,
 			'kodepos'=>$kodepos,
 			'provinsi'=>$provinsi,
@@ -290,7 +293,10 @@ class Buy extends CI_Controller{
 			'jenis_paket'=>$ekpedisi,
 			'harga_kurir'=>$hargaongkir,
 			'discount'=>$discount,
+			'metode_pembayaran'=>$result['va_numbers'][0]["bank"],
+			'kode'=>$result['va_numbers'][0]["va_number"],
 			'tanggal'=>date("Y-m-d"),
+			'status_pembayaran'=>$result['transaction_status'],
 			'total'=>$totalseluruh
 
 		];
@@ -342,7 +348,6 @@ class Buy extends CI_Controller{
 			// var_dump($result2);die;
 			// $this->db->where('id_stylecolor',$id_warna);
 			// $this->db->update_batch('warna',$result2,'id');
-			// $result = json_decode($this->input->post('result_data'));
     	// echo 'RESULT <br><pre>';
     	// var_dump($result);
     	// echo '</pre>' ;

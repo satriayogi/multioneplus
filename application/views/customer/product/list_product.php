@@ -9,23 +9,28 @@
     width: 100%;
     height: 100%;
   }
+  .asd1{
+      background-image:url("http://multioneplus.store/testing/assets/admin/img/Artboard_1_copy_3.png");
+      background-size:cover;
+      
+  }
        </style>
-       <div class="container">
-       <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+       <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="margin-top: -175px;">
   <ol class="carousel-indicators">
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active" style="background-color:green;"></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="1" style="background-color:green;"></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="2" style="background-color:green;"></li>
   </ol>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="<?= base_url() ?>assets/customer/img/banner.png" class="d-block w-100" alt="...">
+  <div class="asd1 carousel-inner" style="height: 750px;">
+    <div class="asd1 carousel-item active">
+      
     </div>
     <div class="carousel-item">
-      <img src="<?= base_url() ?>assets/customer/img/banner.png" class="d-block w-100" alt="...">
+      <img src="<?= base_url() ?>assets/admin/img/Artboard_1_copy.png" class="d-block w-100" alt="...">
     </div>
     <div class="carousel-item">
-      <img src="<?= base_url() ?>assets/customer/img/banner.png" class="d-block w-100" alt="...">
+      <img src="<?= base_url() ?>assets/admin/img/Artboard_1_copy_4.png" class="d-block w-100" alt="...">
+    
     </div>
   </div>
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -36,7 +41,6 @@
     <span class="carousel-control-next-icon" style="background-color:green;" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
   </a>
-</div>
 </div>
        <section class="online-store" id="online-store">
         <div class=products>
@@ -70,7 +74,6 @@
 
                         ?>
   <div class="col mb-3">
-  <a href="<?= base_url('product_customer/detail_product/'.$id) ?>">
     <div class="card" style="background-color: #f7f5f6;border: none; height: 300px;">
     <a href="<?= base_url('product_customer/detail_product/'.$id) ?>"> <img src="<?= base_url() ?>assets/admin/img/product/<?= $query['gambar'] ?>" class="card-img-top img-product"  style="width: 200px;
     transition: all .4s ease-in-out;
@@ -86,7 +89,6 @@
                         } ?></h5></h5></a>
        <a href="<?= base_url('product_customer/detail_product/'.$id) ?>" style="text-decoration:none">  <p class="card-text mx-auto"><h5 style=" color:#24ae5c; font-weight:600;"> Rp.<?= $value['harga']; ?> </h5></p></a>
       </div>
-      </a>
   </div>
   <?php endforeach; ?>
 </div>
